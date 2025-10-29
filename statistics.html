@@ -202,6 +202,111 @@
             margin-bottom: 5px;
         }
         
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .quiz-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .quiz-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .submit-btn {
+            background: #28a745;
+            color: white;
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            background: #218838;
+        }
+        
+        .next-btn {
+            background: #3498db;
+            color: white;
+        }
+        
+        .next-btn:hover {
+            background: #2980b9;
+        }
+        
+        .random-btn {
+            background: #6f42c1;
+            color: white;
+        }
+        
+        .random-btn:hover {
+            background: #5a2d91;
+        }
+        
+        .restart-btn {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .restart-btn:hover {
+            background: #c0392b;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .easy-badge {
+            background: #28a745;
+            color: white;
+        }
+        
+        .medium-badge {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .hard-badge {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
         @media (max-width: 768px) {
             th, td {
                 padding: 10px;
@@ -218,6 +323,10 @@
             
             .options {
                 grid-template-columns: 1fr;
+            }
+            
+            .quiz-controls {
+                flex-direction: column;
             }
         }
         
@@ -517,7 +626,7 @@
           return relevantLaws;
         }
 
-        // questions.js - English Only
+        // questions.js - أكثر من 100 سؤال يغطي جميع القوانين
         const questions = [
           // Basic Probability Questions
           {
@@ -869,176 +978,1421 @@
             explanation: "For mutually exclusive events: P(A ∪ B) = P(A) + P(B) = 0.6 + 0.4 = 1.0",
             difficulty: "medium",
             category: "Probability Rules"
+          },
+          // Descriptive Statistics Questions
+          {
+            id: 26,
+            text: "The arithmetic mean of the numbers 2, 4, 6, 8, 10 is:",
+            options: [
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            correctAnswer: 1,
+            explanation: "Mean = (2+4+6+8+10)/5 = 30/5 = 6",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 27,
+            text: "The median of the numbers 5, 2, 8, 1, 9 is:",
+            options: [
+              "5",
+              "2",
+              "8",
+              "1"
+            ],
+            correctAnswer: 0,
+            explanation: "Sorted: 1, 2, 5, 8, 9 → Median = 5",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 28,
+            text: "The variance of a population is calculated by:",
+            options: [
+              "Σ(xᵢ - μ)² / N",
+              "Σ(xᵢ - x̄)² / (n - 1)",
+              "Σ(xᵢ - μ)² / (N - 1)",
+              "Σ(xᵢ - x̄)² / n"
+            ],
+            correctAnswer: 0,
+            explanation: "Population variance formula: σ² = Σ(xᵢ - μ)² / N",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 29,
+            text: "The sample variance is calculated by:",
+            options: [
+              "Σ(xᵢ - μ)² / N",
+              "Σ(xᵢ - x̄)² / (n - 1)",
+              "Σ(xᵢ - μ)² / (N - 1)",
+              "Σ(xᵢ - x̄)² / n"
+            ],
+            correctAnswer: 1,
+            explanation: "Sample variance formula: s² = Σ(xᵢ - x̄)² / (n - 1)",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 30,
+            text: "The standard deviation is:",
+            options: [
+              "The square of the variance",
+              "The square root of the variance",
+              "The average of the data",
+              "The range of the data"
+            ],
+            correctAnswer: 1,
+            explanation: "Standard deviation = √variance",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 31,
+            text: "The interquartile range (IQR) is:",
+            options: [
+              "Q₃ - Q₁",
+              "Q₁ - Q₃",
+              "Max - Min",
+              "Q₂"
+            ],
+            correctAnswer: 0,
+            explanation: "IQR = Q₃ - Q₁",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 32,
+            text: "The coefficient of variation is calculated as:",
+            options: [
+              "(s / x̄) × 100%",
+              "(x̄ / s) × 100%",
+              "s² / x̄",
+              "x̄ / s²"
+            ],
+            correctAnswer: 0,
+            explanation: "CV = (s / x̄) × 100%",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 33,
+            text: "Which measure of central tendency is most affected by outliers?",
+            options: [
+              "Mean",
+              "Median",
+              "Mode",
+              "All are equally affected"
+            ],
+            correctAnswer: 0,
+            explanation: "The mean is most affected by outliers because it uses all values in its calculation.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 34,
+            text: "For a symmetric distribution, which is true?",
+            options: [
+              "Mean = Median = Mode",
+              "Mean > Median > Mode",
+              "Mean < Median < Mode",
+              "Mean = Median but not necessarily Mode"
+            ],
+            correctAnswer: 0,
+            explanation: "In a perfectly symmetric distribution, mean = median = mode.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 35,
+            text: "The range of the data set {3, 7, 2, 9, 5} is:",
+            options: [
+              "5",
+              "7",
+              "9",
+              "11"
+            ],
+            correctAnswer: 1,
+            explanation: "Range = Max - Min = 9 - 2 = 7",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          // Random Variables and Distributions
+          {
+            id: 36,
+            text: "The expected value of a discrete random variable X is:",
+            options: [
+              "Σ x f(x)",
+              "Σ f(x)",
+              "Σ x² f(x)",
+              "Σ (x - μ)² f(x)"
+            ],
+            correctAnswer: 0,
+            explanation: "E[X] = Σ x f(x)",
+            difficulty: "medium",
+            category: "Random Variables"
+          },
+          {
+            id: 37,
+            text: "The variance of a random variable X is:",
+            options: [
+              "E[X²] - (E[X])²",
+              "E[X]²",
+              "E[X²]",
+              "E[X] - E[X²]"
+            ],
+            correctAnswer: 0,
+            explanation: "Var(X) = E[X²] - (E[X])²",
+            difficulty: "medium",
+            category: "Random Variables"
+          },
+          {
+            id: 38,
+            text: "For a binomial distribution with parameters n and p, the mean is:",
+            options: [
+              "n p",
+              "n (1 - p)",
+              "p (1 - p)",
+              "n p (1 - p)"
+            ],
+            correctAnswer: 0,
+            explanation: "For Bin(n, p), μ = n p",
+            difficulty: "medium",
+            category: "Distributions"
+          },
+          {
+            id: 39,
+            text: "For a binomial distribution with parameters n and p, the variance is:",
+            options: [
+              "n p",
+              "n (1 - p)",
+              "p (1 - p)",
+              "n p (1 - p)"
+            ],
+            correctAnswer: 3,
+            explanation: "For Bin(n, p), σ² = n p (1 - p)",
+            difficulty: "medium",
+            category: "Distributions"
+          },
+          {
+            id: 40,
+            text: "The probability mass function for a binomial distribution is:",
+            options: [
+              "P(X=x) = C(n, x)pˣ(1-p)ⁿ⁻ˣ",
+              "P(X=x) = e^(-λ)λˣ/x!",
+              "P(X=x) = (1-p)ˣ⁻¹p",
+              "P(X=x) = 1/(b-a)"
+            ],
+            correctAnswer: 0,
+            explanation: "Binomial PMF: P(X=x) = C(n, x)pˣ(1-p)ⁿ⁻ˣ",
+            difficulty: "hard",
+            category: "Distributions"
+          },
+          {
+            id: 41,
+            text: "A random variable that can take any value in an interval is called:",
+            options: [
+              "Discrete",
+              "Continuous",
+              "Categorical",
+              "Ordinal"
+            ],
+            correctAnswer: 1,
+            explanation: "Continuous random variables can take any value in an interval.",
+            difficulty: "easy",
+            category: "Random Variables"
+          },
+          {
+            id: 42,
+            text: "The standard normal distribution has:",
+            options: [
+              "μ = 0, σ = 1",
+              "μ = 1, σ = 0",
+              "μ = 0, σ = 0",
+              "μ = 1, σ = 1"
+            ],
+            correctAnswer: 0,
+            explanation: "Standard normal distribution: μ = 0, σ = 1",
+            difficulty: "easy",
+            category: "Distributions"
+          },
+          {
+            id: 43,
+            text: "The Poisson distribution is used to model:",
+            options: [
+              "The number of successes in n trials",
+              "The time between events",
+              "The number of events in a fixed interval",
+              "Continuous measurements"
+            ],
+            correctAnswer: 2,
+            explanation: "Poisson distribution models the number of events in a fixed interval.",
+            difficulty: "medium",
+            category: "Distributions"
+          },
+          {
+            id: 44,
+            text: "The exponential distribution is used to model:",
+            options: [
+              "The number of successes in n trials",
+              "The time between events",
+              "The number of events in a fixed interval",
+              "Continuous measurements with bell shape"
+            ],
+            correctAnswer: 1,
+            explanation: "Exponential distribution models the time between events.",
+            difficulty: "medium",
+            category: "Distributions"
+          },
+          {
+            id: 45,
+            text: "For a normal distribution, approximately what percentage of data falls within one standard deviation of the mean?",
+            options: [
+              "50%",
+              "68%",
+              "95%",
+              "99.7%"
+            ],
+            correctAnswer: 1,
+            explanation: "In a normal distribution, about 68% of data falls within μ ± σ",
+            difficulty: "easy",
+            category: "Distributions"
+          },
+          // Levels of Measurement
+          {
+            id: 46,
+            text: "Which level of measurement has categories with no inherent order?",
+            options: [
+              "Nominal",
+              "Ordinal",
+              "Interval",
+              "Ratio"
+            ],
+            correctAnswer: 0,
+            explanation: "Nominal level has categories with no inherent order.",
+            difficulty: "easy",
+            category: "Measurement Levels"
+          },
+          {
+            id: 47,
+            text: "Which level of measurement has ordered categories but no meaningful differences?",
+            options: [
+              "Nominal",
+              "Ordinal",
+              "Interval",
+              "Ratio"
+            ],
+            correctAnswer: 1,
+            explanation: "Ordinal level has ordered categories but differences are not meaningful.",
+            difficulty: "easy",
+            category: "Measurement Levels"
+          },
+          {
+            id: 48,
+            text: "Temperature in Celsius is an example of which level of measurement?",
+            options: [
+              "Nominal",
+              "Ordinal",
+              "Interval",
+              "Ratio"
+            ],
+            correctAnswer: 2,
+            explanation: "Temperature in Celsius is interval (has meaningful differences but no true zero).",
+            difficulty: "medium",
+            category: "Measurement Levels"
+          },
+          {
+            id: 49,
+            text: "Height is an example of which level of measurement?",
+            options: [
+              "Nominal",
+              "Ordinal",
+              "Interval",
+              "Ratio"
+            ],
+            correctAnswer: 3,
+            explanation: "Height is ratio (has meaningful differences and a true zero).",
+            difficulty: "medium",
+            category: "Measurement Levels"
+          },
+          {
+            id: 50,
+            text: "Which level of measurement has a true zero point?",
+            options: [
+              "Nominal",
+              "Ordinal",
+              "Interval",
+              "Ratio"
+            ],
+            correctAnswer: 3,
+            explanation: "Ratio level has a true zero point.",
+            difficulty: "easy",
+            category: "Measurement Levels"
+          },
+          // Additional questions to reach 100+
+          {
+            id: 51,
+            text: "If P(A) = 0.3, P(B) = 0.4, and P(A ∩ B) = 0.12, then A and B are:",
+            options: [
+              "Independent",
+              "Dependent",
+              "Mutually exclusive",
+              "Complementary"
+            ],
+            correctAnswer: 0,
+            explanation: "P(A ∩ B) = 0.12 = 0.3 × 0.4 = P(A)P(B), so they are independent.",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 52,
+            text: "If P(A) = 0.3, P(B) = 0.4, and A and B are mutually exclusive, then P(A ∩ B) is:",
+            options: [
+              "0.12",
+              "0.7",
+              "0",
+              "0.1"
+            ],
+            correctAnswer: 2,
+            explanation: "For mutually exclusive events, P(A ∩ B) = 0",
+            difficulty: "easy",
+            category: "Probability Rules"
+          },
+          {
+            id: 53,
+            text: "The law of total probability states that:",
+            options: [
+              "P(B) = Σ P(B|Aᵢ) P(Aᵢ)",
+              "P(A|B) = P(B|A)P(A)/P(B)",
+              "P(A ∪ B) = P(A) + P(B) - P(A ∩ B)",
+              "P(Aᶜ) = 1 - P(A)"
+            ],
+            correctAnswer: 0,
+            explanation: "Law of total probability: P(B) = Σ P(B|Aᵢ) P(Aᵢ)",
+            difficulty: "hard",
+            category: "Probability Rules"
+          },
+          {
+            id: 54,
+            text: "Bayes' theorem is used to:",
+            options: [
+              "Calculate the probability of an event",
+              "Update probabilities based on new evidence",
+              "Calculate the union of events",
+              "Calculate conditional probability directly"
+            ],
+            correctAnswer: 1,
+            explanation: "Bayes' theorem updates prior probabilities based on new evidence.",
+            difficulty: "medium",
+            category: "Bayes Theorem"
+          },
+          {
+            id: 55,
+            text: "If events A and B are independent, then:",
+            options: [
+              "P(A|B) = P(A)",
+              "P(A|B) = P(B)",
+              "P(A|B) = P(A ∩ B)",
+              "P(A|B) = P(A) + P(B)"
+            ],
+            correctAnswer: 0,
+            explanation: "For independent events, P(A|B) = P(A)",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 56,
+            text: "The probability of the intersection of two independent events is:",
+            options: [
+              "P(A) + P(B)",
+              "P(A) P(B)",
+              "P(A) - P(B)",
+              "P(A) / P(B)"
+            ],
+            correctAnswer: 1,
+            explanation: "For independent events, P(A ∩ B) = P(A) P(B)",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 57,
+            text: "If P(A) = 0.7, then P(Aᶜ) is:",
+            options: [
+              "0.3",
+              "0.7",
+              "1",
+              "0"
+            ],
+            correctAnswer: 0,
+            explanation: "P(Aᶜ) = 1 - P(A) = 1 - 0.7 = 0.3",
+            difficulty: "easy",
+            category: "Probability Rules"
+          },
+          {
+            id: 58,
+            text: "The probability of the union of two mutually exclusive events is:",
+            options: [
+              "P(A) + P(B)",
+              "P(A) P(B)",
+              "P(A) + P(B) - P(A ∩ B)",
+              "P(A) - P(B)"
+            ],
+            correctAnswer: 0,
+            explanation: "For mutually exclusive events, P(A ∪ B) = P(A) + P(B)",
+            difficulty: "easy",
+            category: "Probability Rules"
+          },
+          {
+            id: 59,
+            text: "If P(A|B) = P(A), then events A and B are:",
+            options: [
+              "Independent",
+              "Dependent",
+              "Mutually exclusive",
+              "Complementary"
+            ],
+            correctAnswer: 0,
+            explanation: "If P(A|B) = P(A), then A and B are independent.",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 60,
+            text: "The probability of an event that is certain to occur is:",
+            options: [
+              "0",
+              "0.5",
+              "1",
+              "Undefined"
+            ],
+            correctAnswer: 2,
+            explanation: "A certain event has probability 1.",
+            difficulty: "easy",
+            category: "Probability"
+          },
+          // Continue adding more questions to reach 100+
+          {
+            id: 61,
+            text: "In a box plot, the line inside the box represents the:",
+            options: [
+              "Mean",
+              "Median",
+              "Mode",
+              "Range"
+            ],
+            correctAnswer: 1,
+            explanation: "The line inside the box in a box plot represents the median.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 62,
+            text: "The empirical rule states that for a normal distribution, approximately what percentage of data falls within two standard deviations of the mean?",
+            options: [
+              "68%",
+              "95%",
+              "99.7%",
+              "50%"
+            ],
+            correctAnswer: 1,
+            explanation: "Empirical rule: about 95% of data falls within μ ± 2σ",
+            difficulty: "easy",
+            category: "Distributions"
+          },
+          {
+            id: 63,
+            text: "A z-score measures:",
+            options: [
+              "The probability of an event",
+              "The number of standard deviations from the mean",
+              "The correlation between variables",
+              "The variance of a distribution"
+            ],
+            correctAnswer: 1,
+            explanation: "A z-score measures how many standard deviations a value is from the mean.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 64,
+            text: "If a distribution is skewed to the right, then:",
+            options: [
+              "Mean > Median",
+              "Mean < Median",
+              "Mean = Median",
+              "Mode > Mean"
+            ],
+            correctAnswer: 0,
+            explanation: "In a right-skewed distribution, the mean is greater than the median.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 65,
+            text: "The correlation coefficient ranges from:",
+            options: [
+              "0 to 1",
+              "-1 to 1",
+              "0 to 100",
+              "-∞ to ∞"
+            ],
+            correctAnswer: 1,
+            explanation: "The correlation coefficient ranges from -1 to 1.",
+            difficulty: "easy",
+            category: "Correlation"
+          },
+          {
+            id: 66,
+            text: "A correlation coefficient of 0 indicates:",
+            options: [
+              "Perfect positive correlation",
+              "Perfect negative correlation",
+              "No linear relationship",
+              "Non-linear relationship"
+            ],
+            correctAnswer: 2,
+            explanation: "A correlation of 0 indicates no linear relationship between variables.",
+            difficulty: "easy",
+            category: "Correlation"
+          },
+          {
+            id: 67,
+            text: "In hypothesis testing, the null hypothesis is typically:",
+            options: [
+              "The hypothesis the researcher wants to prove",
+              "The hypothesis of no effect or no difference",
+              "Always true",
+              "The alternative hypothesis"
+            ],
+            correctAnswer: 1,
+            explanation: "The null hypothesis is the hypothesis of no effect or no difference.",
+            difficulty: "medium",
+            category: "Hypothesis Testing"
+          },
+          {
+            id: 68,
+            text: "A p-value less than the significance level α leads to:",
+            options: [
+              "Accepting the null hypothesis",
+              "Rejecting the null hypothesis",
+              "Accepting the alternative hypothesis",
+              "No conclusion"
+            ],
+            correctAnswer: 1,
+            explanation: "If p-value < α, we reject the null hypothesis.",
+            difficulty: "medium",
+            category: "Hypothesis Testing"
+          },
+          {
+            id: 69,
+            text: "A Type I error occurs when we:",
+            options: [
+              "Reject a true null hypothesis",
+              "Fail to reject a false null hypothesis",
+              "Accept a true alternative hypothesis",
+              "Reject a false null hypothesis"
+            ],
+            correctAnswer: 0,
+            explanation: "Type I error: rejecting a true null hypothesis.",
+            difficulty: "medium",
+            category: "Hypothesis Testing"
+          },
+          {
+            id: 70,
+            text: "A Type II error occurs when we:",
+            options: [
+              "Reject a true null hypothesis",
+              "Fail to reject a false null hypothesis",
+              "Accept a true alternative hypothesis",
+              "Reject a false null hypothesis"
+            ],
+            correctAnswer: 1,
+            explanation: "Type II error: failing to reject a false null hypothesis.",
+            difficulty: "medium",
+            category: "Hypothesis Testing"
+          },
+          {
+            id: 71,
+            text: "The power of a statistical test is:",
+            options: [
+              "The probability of Type I error",
+              "The probability of Type II error",
+              "1 - probability of Type I error",
+              "1 - probability of Type II error"
+            ],
+            correctAnswer: 3,
+            explanation: "Power = 1 - β, where β is the probability of Type II error.",
+            difficulty: "hard",
+            category: "Hypothesis Testing"
+          },
+          {
+            id: 72,
+            text: "A confidence interval for a population mean is constructed as:",
+            options: [
+              "x̄ ± z*(σ/√n)",
+              "x̄ ± z*σ",
+              "μ ± z*(σ/√n)",
+              "x̄ ± z*n"
+            ],
+            correctAnswer: 0,
+            explanation: "CI for population mean: x̄ ± z*(σ/√n)",
+            difficulty: "medium",
+            category: "Confidence Intervals"
+          },
+          {
+            id: 73,
+            text: "As the sample size increases, the width of a confidence interval:",
+            options: [
+              "Increases",
+              "Decreases",
+              "Stays the same",
+              "Becomes unpredictable"
+            ],
+            correctAnswer: 1,
+            explanation: "As sample size increases, the standard error decreases, so CI width decreases.",
+            difficulty: "medium",
+            category: "Confidence Intervals"
+          },
+          {
+            id: 74,
+            text: "In linear regression, the coefficient of determination R² represents:",
+            options: [
+              "The slope of the regression line",
+              "The proportion of variance explained by the model",
+              "The correlation between variables",
+              "The intercept of the regression line"
+            ],
+            correctAnswer: 1,
+            explanation: "R² represents the proportion of variance in the dependent variable explained by the model.",
+            difficulty: "medium",
+            category: "Regression"
+          },
+          {
+            id: 75,
+            text: "The covariance between two variables measures:",
+            options: [
+              "The strength of the linear relationship",
+              "The direction of the linear relationship",
+              "Both the direction and strength of the linear relationship",
+              "The causal relationship between variables"
+            ],
+            correctAnswer: 1,
+            explanation: "Covariance measures the direction of the linear relationship between variables.",
+            difficulty: "medium",
+            category: "Correlation"
+          },
+          // Continue to reach 100+ questions
+          {
+            id: 76,
+            text: "If the correlation between X and Y is 0.8, then:",
+            options: [
+              "X causes Y",
+              "Y causes X",
+              "There is a strong positive linear relationship",
+              "There is no relationship"
+            ],
+            correctAnswer: 2,
+            explanation: "A correlation of 0.8 indicates a strong positive linear relationship.",
+            difficulty: "easy",
+            category: "Correlation"
+          },
+          {
+            id: 77,
+            text: "The central limit theorem states that:",
+            options: [
+              "The sample mean is always equal to the population mean",
+              "The sampling distribution of the mean approaches normality as sample size increases",
+              "All distributions are normal",
+              "The population mean is always equal to the sample mean"
+            ],
+            correctAnswer: 1,
+            explanation: "The central limit theorem states that the sampling distribution of the mean approaches normality as sample size increases, regardless of the population distribution.",
+            difficulty: "hard",
+            category: "Sampling Distributions"
+          },
+          {
+            id: 78,
+            text: "The standard error of the mean is:",
+            options: [
+              "The standard deviation of the population",
+              "The standard deviation of the sample",
+              "The standard deviation of the sampling distribution of the mean",
+              "The mean of the standard deviations"
+            ],
+            correctAnswer: 2,
+            explanation: "The standard error is the standard deviation of the sampling distribution of the mean.",
+            difficulty: "medium",
+            category: "Sampling Distributions"
+          },
+          {
+            id: 79,
+            text: "As the confidence level increases, the width of a confidence interval:",
+            options: [
+              "Increases",
+              "Decreases",
+              "Stays the same",
+              "Becomes zero"
+            ],
+            correctAnswer: 0,
+            explanation: "As confidence level increases, the critical value increases, so the CI width increases.",
+            difficulty: "medium",
+            category: "Confidence Intervals"
+          },
+          {
+            id: 80,
+            text: "In a hypothesis test, if the p-value is 0.03 and α = 0.05, we:",
+            options: [
+              "Reject the null hypothesis",
+              "Fail to reject the null hypothesis",
+              "Accept the null hypothesis",
+              "Accept the alternative hypothesis"
+            ],
+            correctAnswer: 0,
+            explanation: "Since p-value (0.03) < α (0.05), we reject the null hypothesis.",
+            difficulty: "medium",
+            category: "Hypothesis Testing"
+          },
+          // Add more questions to reach 100+
+          {
+            id: 81,
+            text: "The mode of a dataset is:",
+            options: [
+              "The average value",
+              "The middle value",
+              "The most frequent value",
+              "The difference between max and min"
+            ],
+            correctAnswer: 2,
+            explanation: "The mode is the value that appears most frequently in a dataset.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 82,
+            text: "For a perfectly symmetric distribution, the skewness is:",
+            options: [
+              "Positive",
+              "Negative",
+              "Zero",
+              "Undefined"
+            ],
+            correctAnswer: 2,
+            explanation: "A perfectly symmetric distribution has skewness = 0.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 83,
+            text: "Kurtosis measures:",
+            options: [
+              "The symmetry of a distribution",
+              "The peakedness of a distribution",
+              "The spread of a distribution",
+              "The center of a distribution"
+            ],
+            correctAnswer: 1,
+            explanation: "Kurtosis measures the peakedness of a distribution.",
+            difficulty: "hard",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 84,
+            text: "A distribution with positive kurtosis is called:",
+            options: [
+              "Leptokurtic",
+              "Platykurtic",
+              "Mesokurtic",
+              "Symmetrical"
+            ],
+            correctAnswer: 0,
+            explanation: "A distribution with positive kurtosis is leptokurtic (more peaked than normal).",
+            difficulty: "hard",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 85,
+            text: "The geometric mean is used for:",
+            options: [
+              "Averaging rates of change",
+              "Finding the middle value",
+              "Finding the most common value",
+              "Measuring spread"
+            ],
+            correctAnswer: 0,
+            explanation: "The geometric mean is used for averaging rates of change or multiplicative processes.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 86,
+            text: "The harmonic mean is used for:",
+            options: [
+              "Averaging rates",
+              "Finding the middle value",
+              "Finding the most common value",
+              "Measuring symmetry"
+            ],
+            correctAnswer: 0,
+            explanation: "The harmonic mean is used for averaging rates, especially when the rates are defined as ratios.",
+            difficulty: "hard",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 87,
+            text: "Chebyshev's theorem applies to:",
+            options: [
+              "Only normal distributions",
+              "Only symmetric distributions",
+              "Any distribution",
+              "Only binomial distributions"
+            ],
+            correctAnswer: 2,
+            explanation: "Chebyshev's theorem applies to any distribution, regardless of shape.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 88,
+            text: "According to Chebyshev's theorem, at least what percentage of data lies within 2 standard deviations of the mean?",
+            options: [
+              "68%",
+              "75%",
+              "95%",
+              "89%"
+            ],
+            correctAnswer: 1,
+            explanation: "Chebyshev's theorem: at least 1 - 1/k² of data lies within k standard deviations. For k=2, at least 75%.",
+            difficulty: "hard",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 89,
+            text: "A percentile is:",
+            options: [
+              "The percentage of data below a certain value",
+              "The value below which a certain percentage of data falls",
+              "The average of the data",
+              "The most frequent value"
+            ],
+            correctAnswer: 1,
+            explanation: "A percentile is the value below which a certain percentage of data falls.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 90,
+            text: "The first quartile (Q1) is the same as the:",
+            options: [
+              "25th percentile",
+              "50th percentile",
+              "75th percentile",
+              "100th percentile"
+            ],
+            correctAnswer: 0,
+            explanation: "Q1 is the 25th percentile.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 91,
+            text: "The third quartile (Q3) is the same as the:",
+            options: [
+              "25th percentile",
+              "50th percentile",
+              "75th percentile",
+              "100th percentile"
+            ],
+            correctAnswer: 2,
+            explanation: "Q3 is the 75th percentile.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 92,
+            text: "The five-number summary consists of:",
+            options: [
+              "Mean, median, mode, variance, standard deviation",
+              "Min, Q1, median, Q3, max",
+              "Q1, Q2, Q3, Q4, Q5",
+              "Mean, standard deviation, skewness, kurtosis, range"
+            ],
+            correctAnswer: 1,
+            explanation: "The five-number summary is: Min, Q1, Median, Q3, Max.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 93,
+            text: "In a box plot, potential outliers are typically defined as values:",
+            options: [
+              "Below Q1 - 1.5×IQR or above Q3 + 1.5×IQR",
+              "Below Q1 or above Q3",
+              "Below mean - 2σ or above mean + 2σ",
+              "Below median or above median"
+            ],
+            correctAnswer: 0,
+            explanation: "Outliers in a box plot are values below Q1 - 1.5×IQR or above Q3 + 1.5×IQR.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 94,
+            text: "A scatter plot is used to visualize:",
+            options: [
+              "The distribution of a single variable",
+              "The relationship between two variables",
+              "The composition of a whole",
+              "Changes over time"
+            ],
+            correctAnswer: 1,
+            explanation: "A scatter plot visualizes the relationship between two variables.",
+            difficulty: "easy",
+            category: "Data Visualization"
+          },
+          {
+            id: 95,
+            text: "A histogram is used to visualize:",
+            options: [
+              "The distribution of a single variable",
+              "The relationship between two variables",
+              "The composition of a whole",
+              "Changes over time"
+            ],
+            correctAnswer: 0,
+            explanation: "A histogram visualizes the distribution of a single variable.",
+            difficulty: "easy",
+            category: "Data Visualization"
+          },
+          {
+            id: 96,
+            text: "A pie chart is used to visualize:",
+            options: [
+              "The distribution of a single variable",
+              "The relationship between two variables",
+              "The composition of a whole",
+              "Changes over time"
+            ],
+            correctAnswer: 2,
+            explanation: "A pie chart visualizes the composition of a whole.",
+            difficulty: "easy",
+            category: "Data Visualization"
+          },
+          {
+            id: 97,
+            text: "A line chart is used to visualize:",
+            options: [
+              "The distribution of a single variable",
+              "The relationship between two variables",
+              "The composition of a whole",
+              "Changes over time"
+            ],
+            correctAnswer: 3,
+            explanation: "A line chart visualizes changes over time.",
+            difficulty: "easy",
+            category: "Data Visualization"
+          },
+          {
+            id: 98,
+            text: "The coefficient of variation is useful for:",
+            options: [
+              "Comparing variability across different units",
+              "Measuring central tendency",
+              "Testing hypotheses",
+              "Finding correlations"
+            ],
+            correctAnswer: 0,
+            explanation: "The coefficient of variation is useful for comparing variability across datasets with different units.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 99,
+            text: "If the coefficient of variation is high, it indicates:",
+            options: [
+              "Low variability relative to the mean",
+              "High variability relative to the mean",
+              "The data is normally distributed",
+              "The data is skewed"
+            ],
+            correctAnswer: 1,
+            explanation: "A high CV indicates high variability relative to the mean.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 100,
+            text: "The standard deviation is always:",
+            options: [
+              "Positive or zero",
+              "Positive",
+              "Negative or zero",
+              "Negative"
+            ],
+            correctAnswer: 0,
+            explanation: "Standard deviation is always non-negative (positive or zero).",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 101,
+            text: "If all values in a dataset are the same, the standard deviation is:",
+            options: [
+              "0",
+              "1",
+              "The value itself",
+              "Undefined"
+            ],
+            correctAnswer: 0,
+            explanation: "If all values are the same, there is no variation, so standard deviation = 0.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 102,
+            text: "The variance of a constant is:",
+            options: [
+              "0",
+              "1",
+              "The constant itself",
+              "Undefined"
+            ],
+            correctAnswer: 0,
+            explanation: "A constant has no variation, so variance = 0.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 103,
+            text: "If we multiply each value in a dataset by a constant k, the standard deviation:",
+            options: [
+              "Stays the same",
+              "Is multiplied by k",
+              "Is multiplied by |k|",
+              "Is divided by k"
+            ],
+            correctAnswer: 2,
+            explanation: "Multiplying each value by k multiplies the standard deviation by |k|.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 104,
+            text: "If we add a constant to each value in a dataset, the standard deviation:",
+            options: [
+              "Increases by the constant",
+              "Decreases by the constant",
+              "Stays the same",
+              "Is multiplied by the constant"
+            ],
+            correctAnswer: 2,
+            explanation: "Adding a constant to each value shifts the data but doesn't change the spread, so standard deviation stays the same.",
+            difficulty: "medium",
+            category: "Descriptive Statistics"
+          },
+          {
+            id: 105,
+            text: "The range is sensitive to:",
+            options: [
+              "The mean",
+              "The median",
+              "Outliers",
+              "The mode"
+            ],
+            correctAnswer: 2,
+            explanation: "The range is sensitive to outliers because it only depends on the min and max values.",
+            difficulty: "easy",
+            category: "Descriptive Statistics"
           }
         ];
 
-        // app.js
-        const { useState, useEffect } = React;
+// تقسيم الأسئلة حسب الصعوبة
+const easyQuestions = questions.filter(q => q.difficulty === "easy");
+const mediumQuestions = questions.filter(q => q.difficulty === "medium");
+const hardQuestions = questions.filter(q => q.difficulty === "hard");
 
-        function QuizApp() {
-          const [currentQuestion, setCurrentQuestion] = useState(0);
-          const [selectedOption, setSelectedOption] = useState(null);
-          const [showExplanation, setShowExplanation] = useState(false);
-          const [score, setScore] = useState(0);
-          const [quizCompleted, setQuizCompleted] = useState(false);
-          const [relevantLaws, setRelevantLaws] = useState([]);
+// دالة توليد سؤال عشوائي حسب مستوى الصعوبة
+function getRandomQuestion() {
+  // إنشاء رقم عشوائي بين 1 و 5
+  const x = Math.floor(Math.random() * 5) + 1;
+  
+  let selectedQuestions;
+  
+  // تحديد مستوى الصعوبة بناءً على الرقم العشوائي
+  if (x <= 2) {
+    // 1 أو 2 → أسئلة سهلة
+    selectedQuestions = easyQuestions;
+  } else if (x <= 4) {
+    // 3 أو 4 → أسئلة متوسطة
+    selectedQuestions = mediumQuestions;
+  } else {
+    // 5 → أسئلة صعبة
+    selectedQuestions = hardQuestions;
+  }
+  
+  // اختيار سؤال عشوائي من المجموعة المحددة
+  if (selectedQuestions.length > 0) {
+    const randomIndex = Math.floor(Math.random() * selectedQuestions.length);
+    return selectedQuestions[randomIndex];
+  } else {
+    // إذا لم توجد أسئلة في المستوى المحدد، نعود لأي سؤال
+    const allQuestions = [...easyQuestions, ...mediumQuestions, ...hardQuestions];
+    const randomIndex = Math.floor(Math.random() * allQuestions.length);
+    return allQuestions[randomIndex];
+  }
+}
 
-          useEffect(() => {
-            if (questions[currentQuestion]) {
-              const laws = findRelevantLaws(questions[currentQuestion].text);
-              console.log("Question:", questions[currentQuestion].text);
-              console.log("Found laws:", laws);
-              setRelevantLaws(laws);
-            }
-          }, [currentQuestion]);
+// دالة للحصول على فهرس السؤال في المصفوفة الأصلية
+function getQuestionIndex(question) {
+  return questions.findIndex(q => q.id === question.id);
+}
 
-          const handleOptionSelect = (optionIndex) => {
-            if (!showExplanation) {
-              setSelectedOption(optionIndex);
-            }
-          };
+// app.js
+const { useState, useEffect } = React;
 
-          const handleSubmit = () => {
-            setShowExplanation(true);
-            if (selectedOption === questions[currentQuestion].correctAnswer) {
-              setScore(score + 1);
-            }
-          };
+function QuizApp() {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [showExplanation, setShowExplanation] = useState(false);
+  const [score, setScore] = useState(0);
+  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [relevantLaws, setRelevantLaws] = useState([]);
+  const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
+  const [questionHistory, setQuestionHistory] = useState([]);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [currentQuestionAnswered, setCurrentQuestionAnswered] = useState(false);
 
-          const handleNextQuestion = () => {
-            if (currentQuestion < questions.length - 1) {
-              setCurrentQuestion(currentQuestion + 1);
-              setSelectedOption(null);
-              setShowExplanation(false);
-            } else {
-              setQuizCompleted(true);
-            }
-          };
+  // توليد سؤال عشوائي عند بدء التطبيق
+  useEffect(() => {
+    const randomQuestion = getRandomQuestion();
+    const questionIndex = getQuestionIndex(randomQuestion);
+    setCurrentQuestionIndex(questionIndex);
+    setQuestionHistory([questionIndex]);
+    setTotalQuestions(0); // نبدأ من الصفر
+    setCorrectAnswers(0);
+  }, []);
 
-          const handleRestartQuiz = () => {
-            setCurrentQuestion(0);
-            setSelectedOption(null);
-            setShowExplanation(false);
-            setScore(0);
-            setQuizCompleted(false);
-          };
+  useEffect(() => {
+    if (questions[currentQuestionIndex]) {
+      const laws = findRelevantLaws(questions[currentQuestionIndex].text);
+      setRelevantLaws(laws);
+    }
+  }, [currentQuestionIndex]);
 
-          if (quizCompleted) {
-            return (
-              <div className="quiz-container">
-                <div className="question">
-                  <h3>انتهى الاختبار!</h3>
-                  <p>درجتك: {score} من {questions.length}</p>
-                  <p>النسبة المئوية: {Math.round((score / questions.length) * 100)}%</p>
-                  <button 
-                    onClick={handleRestartQuiz}
-                    style={{
-                      padding: "10px 20px",
-                      backgroundColor: "#3498db",
-                      color: "white",
-                      border: "none",
-                      borderRadius: "5px",
-                      cursor: "pointer",
-                      marginTop: "15px"
-                    }}
-                  >
-                    إعادة الاختبار
-                  </button>
-                </div>
-              </div>
-            );
-          }
+  const handleOptionSelect = (optionIndex) => {
+    if (!showExplanation && !currentQuestionAnswered) {
+      setSelectedOption(optionIndex);
+    }
+  };
 
-          if (!questions[currentQuestion]) {
-            return <div>جارٍ تحميل الأسئلة...</div>;
-          }
+  const handleSubmit = () => {
+    if (currentQuestionAnswered) return;
+    
+    setShowExplanation(true);
+    setCurrentQuestionAnswered(true);
+    setAnsweredQuestions(new Set([...answeredQuestions, currentQuestionIndex]));
+    setTotalQuestions(totalQuestions + 1);
+    
+    if (selectedOption === questions[currentQuestionIndex].correctAnswer) {
+      setScore(score + 1);
+      setCorrectAnswers(correctAnswers + 1);
+    }
+  };
 
-          const question = questions[currentQuestion];
+  const handleNextQuestion = () => {
+    // توليد سؤال عشوائي جديد
+    let newQuestion;
+    let attempts = 0;
+    
+    // نحاول إيجاد سؤال لم يتم الإجابة عليه من قبل
+    do {
+      newQuestion = getRandomQuestion();
+      attempts++;
+    } while (answeredQuestions.has(getQuestionIndex(newQuestion)) && attempts < 50);
+    
+    const newQuestionIndex = getQuestionIndex(newQuestion);
+    setCurrentQuestionIndex(newQuestionIndex);
+    setQuestionHistory([...questionHistory, newQuestionIndex]);
+    setSelectedOption(null);
+    setShowExplanation(false);
+    setCurrentQuestionAnswered(false);
+  };
 
-          return (
-            <div className="quiz-container">
-              <div className="question">
-                <h3>السؤال {currentQuestion + 1} من {questions.length}</h3>
-                <p>{question.text}</p>
-                
-                <div className="options">
-                  {question.options.map((option, index) => (
-                    <div
-                      key={index}
-                      className={`option ${
-                        selectedOption === index ? "selected" : ""
-                      } ${
-                        showExplanation
-                          ? index === question.correctAnswer
-                            ? "correct"
-                            : selectedOption === index
-                            ? "incorrect"
-                            : ""
-                          : ""
-                      }`}
-                      onClick={() => handleOptionSelect(index)}
-                    >
-                      {option}
-                    </div>
-                  ))}
-                </div>
-                
-                {showExplanation && (
-                  <div style={{ marginTop: "15px", padding: "10px", backgroundColor: "#e9ecef", borderRadius: "5px" }}>
-                    <p><strong>التفسير:</strong> {question.explanation}</p>
-                  </div>
-                )}
-                
-                {relevantLaws.length > 0 && (
-                  <div className="law-suggestion">
-                    <h4>القوانين المقترحة لهذا السؤال:</h4>
-                    <ul>
-                      {relevantLaws.map((law, index) => (
-                        <li key={index}>{law}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                
-                <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
-                  {!showExplanation ? (
-                    <button 
-                      onClick={handleSubmit}
-                      disabled={selectedOption === null}
-                      style={{
-                        padding: "10px 20px",
-                        backgroundColor: selectedOption === null ? "#6c757d" : "#28a745",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        cursor: selectedOption === null ? "not-allowed" : "pointer"
-                      }}
-                    >
-                      تحقق من الإجابة
-                    </button>
-                  ) : (
-                    <button 
-                      onClick={handleNextQuestion}
-                      style={{
-                        padding: "10px 20px",
-                        backgroundColor: "#3498db",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        cursor: "pointer"
-                      }}
-                    >
-                      {currentQuestion < questions.length - 1 ? "السؤال التالي" : "إنهاء الاختبار"}
-                    </button>
-                  )}
-                </div>
-              </div>
+  const handleRandomQuestion = () => {
+    // إذا كان السؤال الحالي لم يتم الإجابة عليه بعد، لا نفعّل الزر
+    if (!currentQuestionAnswered) return;
+    
+    // توليد سؤال عشوائي جديد تمامًا
+    const newQuestion = getRandomQuestion();
+    const newQuestionIndex = getQuestionIndex(newQuestion);
+    setCurrentQuestionIndex(newQuestionIndex);
+    setQuestionHistory([...questionHistory, newQuestionIndex]);
+    setSelectedOption(null);
+    setShowExplanation(false);
+    setCurrentQuestionAnswered(false);
+  };
+
+  const handleRestartQuiz = () => {
+    const randomQuestion = getRandomQuestion();
+    const questionIndex = getQuestionIndex(randomQuestion);
+    setCurrentQuestionIndex(questionIndex);
+    setSelectedOption(null);
+    setShowExplanation(false);
+    setScore(0);
+    setQuizCompleted(false);
+    setAnsweredQuestions(new Set());
+    setQuestionHistory([questionIndex]);
+    setTotalQuestions(0);
+    setCorrectAnswers(0);
+    setCurrentQuestionAnswered(false);
+  };
+
+  if (quizCompleted) {
+    return (
+      <div className="quiz-container">
+        <div className="question">
+          <h3>انتهى الاختبار!</h3>
+          <p>درجتك: {score} من {totalQuestions}</p>
+          <p>النسبة المئوية: {totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0}%</p>
+          <div className="stats">
+            <div className="stat-item">
+              <div className="stat-value">{easyQuestions.length}</div>
+              <div className="stat-label">أسئلة سهلة</div>
             </div>
-          );
-        }
+            <div className="stat-item">
+              <div className="stat-value">{mediumQuestions.length}</div>
+              <div className="stat-label">أسئلة متوسطة</div>
+            </div>
+            <div className="stat-item">
+              <div className="stat-value">{hardQuestions.length}</div>
+              <div className="stat-label">أسئلة صعبة</div>
+            </div>
+          </div>
+          <button 
+            onClick={handleRestartQuiz}
+            className="quiz-btn restart-btn"
+          >
+            إعادة الاختبار
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-        // عرض التطبيق
-        ReactDOM.render(<QuizApp />, document.getElementById('quiz-container'));
-    </script>
+  if (!questions[currentQuestionIndex]) {
+    return <div>جارٍ تحميل الأسئلة...</div>;
+  }
+
+  const question = questions[currentQuestionIndex];
+  const difficultyBadge = 
+    question.difficulty === "easy" ? "easy-badge" :
+    question.difficulty === "medium" ? "medium-badge" : "hard-badge";
+  
+  const difficultyText = 
+    question.difficulty === "easy" ? "سهل" :
+    question.difficulty === "medium" ? "متوسط" : "صعب";
+
+  return (
+    <div className="quiz-container">
+      <div className="stats">
+        <div className="stat-item">
+          <div className="stat-value">{correctAnswers}</div>
+          <div className="stat-label">إجابات صحيحة</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-value">{totalQuestions - correctAnswers}</div>
+          <div className="stat-label">إجابات خاطئة</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-value">
+            {totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0}%
+          </div>
+          <div className="stat-label">نسبة الصحة</div>
+        </div>
+      </div>
+      
+      <div className="question">
+        <h3>
+          <span className={`difficulty-badge ${difficultyBadge}`}>{difficultyText}</span>
+          السؤال {questionHistory.length} 
+        </h3>
+        <p>{question.text}</p>
+        
+        <div className="options">
+          {question.options.map((option, index) => (
+            <div
+              key={index}
+              className={`option ${
+                selectedOption === index ? "selected" : ""
+              } ${
+                showExplanation
+                  ? index === question.correctAnswer
+                    ? "correct"
+                    : selectedOption === index
+                    ? "incorrect"
+                    : ""
+                  : ""
+              }`}
+              onClick={() => handleOptionSelect(index)}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+        
+        {showExplanation && (
+          <div style={{ marginTop: "15px", padding: "10px", backgroundColor: "#e9ecef", borderRadius: "5px" }}>
+            <p><strong>التفسير:</strong> {question.explanation}</p>
+          </div>
+        )}
+        
+        {relevantLaws.length > 0 && (
+          <div className="law-suggestion">
+            <h4>القوانين المقترحة لهذا السؤال:</h4>
+            <ul>
+              {relevantLaws.map((law, index) => (
+                <li key={index}>{law}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        
+        <div className="quiz-controls">
+          {!showExplanation ? (
+            <button 
+              onClick={handleSubmit}
+              disabled={selectedOption === null}
+              className={`quiz-btn submit-btn ${selectedOption === null ? 'disabled' : ''}`}
+            >
+              تحقق من الإجابة
+            </button>
+          ) : (
+            <button 
+              onClick={handleNextQuestion}
+              className="quiz-btn next-btn"
+            >
+              السؤال التالي
+            </button>
+          )}
+          
+          <button 
+            onClick={handleRandomQuestion}
+            disabled={!currentQuestionAnswered}
+            className={`quiz-btn random-btn ${!currentQuestionAnswered ? 'disabled' : ''}`}
+          >
+            سؤال عشوائي
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// عرض التطبيق
+ReactDOM.render(<QuizApp />, document.getElementById('quiz-container'));
+</script>
 </body>
 </html>
