@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قوانين الإحصاء والاحتمالات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -123,6 +126,82 @@
             opacity: 0.8;
         }
         
+        /* تنسيقات قسم الأسئلة */
+        .quiz-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quiz-container {
+            margin-top: 20px;
+        }
+        
+        .question {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-right: 4px solid #3498db;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .option {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .option:hover {
+            background: #dee2e6;
+        }
+        
+        .option.selected {
+            background: #3498db;
+            color: white;
+        }
+        
+        .correct {
+            background: #28a745 !important;
+            color: white;
+        }
+        
+        .incorrect {
+            background: #dc3545 !important;
+            color: white;
+        }
+        
+        .law-suggestion {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-right: 4px solid #ffc107;
+        }
+        
+        .law-suggestion h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .law-suggestion ul {
+            padding-right: 20px;
+        }
+        
+        .law-suggestion li {
+            margin-bottom: 5px;
+        }
+        
         @media (max-width: 768px) {
             th, td {
                 padding: 10px;
@@ -135,6 +214,10 @@
             
             .section-header {
                 font-size: 1.2rem;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -365,6 +448,15 @@
             </div>
         </div>
         
+        <!-- قسم الأسئلة التفاعلية -->
+        <div class="quiz-section">
+            <div class="section-header">
+                <i class="fas fa-question-circle"></i>
+                <span>أسئلة تفاعلية في الإحصاء والاحتمالات</span>
+            </div>
+            <div id="quiz-container"></div>
+        </div>
+        
         <div class="footer">
             <p>تم تصميم هذه الصفحة لتكون مرجعًا شاملاً لقوانين الإحصاء والاحتمالات</p>
             <p>&copy; Adham Hossam - All rights reserved.</p>
@@ -372,5 +464,581 @@
         </div>
         
     </div>
+
+    <!-- جميع ملفات JavaScript في مكان واحد -->
+    <script type="text/babel">
+        // keywords.js - محدث ومصحح
+        const lawKeywords = {
+          "المتوسط الحسابي": ["mean", "average", "arithmetic mean"],
+          "الوسيط": ["median", "middle value"],
+          "التباين": ["variance"],
+          "الانحراف المعياري": ["standard deviation", "std", "deviation"],
+          "معامل الاختلاف": ["coefficient of variation", "cv"],
+          "المدى الربيعي": ["interquartile range", "iqr"],
+          "الاحتمال الشرطي": ["conditional probability", "p(a|b)", "given that"],
+          "قاعدة الجمع": ["addition rule", "p(a ∪ b)", "union"],
+          "الأحداث المنفية": ["mutually exclusive", "cannot happen", "cannot both happen"],
+          "الأحداث المستقلة": ["independent", "does not affect"],
+          "قانون الاحتمال الكلي": ["law of total probability", "total probability"],
+          "نظرية بايز": ["bayes", "bayes' theorem"],
+          "التوقع الرياضي": ["expected value", "e[x]"],
+          "التوزيع ذو الحدين": ["binomial", "bin(n,p)"],
+          "التوزيع الطبيعي": ["normal distribution", "normal", "gaussian"],
+          "التوزيع الأسي": ["exponential distribution", "exponential"],
+          "التوزيع بواسون": ["poisson distribution", "poisson"],
+          "الاحتمال الكلاسيكي": ["classical probability", "equally likely"],
+          "الاحتمال الشخصي": ["subjective probability", "personal probability"],
+          "الاحتمال التجريبي": ["empirical probability", "experimental probability"],
+          "التباين المشترك": ["covariance", "cov"],
+          "معامل الارتباط": ["correlation coefficient", "correlation"],
+          "الانحدار الخطي": ["linear regression", "regression"],
+          "فترة الثقة": ["confidence interval", "confidence"],
+          "اختبار الفرضيات": ["hypothesis testing", "hypothesis test"],
+          "القيمة الاحتمالية": ["p-value", "p value"]
+        };
+
+        // دالة محسنة للبحث عن القوانين المناسبة
+        function findRelevantLaws(questionText) {
+          const relevantLaws = [];
+          const text = questionText.toLowerCase();
+          
+          for (const [law, keywords] of Object.entries(lawKeywords)) {
+            for (const keyword of keywords) {
+              // البحث عن الكلمة المفتاحية كاملة
+              if (text.includes(keyword.toLowerCase())) {
+                if (!relevantLaws.includes(law)) {
+                  relevantLaws.push(law);
+                }
+                break;
+              }
+            }
+          }
+          
+          return relevantLaws;
+        }
+
+        // questions.js - English Only
+        const questions = [
+          // Basic Probability Questions
+          {
+            id: 1,
+            text: "A random experiment is:",
+            options: [
+              "An experiment with a fixed outcome",
+              "A process that leads to well-defined results",
+              "A scientific experiment in a lab",
+              "An experiment with no outcomes"
+            ],
+            correctAnswer: 1,
+            explanation: "A random experiment is defined as a process that leads to well-defined results.",
+            difficulty: "easy",
+            category: "Basic Concepts"
+          },
+          {
+            id: 2,
+            text: "The sample space of a random experiment is:",
+            options: [
+              "The set of all possible outcomes",
+              "A single outcome of the experiment",
+              "The probability of an event occurring",
+              "A random choice from the outcomes"
+            ],
+            correctAnswer: 0,
+            explanation: "The sample space is the set of all possible outcomes of a random experiment.",
+            difficulty: "easy",
+            category: "Basic Concepts"
+          },
+          {
+            id: 3,
+            text: "The probability of an event always lies between:",
+            options: [
+              "0 and 1",
+              "0 and 100",
+              "-1 and 1",
+              "Any real number"
+            ],
+            correctAnswer: 0,
+            explanation: "By definition, probability values range from 0 to 1 inclusive.",
+            difficulty: "easy",
+            category: "Probability"
+          },
+          {
+            id: 4,
+            text: "If two events cannot happen at the same time, they are called:",
+            options: [
+              "Independent events",
+              "Dependent events",
+              "Mutually exclusive events",
+              "Certain events"
+            ],
+            correctAnswer: 2,
+            explanation: "Mutually exclusive events cannot occur simultaneously.",
+            difficulty: "easy",
+            category: "Events"
+          },
+          {
+            id: 5,
+            text: "The complement of an event A is:",
+            options: [
+              "The event that A happens",
+              "The event that A does not happen",
+              "The union of A with another event",
+              "The probability of A occurring"
+            ],
+            correctAnswer: 1,
+            explanation: "The complement of A consists of all outcomes not in A.",
+            difficulty: "easy",
+            category: "Events"
+          },
+          {
+            id: 6,
+            text: "The probability of the union of any two events A and B is given by:",
+            options: [
+              "P(A) + P(B)",
+              "P(A) × P(B)",
+              "P(A) + P(B) - P(A ∩ B)",
+              "P(A ∩ B) - P(A) - P(B)"
+            ],
+            correctAnswer: 2,
+            explanation: "This is the general addition rule for probability.",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 7,
+            text: "If the occurrence of one event does not affect the occurrence of another, the events are:",
+            options: [
+              "Independent",
+              "Dependent",
+              "Mutually exclusive",
+              "Complementary"
+            ],
+            correctAnswer: 0,
+            explanation: "Independent events have no influence on each other's occurrence.",
+            difficulty: "easy",
+            category: "Events"
+          },
+          {
+            id: 8,
+            text: "The probability of an impossible event is:",
+            options: [
+              "1",
+              "0",
+              "0.5",
+              "Undefined"
+            ],
+            correctAnswer: 1,
+            explanation: "An impossible event has probability 0.",
+            difficulty: "easy",
+            category: "Probability"
+          },
+          {
+            id: 9,
+            text: "If a sample space contains 8 equally likely outcomes, the probability of any one outcome occurring is:",
+            options: [
+              "1/8",
+              "8",
+              "0",
+              "1"
+            ],
+            correctAnswer: 0,
+            explanation: "With equally likely outcomes, probability = 1/total outcomes.",
+            difficulty: "easy",
+            category: "Classical Probability"
+          },
+          {
+            id: 10,
+            text: "A fair coin is tossed once. What is the probability of getting tails?",
+            options: [
+              "0",
+              "1",
+              "0.5",
+              "0.25"
+            ],
+            correctAnswer: 2,
+            explanation: "A fair coin has equal probability for heads and tails.",
+            difficulty: "easy",
+            category: "Classical Probability"
+          },
+          {
+            id: 11,
+            text: "If P(A) = 0.6 and P(B) = 0.3, and A and B are independent, what is P(A ∩ B)?",
+            options: [
+              "0.9",
+              "0.18",
+              "0.3",
+              "0.6"
+            ],
+            correctAnswer: 1,
+            explanation: "For independent events, P(A ∩ B) = P(A) × P(B) = 0.6 × 0.3 = 0.18",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 12,
+            text: "Two fair dice are rolled. What is the probability that the sum is 7?",
+            options: [
+              "1/6",
+              "1/12",
+              "1/36",
+              "1/3"
+            ],
+            correctAnswer: 0,
+            explanation: "There are 6 favorable outcomes out of 36 total: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1)",
+            difficulty: "medium",
+            category: "Classical Probability"
+          },
+          {
+            id: 13,
+            text: "The probability of A occurring given that B has already occurred is known as:",
+            options: [
+              "Conditional probability",
+              "Joint probability",
+              "Independent probability",
+              "Mutually exclusive probability"
+            ],
+            correctAnswer: 0,
+            explanation: "This is the definition of conditional probability P(A|B).",
+            difficulty: "easy",
+            category: "Conditional Probability"
+          },
+          {
+            id: 14,
+            text: "If P(A ∪ B) = 0.8 and P(A ∩ B) = 0.3, and P(A) = 0.5, what is P(B)?",
+            options: [
+              "0.6",
+              "0.8",
+              "0.5",
+              "0.3"
+            ],
+            correctAnswer: 0,
+            explanation: "Using addition rule: P(A ∪ B) = P(A) + P(B) - P(A ∩ B) → 0.8 = 0.5 + P(B) - 0.3 → P(B) = 0.6",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 15,
+            text: "A bag contains 3 red and 7 blue balls. If one ball is drawn at random, what is the probability that it is red?",
+            options: [
+              "3/10",
+              "7/10",
+              "1/2",
+              "1/3"
+            ],
+            correctAnswer: 0,
+            explanation: "Probability = favorable outcomes / total outcomes = 3/10",
+            difficulty: "easy",
+            category: "Classical Probability"
+          },
+          {
+            id: 16,
+            text: "In a factory, machines A and B produce 65% and 35% of the total output, respectively. The probability of a defective item from these machines is 2% and 5%, respectively. If a randomly selected item is defective, what is the probability it was produced by machine A?",
+            options: [
+              "(0.65 × 0.02) / (0.65 × 0.02 + 0.35 × 0.05)",
+              "(0.35 × 0.05) / (0.65 × 0.02 + 0.35 × 0.05)",
+              "0.5",
+              "0.2"
+            ],
+            correctAnswer: 0,
+            explanation: "This is a Bayes' theorem application: P(A|defective) = [P(defective|A)P(A)] / [P(defective|A)P(A) + P(defective|B)P(B)]",
+            difficulty: "hard",
+            category: "Bayes Theorem"
+          },
+          {
+            id: 17,
+            text: "If an event in a finite sample space has a probability of 0, it means:",
+            options: [
+              "The event is certain to occur",
+              "The event is impossible",
+              "The event has an equal chance of occurring and not occurring",
+              "The sample space is empty"
+            ],
+            correctAnswer: 1,
+            explanation: "In a finite sample space, probability 0 means the event is impossible.",
+            difficulty: "easy",
+            category: "Probability"
+          },
+          {
+            id: 18,
+            text: "Two events are mutually exclusive if:",
+            options: [
+              "They can occur together",
+              "Their probabilities sum to 1",
+              "They have no common outcomes",
+              "They are independent"
+            ],
+            correctAnswer: 2,
+            explanation: "Mutually exclusive events cannot occur together (A ∩ B = ∅).",
+            difficulty: "easy",
+            category: "Events"
+          },
+          {
+            id: 19,
+            text: "If P(A) = 0.4 and P(B) = 0.5, and A and B are mutually exclusive, then P(A ∪ B) is:",
+            options: [
+              "0.2",
+              "0.9",
+              "0.5",
+              "1.0"
+            ],
+            correctAnswer: 1,
+            explanation: "For mutually exclusive events: P(A ∪ B) = P(A) + P(B) = 0.4 + 0.5 = 0.9",
+            difficulty: "medium",
+            category: "Probability Rules"
+          },
+          {
+            id: 20,
+            text: "The probability of an event A given that event B has occurred is known as:",
+            options: [
+              "Independent probability",
+              "Joint probability",
+              "Conditional probability",
+              "Marginal probability"
+            ],
+            correctAnswer: 2,
+            explanation: "This is the definition of conditional probability P(A|B).",
+            difficulty: "easy",
+            category: "Conditional Probability"
+          },
+          {
+            id: 21,
+            text: "If P(A ∩ B) = P(A)P(B), then events A and B are:",
+            options: [
+              "Mutually exclusive",
+              "Dependent",
+              "Independent",
+              "Exhaustive"
+            ],
+            correctAnswer: 2,
+            explanation: "This is the mathematical definition of independent events.",
+            difficulty: "medium",
+            category: "Events"
+          },
+          {
+            id: 22,
+            text: "Which of the following is an axiom of probability?",
+            options: [
+              "P(A) ≥ 0 for all events A",
+              "P(A ∪ B) = P(A) + P(B) - P(A ∩ B)",
+              "P(A|B) = P(A ∩ B)/P(B)",
+              "P(A) = 1 - P(A^c)"
+            ],
+            correctAnswer: 0,
+            explanation: "Non-negativity is one of Kolmogorov's axioms of probability.",
+            difficulty: "medium",
+            category: "Probability Axioms"
+          },
+          {
+            id: 23,
+            text: "The sample space of tossing a fair coin twice is:",
+            options: [
+              "{H, T}",
+              "{HH, TT}",
+              "{HH, HT, TH, TT}",
+              "{H, T, HH, HT, TH, TT}"
+            ],
+            correctAnswer: 2,
+            explanation: "All possible outcomes of two coin tosses: HH, HT, TH, TT",
+            difficulty: "easy",
+            category: "Sample Space"
+          },
+          {
+            id: 24,
+            text: "The complement of event A is denoted by A^c. Which is true?",
+            options: [
+              "P(A) + P(A^c) = 0",
+              "P(A) + P(A^c) = 1",
+              "P(A) = P(A^c)",
+              "P(A) - P(A^c) = 1"
+            ],
+            correctAnswer: 1,
+            explanation: "By definition, P(A) + P(A^c) = 1",
+            difficulty: "easy",
+            category: "Probability Rules"
+          },
+          {
+            id: 25,
+            text: "If P(A) = 0.6 and P(B) = 0.4, and A and B are mutually exclusive, then P(A ∪ B) is:",
+            options: [
+              "0",
+              "0.24",
+              "1",
+              "0.76"
+            ],
+            correctAnswer: 2,
+            explanation: "For mutually exclusive events: P(A ∪ B) = P(A) + P(B) = 0.6 + 0.4 = 1.0",
+            difficulty: "medium",
+            category: "Probability Rules"
+          }
+        ];
+
+        // app.js
+        const { useState, useEffect } = React;
+
+        function QuizApp() {
+          const [currentQuestion, setCurrentQuestion] = useState(0);
+          const [selectedOption, setSelectedOption] = useState(null);
+          const [showExplanation, setShowExplanation] = useState(false);
+          const [score, setScore] = useState(0);
+          const [quizCompleted, setQuizCompleted] = useState(false);
+          const [relevantLaws, setRelevantLaws] = useState([]);
+
+          useEffect(() => {
+            if (questions[currentQuestion]) {
+              const laws = findRelevantLaws(questions[currentQuestion].text);
+              console.log("Question:", questions[currentQuestion].text);
+              console.log("Found laws:", laws);
+              setRelevantLaws(laws);
+            }
+          }, [currentQuestion]);
+
+          const handleOptionSelect = (optionIndex) => {
+            if (!showExplanation) {
+              setSelectedOption(optionIndex);
+            }
+          };
+
+          const handleSubmit = () => {
+            setShowExplanation(true);
+            if (selectedOption === questions[currentQuestion].correctAnswer) {
+              setScore(score + 1);
+            }
+          };
+
+          const handleNextQuestion = () => {
+            if (currentQuestion < questions.length - 1) {
+              setCurrentQuestion(currentQuestion + 1);
+              setSelectedOption(null);
+              setShowExplanation(false);
+            } else {
+              setQuizCompleted(true);
+            }
+          };
+
+          const handleRestartQuiz = () => {
+            setCurrentQuestion(0);
+            setSelectedOption(null);
+            setShowExplanation(false);
+            setScore(0);
+            setQuizCompleted(false);
+          };
+
+          if (quizCompleted) {
+            return (
+              <div className="quiz-container">
+                <div className="question">
+                  <h3>انتهى الاختبار!</h3>
+                  <p>درجتك: {score} من {questions.length}</p>
+                  <p>النسبة المئوية: {Math.round((score / questions.length) * 100)}%</p>
+                  <button 
+                    onClick={handleRestartQuiz}
+                    style={{
+                      padding: "10px 20px",
+                      backgroundColor: "#3498db",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                      marginTop: "15px"
+                    }}
+                  >
+                    إعادة الاختبار
+                  </button>
+                </div>
+              </div>
+            );
+          }
+
+          if (!questions[currentQuestion]) {
+            return <div>جارٍ تحميل الأسئلة...</div>;
+          }
+
+          const question = questions[currentQuestion];
+
+          return (
+            <div className="quiz-container">
+              <div className="question">
+                <h3>السؤال {currentQuestion + 1} من {questions.length}</h3>
+                <p>{question.text}</p>
+                
+                <div className="options">
+                  {question.options.map((option, index) => (
+                    <div
+                      key={index}
+                      className={`option ${
+                        selectedOption === index ? "selected" : ""
+                      } ${
+                        showExplanation
+                          ? index === question.correctAnswer
+                            ? "correct"
+                            : selectedOption === index
+                            ? "incorrect"
+                            : ""
+                          : ""
+                      }`}
+                      onClick={() => handleOptionSelect(index)}
+                    >
+                      {option}
+                    </div>
+                  ))}
+                </div>
+                
+                {showExplanation && (
+                  <div style={{ marginTop: "15px", padding: "10px", backgroundColor: "#e9ecef", borderRadius: "5px" }}>
+                    <p><strong>التفسير:</strong> {question.explanation}</p>
+                  </div>
+                )}
+                
+                {relevantLaws.length > 0 && (
+                  <div className="law-suggestion">
+                    <h4>القوانين المقترحة لهذا السؤال:</h4>
+                    <ul>
+                      {relevantLaws.map((law, index) => (
+                        <li key={index}>{law}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                <div style={{ marginTop: "15px", display: "flex", gap: "10px" }}>
+                  {!showExplanation ? (
+                    <button 
+                      onClick={handleSubmit}
+                      disabled={selectedOption === null}
+                      style={{
+                        padding: "10px 20px",
+                        backgroundColor: selectedOption === null ? "#6c757d" : "#28a745",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "5px",
+                        cursor: selectedOption === null ? "not-allowed" : "pointer"
+                      }}
+                    >
+                      تحقق من الإجابة
+                    </button>
+                  ) : (
+                    <button 
+                      onClick={handleNextQuestion}
+                      style={{
+                        padding: "10px 20px",
+                        backgroundColor: "#3498db",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "5px",
+                        cursor: "pointer"
+                      }}
+                    >
+                      {currentQuestion < questions.length - 1 ? "السؤال التالي" : "إنهاء الاختبار"}
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        // عرض التطبيق
+        ReactDOM.render(<QuizApp />, document.getElementById('quiz-container'));
+    </script>
 </body>
 </html>
