@@ -793,1487 +793,2038 @@ tr:hover {
         }
 
         // questions.js - أكثر من 100 سؤال يغطي جميع القوانين
-        const questions = [
-          // Basic Probability Questions
-          {
-            id: 1,
-            text: "A random experiment is:",
-            options: [
-              "An experiment with a fixed outcome",
-              "A process that leads to well-defined results",
-              "A scientific experiment in a lab",
-              "An experiment with no outcomes"
-            ],
-            correctAnswer: 1,
-            explanation: "A random experiment is defined as a process that leads to well-defined results.",
-            difficulty: "easy",
-            category: "Basic Concepts"
-          },
-          {
-            id: 2,
-            text: "The sample space of a random experiment is:",
-            options: [
-              "The set of all possible outcomes",
-              "A single outcome of the experiment",
-              "The probability of an event occurring",
-              "A random choice from the outcomes"
-            ],
-            correctAnswer: 0,
-            explanation: "The sample space is the set of all possible outcomes of a random experiment.",
-            difficulty: "easy",
-            category: "Basic Concepts"
-          },
-          {
-            id: 3,
-            text: "The probability of an event always lies between:",
-            options: [
-              "0 and 1",
-              "0 and 100",
-              "-1 and 1",
-              "Any real number"
-            ],
-            correctAnswer: 0,
-            explanation: "By definition, probability values range from 0 to 1 inclusive.",
-            difficulty: "easy",
-            category: "Probability"
-          },
-          {
-            id: 4,
-            text: "If two events cannot happen at the same time, they are called:",
-            options: [
-              "Independent events",
-              "Dependent events",
-              "Mutually exclusive events",
-              "Certain events"
-            ],
-            correctAnswer: 2,
-            explanation: "Mutually exclusive events cannot occur simultaneously.",
-            difficulty: "easy",
-            category: "Events"
-          },
-          {
-            id: 5,
-            text: "The complement of an event A is:",
-            options: [
-              "The event that A happens",
-              "The event that A does not happen",
-              "The union of A with another event",
-              "The probability of A occurring"
-            ],
-            correctAnswer: 1,
-            explanation: "The complement of A consists of all outcomes not in A.",
-            difficulty: "easy",
-            category: "Events"
-          },
-          {
-            id: 6,
-            text: "The probability of the union of any two events A and B is given by:",
-            options: [
-              "P(A) + P(B)",
-              "P(A) × P(B)",
-              "P(A) + P(B) - P(A ∩ B)",
-              "P(A ∩ B) - P(A) - P(B)"
-            ],
-            correctAnswer: 2,
-            explanation: "This is the general addition rule for probability.",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 7,
-            text: "If the occurrence of one event does not affect the occurrence of another, the events are:",
-            options: [
-              "Independent",
-              "Dependent",
-              "Mutually exclusive",
-              "Complementary"
-            ],
-            correctAnswer: 0,
-            explanation: "Independent events have no influence on each other's occurrence.",
-            difficulty: "easy",
-            category: "Events"
-          },
-          {
-            id: 8,
-            text: "The probability of an impossible event is:",
-            options: [
-              "1",
-              "0",
-              "0.5",
-              "Undefined"
-            ],
-            correctAnswer: 1,
-            explanation: "An impossible event has probability 0.",
-            difficulty: "easy",
-            category: "Probability"
-          },
-          {
-            id: 9,
-            text: "If a sample space contains 8 equally likely outcomes, the probability of any one outcome occurring is:",
-            options: [
-              "1/8",
-              "8",
-              "0",
-              "1"
-            ],
-            correctAnswer: 0,
-            explanation: "With equally likely outcomes, probability = 1/total outcomes.",
-            difficulty: "easy",
-            category: "Classical Probability"
-          },
-          {
-            id: 10,
-            text: "A fair coin is tossed once. What is the probability of getting tails?",
-            options: [
-              "0",
-              "1",
-              "0.5",
-              "0.25"
-            ],
-            correctAnswer: 2,
-            explanation: "A fair coin has equal probability for heads and tails.",
-            difficulty: "easy",
-            category: "Classical Probability"
-          },
-          {
-            id: 11,
-            text: "If P(A) = 0.6 and P(B) = 0.3, and A and B are independent, what is P(A ∩ B)?",
-            options: [
-              "0.9",
-              "0.18",
-              "0.3",
-              "0.6"
-            ],
-            correctAnswer: 1,
-            explanation: "For independent events, P(A ∩ B) = P(A) × P(B) = 0.6 × 0.3 = 0.18",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 12,
-            text: "Two fair dice are rolled. What is the probability that the sum is 7?",
-            options: [
-              "1/6",
-              "1/12",
-              "1/36",
-              "1/3"
-            ],
-            correctAnswer: 0,
-            explanation: "There are 6 favorable outcomes out of 36 total: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1)",
-            difficulty: "medium",
-            category: "Classical Probability"
-          },
-          {
-            id: 13,
-            text: "The probability of A occurring given that B has already occurred is known as:",
-            options: [
-              "Conditional probability",
-              "Joint probability",
-              "Independent probability",
-              "Mutually exclusive probability"
-            ],
-            correctAnswer: 0,
-            explanation: "This is the definition of conditional probability P(A|B).",
-            difficulty: "easy",
-            category: "Conditional Probability"
-          },
-          {
-            id: 14,
-            text: "If P(A ∪ B) = 0.8 and P(A ∩ B) = 0.3, and P(A) = 0.5, what is P(B)?",
-            options: [
-              "0.6",
-              "0.8",
-              "0.5",
-              "0.3"
-            ],
-            correctAnswer: 0,
-            explanation: "Using addition rule: P(A ∪ B) = P(A) + P(B) - P(A ∩ B) → 0.8 = 0.5 + P(B) - 0.3 → P(B) = 0.6",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 15,
-            text: "A bag contains 3 red and 7 blue balls. If one ball is drawn at random, what is the probability that it is red?",
-            options: [
-              "3/10",
-              "7/10",
-              "1/2",
-              "1/3"
-            ],
-            correctAnswer: 0,
-            explanation: "Probability = favorable outcomes / total outcomes = 3/10",
-            difficulty: "easy",
-            category: "Classical Probability"
-          },
-          {
-            id: 16,
-            text: "In a factory, machines A and B produce 65% and 35% of the total output, respectively. The probability of a defective item from these machines is 2% and 5%, respectively. If a randomly selected item is defective, what is the probability it was produced by machine A?",
-            options: [
-              "(0.65 × 0.02) / (0.65 × 0.02 + 0.35 × 0.05)",
-              "(0.35 × 0.05) / (0.65 × 0.02 + 0.35 × 0.05)",
-              "0.5",
-              "0.2"
-            ],
-            correctAnswer: 0,
-            explanation: "This is a Bayes' theorem application: P(A|defective) = [P(defective|A)P(A)] / [P(defective|A)P(A) + P(defective|B)P(B)]",
-            difficulty: "hard",
-            category: "Bayes Theorem"
-          },
-          {
-            id: 17,
-            text: "If an event in a finite sample space has a probability of 0, it means:",
-            options: [
-              "The event is certain to occur",
-              "The event is impossible",
-              "The event has an equal chance of occurring and not occurring",
-              "The sample space is empty"
-            ],
-            correctAnswer: 1,
-            explanation: "In a finite sample space, probability 0 means the event is impossible.",
-            difficulty: "easy",
-            category: "Probability"
-          },
-          {
-            id: 18,
-            text: "Two events are mutually exclusive if:",
-            options: [
-              "They can occur together",
-              "Their probabilities sum to 1",
-              "They have no common outcomes",
-              "They are independent"
-            ],
-            correctAnswer: 2,
-            explanation: "Mutually exclusive events cannot occur together (A ∩ B = ∅).",
-            difficulty: "easy",
-            category: "Events"
-          },
-          {
-            id: 19,
-            text: "If P(A) = 0.4 and P(B) = 0.5, and A and B are mutually exclusive, then P(A ∪ B) is:",
-            options: [
-              "0.2",
-              "0.9",
-              "0.5",
-              "1.0"
-            ],
-            correctAnswer: 1,
-            explanation: "For mutually exclusive events: P(A ∪ B) = P(A) + P(B) = 0.4 + 0.5 = 0.9",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 20,
-            text: "The probability of an event A given that event B has occurred is known as:",
-            options: [
-              "Independent probability",
-              "Joint probability",
-              "Conditional probability",
-              "Marginal probability"
-            ],
-            correctAnswer: 2,
-            explanation: "This is the definition of conditional probability P(A|B).",
-            difficulty: "easy",
-            category: "Conditional Probability"
-          },
-          {
-            id: 21,
-            text: "If P(A ∩ B) = P(A)P(B), then events A and B are:",
-            options: [
-              "Mutually exclusive",
-              "Dependent",
-              "Independent",
-              "Exhaustive"
-            ],
-            correctAnswer: 2,
-            explanation: "This is the mathematical definition of independent events.",
-            difficulty: "medium",
-            category: "Events"
-          },
-          {
-            id: 22,
-            text: "Which of the following is an axiom of probability?",
-            options: [
-              "P(A) ≥ 0 for all events A",
-              "P(A ∪ B) = P(A) + P(B) - P(A ∩ B)",
-              "P(A|B) = P(A ∩ B)/P(B)",
-              "P(A) = 1 - P(A^c)"
-            ],
-            correctAnswer: 0,
-            explanation: "Non-negativity is one of Kolmogorov's axioms of probability.",
-            difficulty: "medium",
-            category: "Probability Axioms"
-          },
-          {
-            id: 23,
-            text: "The sample space of tossing a fair coin twice is:",
-            options: [
-              "{H, T}",
-              "{HH, TT}",
-              "{HH, HT, TH, TT}",
-              "{H, T, HH, HT, TH, TT}"
-            ],
-            correctAnswer: 2,
-            explanation: "All possible outcomes of two coin tosses: HH, HT, TH, TT",
-            difficulty: "easy",
-            category: "Sample Space"
-          },
-          {
-            id: 24,
-            text: "The complement of event A is denoted by A^c. Which is true?",
-            options: [
-              "P(A) + P(A^c) = 0",
-              "P(A) + P(A^c) = 1",
-              "P(A) = P(A^c)",
-              "P(A) - P(A^c) = 1"
-            ],
-            correctAnswer: 1,
-            explanation: "By definition, P(A) + P(A^c) = 1",
-            difficulty: "easy",
-            category: "Probability Rules"
-          },
-          {
-            id: 25,
-            text: "If P(A) = 0.6 and P(B) = 0.4, and A and B are mutually exclusive, then P(A ∪ B) is:",
-            options: [
-              "0",
-              "0.24",
-              "1",
-              "0.76"
-            ],
-            correctAnswer: 2,
-            explanation: "For mutually exclusive events: P(A ∪ B) = P(A) + P(B) = 0.6 + 0.4 = 1.0",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          // Descriptive Statistics Questions
-          {
-            id: 26,
-            text: "The arithmetic mean of the numbers 2, 4, 6, 8, 10 is:",
-            options: [
-              "5",
-              "6",
-              "7",
-              "8"
-            ],
-            correctAnswer: 1,
-            explanation: "Mean = (2+4+6+8+10)/5 = 30/5 = 6",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 27,
-            text: "The median of the numbers 5, 2, 8, 1, 9 is:",
-            options: [
-              "5",
-              "2",
-              "8",
-              "1"
-            ],
-            correctAnswer: 0,
-            explanation: "Sorted: 1, 2, 5, 8, 9 → Median = 5",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 28,
-            text: "The variance of a population is calculated by:",
-            options: [
-              "Σ(xᵢ - μ)² / N",
-              "Σ(xᵢ - x̄)² / (n - 1)",
-              "Σ(xᵢ - μ)² / (N - 1)",
-              "Σ(xᵢ - x̄)² / n"
-            ],
-            correctAnswer: 0,
-            explanation: "Population variance formula: σ² = Σ(xᵢ - μ)² / N",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 29,
-            text: "The sample variance is calculated by:",
-            options: [
-              "Σ(xᵢ - μ)² / N",
-              "Σ(xᵢ - x̄)² / (n - 1)",
-              "Σ(xᵢ - μ)² / (N - 1)",
-              "Σ(xᵢ - x̄)² / n"
-            ],
-            correctAnswer: 1,
-            explanation: "Sample variance formula: s² = Σ(xᵢ - x̄)² / (n - 1)",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 30,
-            text: "The standard deviation is:",
-            options: [
-              "The square of the variance",
-              "The square root of the variance",
-              "The average of the data",
-              "The range of the data"
-            ],
-            correctAnswer: 1,
-            explanation: "Standard deviation = √variance",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 31,
-            text: "The interquartile range (IQR) is:",
-            options: [
-              "Q₃ - Q₁",
-              "Q₁ - Q₃",
-              "Max - Min",
-              "Q₂"
-            ],
-            correctAnswer: 0,
-            explanation: "IQR = Q₃ - Q₁",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 32,
-            text: "The coefficient of variation is calculated as:",
-            options: [
-              "(s / x̄) × 100%",
-              "(x̄ / s) × 100%",
-              "s² / x̄",
-              "x̄ / s²"
-            ],
-            correctAnswer: 0,
-            explanation: "CV = (s / x̄) × 100%",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 33,
-            text: "Which measure of central tendency is most affected by outliers?",
-            options: [
-              "Mean",
-              "Median",
-              "Mode",
-              "All are equally affected"
-            ],
-            correctAnswer: 0,
-            explanation: "The mean is most affected by outliers because it uses all values in its calculation.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 34,
-            text: "For a symmetric distribution, which is true?",
-            options: [
-              "Mean = Median = Mode",
-              "Mean > Median > Mode",
-              "Mean < Median < Mode",
-              "Mean = Median but not necessarily Mode"
-            ],
-            correctAnswer: 0,
-            explanation: "In a perfectly symmetric distribution, mean = median = mode.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 35,
-            text: "The range of the data set {3, 7, 2, 9, 5} is:",
-            options: [
-              "5",
-              "7",
-              "9",
-              "11"
-            ],
-            correctAnswer: 1,
-            explanation: "Range = Max - Min = 9 - 2 = 7",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          // Random Variables and Distributions
-          {
-            id: 36,
-            text: "The expected value of a discrete random variable X is:",
-            options: [
-              "Σ x f(x)",
-              "Σ f(x)",
-              "Σ x² f(x)",
-              "Σ (x - μ)² f(x)"
-            ],
-            correctAnswer: 0,
-            explanation: "E[X] = Σ x f(x)",
-            difficulty: "medium",
-            category: "Random Variables"
-          },
-          {
-            id: 37,
-            text: "The variance of a random variable X is:",
-            options: [
-              "E[X²] - (E[X])²",
-              "E[X]²",
-              "E[X²]",
-              "E[X] - E[X²]"
-            ],
-            correctAnswer: 0,
-            explanation: "Var(X) = E[X²] - (E[X])²",
-            difficulty: "medium",
-            category: "Random Variables"
-          },
-          {
-            id: 38,
-            text: "For a binomial distribution with parameters n and p, the mean is:",
-            options: [
-              "n p",
-              "n (1 - p)",
-              "p (1 - p)",
-              "n p (1 - p)"
-            ],
-            correctAnswer: 0,
-            explanation: "For Bin(n, p), μ = n p",
-            difficulty: "medium",
-            category: "Distributions"
-          },
-          {
-            id: 39,
-            text: "For a binomial distribution with parameters n and p, the variance is:",
-            options: [
-              "n p",
-              "n (1 - p)",
-              "p (1 - p)",
-              "n p (1 - p)"
-            ],
-            correctAnswer: 3,
-            explanation: "For Bin(n, p), σ² = n p (1 - p)",
-            difficulty: "medium",
-            category: "Distributions"
-          },
-          {
-            id: 40,
-            text: "The probability mass function for a binomial distribution is:",
-            options: [
-              "P(X=x) = C(n, x)pˣ(1-p)ⁿ⁻ˣ",
-              "P(X=x) = e^(-λ)λˣ/x!",
-              "P(X=x) = (1-p)ˣ⁻¹p",
-              "P(X=x) = 1/(b-a)"
-            ],
-            correctAnswer: 0,
-            explanation: "Binomial PMF: P(X=x) = C(n, x)pˣ(1-p)ⁿ⁻ˣ",
-            difficulty: "hard",
-            category: "Distributions"
-          },
-          {
-            id: 41,
-            text: "A random variable that can take any value in an interval is called:",
-            options: [
-              "Discrete",
-              "Continuous",
-              "Categorical",
-              "Ordinal"
-            ],
-            correctAnswer: 1,
-            explanation: "Continuous random variables can take any value in an interval.",
-            difficulty: "easy",
-            category: "Random Variables"
-          },
-          {
-            id: 42,
-            text: "The standard normal distribution has:",
-            options: [
-              "μ = 0, σ = 1",
-              "μ = 1, σ = 0",
-              "μ = 0, σ = 0",
-              "μ = 1, σ = 1"
-            ],
-            correctAnswer: 0,
-            explanation: "Standard normal distribution: μ = 0, σ = 1",
-            difficulty: "easy",
-            category: "Distributions"
-          },
-          {
-            id: 43,
-            text: "The Poisson distribution is used to model:",
-            options: [
-              "The number of successes in n trials",
-              "The time between events",
-              "The number of events in a fixed interval",
-              "Continuous measurements"
-            ],
-            correctAnswer: 2,
-            explanation: "Poisson distribution models the number of events in a fixed interval.",
-            difficulty: "medium",
-            category: "Distributions"
-          },
-          {
-            id: 44,
-            text: "The exponential distribution is used to model:",
-            options: [
-              "The number of successes in n trials",
-              "The time between events",
-              "The number of events in a fixed interval",
-              "Continuous measurements with bell shape"
-            ],
-            correctAnswer: 1,
-            explanation: "Exponential distribution models the time between events.",
-            difficulty: "medium",
-            category: "Distributions"
-          },
-          {
-            id: 45,
-            text: "For a normal distribution, approximately what percentage of data falls within one standard deviation of the mean?",
-            options: [
-              "50%",
-              "68%",
-              "95%",
-              "99.7%"
-            ],
-            correctAnswer: 1,
-            explanation: "In a normal distribution, about 68% of data falls within μ ± σ",
-            difficulty: "easy",
-            category: "Distributions"
-          },
-          // Levels of Measurement
-          {
-            id: 46,
-            text: "Which level of measurement has categories with no inherent order?",
-            options: [
-              "Nominal",
-              "Ordinal",
-              "Interval",
-              "Ratio"
-            ],
-            correctAnswer: 0,
-            explanation: "Nominal level has categories with no inherent order.",
-            difficulty: "easy",
-            category: "Measurement Levels"
-          },
-          {
-            id: 47,
-            text: "Which level of measurement has ordered categories but no meaningful differences?",
-            options: [
-              "Nominal",
-              "Ordinal",
-              "Interval",
-              "Ratio"
-            ],
-            correctAnswer: 1,
-            explanation: "Ordinal level has ordered categories but differences are not meaningful.",
-            difficulty: "easy",
-            category: "Measurement Levels"
-          },
-          {
-            id: 48,
-            text: "Temperature in Celsius is an example of which level of measurement?",
-            options: [
-              "Nominal",
-              "Ordinal",
-              "Interval",
-              "Ratio"
-            ],
-            correctAnswer: 2,
-            explanation: "Temperature in Celsius is interval (has meaningful differences but no true zero).",
-            difficulty: "medium",
-            category: "Measurement Levels"
-          },
-          {
-            id: 49,
-            text: "Height is an example of which level of measurement?",
-            options: [
-              "Nominal",
-              "Ordinal",
-              "Interval",
-              "Ratio"
-            ],
-            correctAnswer: 3,
-            explanation: "Height is ratio (has meaningful differences and a true zero).",
-            difficulty: "medium",
-            category: "Measurement Levels"
-          },
-          {
-            id: 50,
-            text: "Which level of measurement has a true zero point?",
-            options: [
-              "Nominal",
-              "Ordinal",
-              "Interval",
-              "Ratio"
-            ],
-            correctAnswer: 3,
-            explanation: "Ratio level has a true zero point.",
-            difficulty: "easy",
-            category: "Measurement Levels"
-          },
-          // Additional questions to reach 100+
-          {
-            id: 51,
-            text: "If P(A) = 0.3, P(B) = 0.4, and P(A ∩ B) = 0.12, then A and B are:",
-            options: [
-              "Independent",
-              "Dependent",
-              "Mutually exclusive",
-              "Complementary"
-            ],
-            correctAnswer: 0,
-            explanation: "P(A ∩ B) = 0.12 = 0.3 × 0.4 = P(A)P(B), so they are independent.",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 52,
-            text: "If P(A) = 0.3, P(B) = 0.4, and A and B are mutually exclusive, then P(A ∩ B) is:",
-            options: [
-              "0.12",
-              "0.7",
-              "0",
-              "0.1"
-            ],
-            correctAnswer: 2,
-            explanation: "For mutually exclusive events, P(A ∩ B) = 0",
-            difficulty: "easy",
-            category: "Probability Rules"
-          },
-          {
-            id: 53,
-            text: "The law of total probability states that:",
-            options: [
-              "P(B) = Σ P(B|Aᵢ) P(Aᵢ)",
-              "P(A|B) = P(B|A)P(A)/P(B)",
-              "P(A ∪ B) = P(A) + P(B) - P(A ∩ B)",
-              "P(Aᶜ) = 1 - P(A)"
-            ],
-            correctAnswer: 0,
-            explanation: "Law of total probability: P(B) = Σ P(B|Aᵢ) P(Aᵢ)",
-            difficulty: "hard",
-            category: "Probability Rules"
-          },
-          {
-            id: 54,
-            text: "Bayes' theorem is used to:",
-            options: [
-              "Calculate the probability of an event",
-              "Update probabilities based on new evidence",
-              "Calculate the union of events",
-              "Calculate conditional probability directly"
-            ],
-            correctAnswer: 1,
-            explanation: "Bayes' theorem updates prior probabilities based on new evidence.",
-            difficulty: "medium",
-            category: "Bayes Theorem"
-          },
-          {
-            id: 55,
-            text: "If events A and B are independent, then:",
-            options: [
-              "P(A|B) = P(A)",
-              "P(A|B) = P(B)",
-              "P(A|B) = P(A ∩ B)",
-              "P(A|B) = P(A) + P(B)"
-            ],
-            correctAnswer: 0,
-            explanation: "For independent events, P(A|B) = P(A)",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 56,
-            text: "The probability of the intersection of two independent events is:",
-            options: [
-              "P(A) + P(B)",
-              "P(A) P(B)",
-              "P(A) - P(B)",
-              "P(A) / P(B)"
-            ],
-            correctAnswer: 1,
-            explanation: "For independent events, P(A ∩ B) = P(A) P(B)",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 57,
-            text: "If P(A) = 0.7, then P(Aᶜ) is:",
-            options: [
-              "0.3",
-              "0.7",
-              "1",
-              "0"
-            ],
-            correctAnswer: 0,
-            explanation: "P(Aᶜ) = 1 - P(A) = 1 - 0.7 = 0.3",
-            difficulty: "easy",
-            category: "Probability Rules"
-          },
-          {
-            id: 58,
-            text: "The probability of the union of two mutually exclusive events is:",
-            options: [
-              "P(A) + P(B)",
-              "P(A) P(B)",
-              "P(A) + P(B) - P(A ∩ B)",
-              "P(A) - P(B)"
-            ],
-            correctAnswer: 0,
-            explanation: "For mutually exclusive events, P(A ∪ B) = P(A) + P(B)",
-            difficulty: "easy",
-            category: "Probability Rules"
-          },
-          {
-            id: 59,
-            text: "If P(A|B) = P(A), then events A and B are:",
-            options: [
-              "Independent",
-              "Dependent",
-              "Mutually exclusive",
-              "Complementary"
-            ],
-            correctAnswer: 0,
-            explanation: "If P(A|B) = P(A), then A and B are independent.",
-            difficulty: "medium",
-            category: "Probability Rules"
-          },
-          {
-            id: 60,
-            text: "The probability of an event that is certain to occur is:",
-            options: [
-              "0",
-              "0.5",
-              "1",
-              "Undefined"
-            ],
-            correctAnswer: 2,
-            explanation: "A certain event has probability 1.",
-            difficulty: "easy",
-            category: "Probability"
-          },
-          // Continue adding more questions to reach 100+
-          {
-            id: 61,
-            text: "In a box plot, the line inside the box represents the:",
-            options: [
-              "Mean",
-              "Median",
-              "Mode",
-              "Range"
-            ],
-            correctAnswer: 1,
-            explanation: "The line inside the box in a box plot represents the median.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 62,
-            text: "The empirical rule states that for a normal distribution, approximately what percentage of data falls within two standard deviations of the mean?",
-            options: [
-              "68%",
-              "95%",
-              "99.7%",
-              "50%"
-            ],
-            correctAnswer: 1,
-            explanation: "Empirical rule: about 95% of data falls within μ ± 2σ",
-            difficulty: "easy",
-            category: "Distributions"
-          },
-          {
-            id: 63,
-            text: "A z-score measures:",
-            options: [
-              "The probability of an event",
-              "The number of standard deviations from the mean",
-              "The correlation between variables",
-              "The variance of a distribution"
-            ],
-            correctAnswer: 1,
-            explanation: "A z-score measures how many standard deviations a value is from the mean.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 64,
-            text: "If a distribution is skewed to the right, then:",
-            options: [
-              "Mean > Median",
-              "Mean < Median",
-              "Mean = Median",
-              "Mode > Mean"
-            ],
-            correctAnswer: 0,
-            explanation: "In a right-skewed distribution, the mean is greater than the median.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 65,
-            text: "The correlation coefficient ranges from:",
-            options: [
-              "0 to 1",
-              "-1 to 1",
-              "0 to 100",
-              "-∞ to ∞"
-            ],
-            correctAnswer: 1,
-            explanation: "The correlation coefficient ranges from -1 to 1.",
-            difficulty: "easy",
-            category: "Correlation"
-          },
-          {
-            id: 66,
-            text: "A correlation coefficient of 0 indicates:",
-            options: [
-              "Perfect positive correlation",
-              "Perfect negative correlation",
-              "No linear relationship",
-              "Non-linear relationship"
-            ],
-            correctAnswer: 2,
-            explanation: "A correlation of 0 indicates no linear relationship between variables.",
-            difficulty: "easy",
-            category: "Correlation"
-          },
-          {
-            id: 67,
-            text: "In hypothesis testing, the null hypothesis is typically:",
-            options: [
-              "The hypothesis the researcher wants to prove",
-              "The hypothesis of no effect or no difference",
-              "Always true",
-              "The alternative hypothesis"
-            ],
-            correctAnswer: 1,
-            explanation: "The null hypothesis is the hypothesis of no effect or no difference.",
-            difficulty: "medium",
-            category: "Hypothesis Testing"
-          },
-          {
-            id: 68,
-            text: "A p-value less than the significance level α leads to:",
-            options: [
-              "Accepting the null hypothesis",
-              "Rejecting the null hypothesis",
-              "Accepting the alternative hypothesis",
-              "No conclusion"
-            ],
-            correctAnswer: 1,
-            explanation: "If p-value < α, we reject the null hypothesis.",
-            difficulty: "medium",
-            category: "Hypothesis Testing"
-          },
-          {
-            id: 69,
-            text: "A Type I error occurs when we:",
-            options: [
-              "Reject a true null hypothesis",
-              "Fail to reject a false null hypothesis",
-              "Accept a true alternative hypothesis",
-              "Reject a false null hypothesis"
-            ],
-            correctAnswer: 0,
-            explanation: "Type I error: rejecting a true null hypothesis.",
-            difficulty: "medium",
-            category: "Hypothesis Testing"
-          },
-          {
-            id: 70,
-            text: "A Type II error occurs when we:",
-            options: [
-              "Reject a true null hypothesis",
-              "Fail to reject a false null hypothesis",
-              "Accept a true alternative hypothesis",
-              "Reject a false null hypothesis"
-            ],
-            correctAnswer: 1,
-            explanation: "Type II error: failing to reject a false null hypothesis.",
-            difficulty: "medium",
-            category: "Hypothesis Testing"
-          },
-          {
-            id: 71,
-            text: "The power of a statistical test is:",
-            options: [
-              "The probability of Type I error",
-              "The probability of Type II error",
-              "1 - probability of Type I error",
-              "1 - probability of Type II error"
-            ],
-            correctAnswer: 3,
-            explanation: "Power = 1 - β, where β is the probability of Type II error.",
-            difficulty: "hard",
-            category: "Hypothesis Testing"
-          },
-          {
-            id: 72,
-            text: "A confidence interval for a population mean is constructed as:",
-            options: [
-              "x̄ ± z*(σ/√n)",
-              "x̄ ± z*σ",
-              "μ ± z*(σ/√n)",
-              "x̄ ± z*n"
-            ],
-            correctAnswer: 0,
-            explanation: "CI for population mean: x̄ ± z*(σ/√n)",
-            difficulty: "medium",
-            category: "Confidence Intervals"
-          },
-          {
-            id: 73,
-            text: "As the sample size increases, the width of a confidence interval:",
-            options: [
-              "Increases",
-              "Decreases",
-              "Stays the same",
-              "Becomes unpredictable"
-            ],
-            correctAnswer: 1,
-            explanation: "As sample size increases, the standard error decreases, so CI width decreases.",
-            difficulty: "medium",
-            category: "Confidence Intervals"
-          },
-          {
-            id: 74,
-            text: "In linear regression, the coefficient of determination R² represents:",
-            options: [
-              "The slope of the regression line",
-              "The proportion of variance explained by the model",
-              "The correlation between variables",
-              "The intercept of the regression line"
-            ],
-            correctAnswer: 1,
-            explanation: "R² represents the proportion of variance in the dependent variable explained by the model.",
-            difficulty: "medium",
-            category: "Regression"
-          },
-          {
-            id: 75,
-            text: "The covariance between two variables measures:",
-            options: [
-              "The strength of the linear relationship",
-              "The direction of the linear relationship",
-              "Both the direction and strength of the linear relationship",
-              "The causal relationship between variables"
-            ],
-            correctAnswer: 1,
-            explanation: "Covariance measures the direction of the linear relationship between variables.",
-            difficulty: "medium",
-            category: "Correlation"
-          },
-          // Continue to reach 100+ questions
-          {
-            id: 76,
-            text: "If the correlation between X and Y is 0.8, then:",
-            options: [
-              "X causes Y",
-              "Y causes X",
-              "There is a strong positive linear relationship",
-              "There is no relationship"
-            ],
-            correctAnswer: 2,
-            explanation: "A correlation of 0.8 indicates a strong positive linear relationship.",
-            difficulty: "easy",
-            category: "Correlation"
-          },
-          {
-            id: 77,
-            text: "The central limit theorem states that:",
-            options: [
-              "The sample mean is always equal to the population mean",
-              "The sampling distribution of the mean approaches normality as sample size increases",
-              "All distributions are normal",
-              "The population mean is always equal to the sample mean"
-            ],
-            correctAnswer: 1,
-            explanation: "The central limit theorem states that the sampling distribution of the mean approaches normality as sample size increases, regardless of the population distribution.",
-            difficulty: "hard",
-            category: "Sampling Distributions"
-          },
-          {
-            id: 78,
-            text: "The standard error of the mean is:",
-            options: [
-              "The standard deviation of the population",
-              "The standard deviation of the sample",
-              "The standard deviation of the sampling distribution of the mean",
-              "The mean of the standard deviations"
-            ],
-            correctAnswer: 2,
-            explanation: "The standard error is the standard deviation of the sampling distribution of the mean.",
-            difficulty: "medium",
-            category: "Sampling Distributions"
-          },
-          {
-            id: 79,
-            text: "As the confidence level increases, the width of a confidence interval:",
-            options: [
-              "Increases",
-              "Decreases",
-              "Stays the same",
-              "Becomes zero"
-            ],
-            correctAnswer: 0,
-            explanation: "As confidence level increases, the critical value increases, so the CI width increases.",
-            difficulty: "medium",
-            category: "Confidence Intervals"
-          },
-          {
-            id: 80,
-            text: "In a hypothesis test, if the p-value is 0.03 and α = 0.05, we:",
-            options: [
-              "Reject the null hypothesis",
-              "Fail to reject the null hypothesis",
-              "Accept the null hypothesis",
-              "Accept the alternative hypothesis"
-            ],
-            correctAnswer: 0,
-            explanation: "Since p-value (0.03) < α (0.05), we reject the null hypothesis.",
-            difficulty: "medium",
-            category: "Hypothesis Testing"
-          },
-          // Add more questions to reach 100+
-          {
-            id: 81,
-            text: "The mode of a dataset is:",
-            options: [
-              "The average value",
-              "The middle value",
-              "The most frequent value",
-              "The difference between max and min"
-            ],
-            correctAnswer: 2,
-            explanation: "The mode is the value that appears most frequently in a dataset.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 82,
-            text: "For a perfectly symmetric distribution, the skewness is:",
-            options: [
-              "Positive",
-              "Negative",
-              "Zero",
-              "Undefined"
-            ],
-            correctAnswer: 2,
-            explanation: "A perfectly symmetric distribution has skewness = 0.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 83,
-            text: "Kurtosis measures:",
-            options: [
-              "The symmetry of a distribution",
-              "The peakedness of a distribution",
-              "The spread of a distribution",
-              "The center of a distribution"
-            ],
-            correctAnswer: 1,
-            explanation: "Kurtosis measures the peakedness of a distribution.",
-            difficulty: "hard",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 84,
-            text: "A distribution with positive kurtosis is called:",
-            options: [
-              "Leptokurtic",
-              "Platykurtic",
-              "Mesokurtic",
-              "Symmetrical"
-            ],
-            correctAnswer: 0,
-            explanation: "A distribution with positive kurtosis is leptokurtic (more peaked than normal).",
-            difficulty: "hard",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 85,
-            text: "The geometric mean is used for:",
-            options: [
-              "Averaging rates of change",
-              "Finding the middle value",
-              "Finding the most common value",
-              "Measuring spread"
-            ],
-            correctAnswer: 0,
-            explanation: "The geometric mean is used for averaging rates of change or multiplicative processes.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 86,
-            text: "The harmonic mean is used for:",
-            options: [
-              "Averaging rates",
-              "Finding the middle value",
-              "Finding the most common value",
-              "Measuring symmetry"
-            ],
-            correctAnswer: 0,
-            explanation: "The harmonic mean is used for averaging rates, especially when the rates are defined as ratios.",
-            difficulty: "hard",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 87,
-            text: "Chebyshev's theorem applies to:",
-            options: [
-              "Only normal distributions",
-              "Only symmetric distributions",
-              "Any distribution",
-              "Only binomial distributions"
-            ],
-            correctAnswer: 2,
-            explanation: "Chebyshev's theorem applies to any distribution, regardless of shape.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 88,
-            text: "According to Chebyshev's theorem, at least what percentage of data lies within 2 standard deviations of the mean?",
-            options: [
-              "68%",
-              "75%",
-              "95%",
-              "89%"
-            ],
-            correctAnswer: 1,
-            explanation: "Chebyshev's theorem: at least 1 - 1/k² of data lies within k standard deviations. For k=2, at least 75%.",
-            difficulty: "hard",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 89,
-            text: "A percentile is:",
-            options: [
-              "The percentage of data below a certain value",
-              "The value below which a certain percentage of data falls",
-              "The average of the data",
-              "The most frequent value"
-            ],
-            correctAnswer: 1,
-            explanation: "A percentile is the value below which a certain percentage of data falls.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 90,
-            text: "The first quartile (Q1) is the same as the:",
-            options: [
-              "25th percentile",
-              "50th percentile",
-              "75th percentile",
-              "100th percentile"
-            ],
-            correctAnswer: 0,
-            explanation: "Q1 is the 25th percentile.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 91,
-            text: "The third quartile (Q3) is the same as the:",
-            options: [
-              "25th percentile",
-              "50th percentile",
-              "75th percentile",
-              "100th percentile"
-            ],
-            correctAnswer: 2,
-            explanation: "Q3 is the 75th percentile.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 92,
-            text: "The five-number summary consists of:",
-            options: [
-              "Mean, median, mode, variance, standard deviation",
-              "Min, Q1, median, Q3, max",
-              "Q1, Q2, Q3, Q4, Q5",
-              "Mean, standard deviation, skewness, kurtosis, range"
-            ],
-            correctAnswer: 1,
-            explanation: "The five-number summary is: Min, Q1, Median, Q3, Max.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 93,
-            text: "In a box plot, potential outliers are typically defined as values:",
-            options: [
-              "Below Q1 - 1.5×IQR or above Q3 + 1.5×IQR",
-              "Below Q1 or above Q3",
-              "Below mean - 2σ or above mean + 2σ",
-              "Below median or above median"
-            ],
-            correctAnswer: 0,
-            explanation: "Outliers in a box plot are values below Q1 - 1.5×IQR or above Q3 + 1.5×IQR.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 94,
-            text: "A scatter plot is used to visualize:",
-            options: [
-              "The distribution of a single variable",
-              "The relationship between two variables",
-              "The composition of a whole",
-              "Changes over time"
-            ],
-            correctAnswer: 1,
-            explanation: "A scatter plot visualizes the relationship between two variables.",
-            difficulty: "easy",
-            category: "Data Visualization"
-          },
-          {
-            id: 95,
-            text: "A histogram is used to visualize:",
-            options: [
-              "The distribution of a single variable",
-              "The relationship between two variables",
-              "The composition of a whole",
-              "Changes over time"
-            ],
-            correctAnswer: 0,
-            explanation: "A histogram visualizes the distribution of a single variable.",
-            difficulty: "easy",
-            category: "Data Visualization"
-          },
-          {
-            id: 96,
-            text: "A pie chart is used to visualize:",
-            options: [
-              "The distribution of a single variable",
-              "The relationship between two variables",
-              "The composition of a whole",
-              "Changes over time"
-            ],
-            correctAnswer: 2,
-            explanation: "A pie chart visualizes the composition of a whole.",
-            difficulty: "easy",
-            category: "Data Visualization"
-          },
-          {
-            id: 97,
-            text: "A line chart is used to visualize:",
-            options: [
-              "The distribution of a single variable",
-              "The relationship between two variables",
-              "The composition of a whole",
-              "Changes over time"
-            ],
-            correctAnswer: 3,
-            explanation: "A line chart visualizes changes over time.",
-            difficulty: "easy",
-            category: "Data Visualization"
-          },
-          {
-            id: 98,
-            text: "The coefficient of variation is useful for:",
-            options: [
-              "Comparing variability across different units",
-              "Measuring central tendency",
-              "Testing hypotheses",
-              "Finding correlations"
-            ],
-            correctAnswer: 0,
-            explanation: "The coefficient of variation is useful for comparing variability across datasets with different units.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 99,
-            text: "If the coefficient of variation is high, it indicates:",
-            options: [
-              "Low variability relative to the mean",
-              "High variability relative to the mean",
-              "The data is normally distributed",
-              "The data is skewed"
-            ],
-            correctAnswer: 1,
-            explanation: "A high CV indicates high variability relative to the mean.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 100,
-            text: "The standard deviation is always:",
-            options: [
-              "Positive or zero",
-              "Positive",
-              "Negative or zero",
-              "Negative"
-            ],
-            correctAnswer: 0,
-            explanation: "Standard deviation is always non-negative (positive or zero).",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 101,
-            text: "If all values in a dataset are the same, the standard deviation is:",
-            options: [
-              "0",
-              "1",
-              "The value itself",
-              "Undefined"
-            ],
-            correctAnswer: 0,
-            explanation: "If all values are the same, there is no variation, so standard deviation = 0.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 102,
-            text: "The variance of a constant is:",
-            options: [
-              "0",
-              "1",
-              "The constant itself",
-              "Undefined"
-            ],
-            correctAnswer: 0,
-            explanation: "A constant has no variation, so variance = 0.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 103,
-            text: "If we multiply each value in a dataset by a constant k, the standard deviation:",
-            options: [
-              "Stays the same",
-              "Is multiplied by k",
-              "Is multiplied by |k|",
-              "Is divided by k"
-            ],
-            correctAnswer: 2,
-            explanation: "Multiplying each value by k multiplies the standard deviation by |k|.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 104,
-            text: "If we add a constant to each value in a dataset, the standard deviation:",
-            options: [
-              "Increases by the constant",
-              "Decreases by the constant",
-              "Stays the same",
-              "Is multiplied by the constant"
-            ],
-            correctAnswer: 2,
-            explanation: "Adding a constant to each value shifts the data but doesn't change the spread, so standard deviation stays the same.",
-            difficulty: "medium",
-            category: "Descriptive Statistics"
-          },
-          {
-            id: 105,
-            text: "The range is sensitive to:",
-            options: [
-              "The mean",
-              "The median",
-              "Outliers",
-              "The mode"
-            ],
-            correctAnswer: 2,
-            explanation: "The range is sensitive to outliers because it only depends on the min and max values.",
-            difficulty: "easy",
-            category: "Descriptive Statistics"
-          }
-        ];
-
+const questions = [
+  {
+    id: 1,
+    text: "The science of collecting, organizing, presenting, analyzing, and interpreting data to assist in making effective decisions is called:",
+    options: [
+      "Inferential Statistics",
+      "Descriptive Statistics",
+      "Computational Statistics",
+      "Statistics"
+    ],
+    correctAnswer: 3,
+    explanation: "Statistics is the broad field that encompasses all these activities related to data handling and decision-making.",
+    difficulty: "easy",
+    category: "Basic Concepts"
+  },
+  {
+    id: 2,
+    text: "The entire set of all individuals or objects of interest is called:",
+    options: [
+      "Parameter",
+      "Population",
+      "Statistic",
+      "Sample"
+    ],
+    correctAnswer: 1,
+    explanation: "Population refers to the complete set of all items or individuals that are of interest in a particular study.",
+    difficulty: "easy",
+    category: "Basic Concepts"
+  },
+  {
+    id: 3,
+    text: "Which of the following is a qualitative variable?",
+    options: [
+      "Height",
+      "Weight",
+      "Gender",
+      "Age"
+    ],
+    correctAnswer: 2,
+    explanation: "Gender is a qualitative variable because it describes categories rather than numerical values.",
+    difficulty: "easy",
+    category: "Data Types"
+  },
+  {
+    id: 4,
+    text: "The classification of students by eye color is an example of what level of measurement?",
+    options: [
+      "Nominal",
+      "Ordinal",
+      "Interval",
+      "Ratio"
+    ],
+    correctAnswer: 0,
+    explanation: "Nominal level involves categorization without any inherent order, such as eye color classification.",
+    difficulty: "easy",
+    category: "Measurement Levels"
+  },
+  {
+    id: 5,
+    text: "Which measure of central tendency is the most affected by extreme values?",
+    options: [
+      "Mean",
+      "Median",
+      "Mode",
+      "Range"
+    ],
+    correctAnswer: 0,
+    explanation: "The mean is most sensitive to extreme values because it incorporates all data points in its calculation.",
+    difficulty: "easy",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 6,
+    text: "The range of the middle 50% for a sorted set of data is called:",
+    options: [
+      "Variance",
+      "Standard deviation",
+      "Interquartile range (IQR)",
+      "Range"
+    ],
+    correctAnswer: 2,
+    explanation: "The interquartile range (IQR) represents the spread of the middle 50% of data values.",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 7,
+    text: "To determine the shape of a distribution, which measure is used?",
+    options: [
+      "Mean",
+      "Median",
+      "Mode",
+      "Skewness"
+    ],
+    correctAnswer: 3,
+    explanation: "Skewness measures the asymmetry of a probability distribution about its mean.",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 8,
+    text: "Which of the following statistical measures divides an ordered dataset into four equal parts?",
+    options: [
+      "Mean",
+      "Median",
+      "Quartiles",
+      "Mode"
+    ],
+    correctAnswer: 2,
+    explanation: "Quartiles divide a ranked dataset into four equal parts: Q1, Q2 (median), and Q3.",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 9,
+    text: "In a dataset with a symmetric distribution, the mean, median, and mode are:",
+    options: [
+      "All different",
+      "All the same",
+      "The mean is less than the median",
+      "The median is less than the mode"
+    ],
+    correctAnswer: 1,
+    explanation: "In a perfectly symmetric distribution, the mean, median, and mode coincide at the center.",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 10,
+    text: "The variance assumes a negative value when:",
+    options: [
+      "All the values are negative",
+      "All the values are equal",
+      "At least half of the values are negative",
+      "The variance cannot be negative"
+    ],
+    correctAnswer: 3,
+    explanation: "Variance is always non-negative because it's calculated as the average of squared deviations.",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 11,
+    text: "The sum of the differences between each value and the mean is always equal to what value?",
+    options: [
+      "Zero",
+      "3",
+      "-3",
+      "Can't be completely determined"
+    ],
+    correctAnswer: 0,
+    explanation: "The algebraic sum of deviations from the mean is always zero, which is a fundamental property of the mean.",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 12,
+    text: "The number of children in a family is an example of a:",
+    options: [
+      "Discrete variable",
+      "Continuous variable",
+      "Qualitative variable",
+      "Location measure"
+    ],
+    correctAnswer: 0,
+    explanation: "Number of children is discrete because it can only take specific integer values (0, 1, 2, 3, ...).",
+    difficulty: "easy",
+    category: "Data Types"
+  },
+  {
+    id: 13,
+    text: "The sample space of a random experiment is:",
+    options: [
+      "The set of all possible outcomes",
+      "A single outcome of the experiment",
+      "The probability of an event occurring",
+      "A random choice from the outcomes"
+    ],
+    correctAnswer: 0,
+    explanation: "The sample space is defined as the set of all possible outcomes of a random experiment.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 14,
+    text: "The probability of an event always lies between:",
+    options: [
+      "0 and 1",
+      "0 and 100",
+      "-1 and 1",
+      "Any real number"
+    ],
+    correctAnswer: 0,
+    explanation: "By definition, probability values range from 0 (impossible) to 1 (certain).",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 15,
+    text: "The probability of an impossible event is:",
+    options: [
+      "1",
+      "0",
+      "0.5",
+      "Undefined"
+    ],
+    correctAnswer: 1,
+    explanation: "An impossible event has probability 0 by definition.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 16,
+    text: "If a sample space contains 8 equally likely outcomes, the probability of any one outcome occurring is:",
+    options: [
+      "1/8",
+      "8",
+      "0",
+      "1"
+    ],
+    correctAnswer: 0,
+    explanation: "With equally likely outcomes, probability = 1/(number of outcomes) = 1/8.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 17,
+    text: "If P(A) = 0.6 and P(B) = 0.3, and A and B are independent, what is P(A ∩ B)?",
+    options: [
+      "0.9",
+      "0.18",
+      "0.3",
+      "0.6"
+    ],
+    correctAnswer: 1,
+    explanation: "For independent events, P(A ∩ B) = P(A) × P(B) = 0.6 × 0.3 = 0.18.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 18,
+    text: "Two fair dice are rolled. What is the probability that the sum is 7?",
+    options: [
+      "1/6",
+      "1/12",
+      "1/36",
+      "1/3"
+    ],
+    correctAnswer: 0,
+    explanation: "There are 6 favorable outcomes out of 36 total outcomes: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1).",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 19,
+    text: "A bag contains 3 red and 7 blue balls. If one ball is drawn at random, what is the probability that it is red?",
+    options: [
+      "3/10",
+      "7/10",
+      "1/2",
+      "1/3"
+    ],
+    correctAnswer: 0,
+    explanation: "Probability = (number of red balls)/(total balls) = 3/10.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 20,
+    text: "If P(A) = 0.15 and P(B) = 0.35, and A and B are mutually exclusive, then P(A ∪ B) is:",
+    options: [
+      "0.2",
+      "0.9",
+      "0.5",
+      "1.0"
+    ],
+    correctAnswer: 2,
+    explanation: "For mutually exclusive events, P(A ∪ B) = P(A) + P(B) = 0.15 + 0.35 = 0.5.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 21,
+    text: "If f(x) = (4 - x)/c, x = 1, 2, 3, is a probability mass function, then the value of the constant c is:",
+    options: [
+      "1",
+      "2",
+      "3",
+      "6"
+    ],
+    correctAnswer: 3,
+    explanation: "Sum of probabilities must equal 1: (3+2+1)/c = 1 ⇒ c = 6.",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 22,
+    text: "If the probability mass function of random variable X is f(x) = x/6, x = 1, 2, 3, then the mean of X is:",
+    options: [
+      "3/7",
+      "5/7",
+      "7/3",
+      "6/7"
+    ],
+    correctAnswer: 2,
+    explanation: "E[X] = Σx·f(x) = 1×(1/6) + 2×(2/6) + 3×(3/6) = 14/6 = 7/3.",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 23,
+    text: "If X is a random variable such that E[X + 5] = 10, then μ = E[X] =",
+    options: [
+      "10",
+      "5",
+      "15",
+      "50"
+    ],
+    correctAnswer: 1,
+    explanation: "E[X + 5] = E[X] + 5 = 10 ⇒ E[X] = 5.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 24,
+    text: "If X is a discrete random variable such that E[X + 5] = 10 and E[(X + 5)²] = 125, then Var(X) =",
+    options: [
+      "125",
+      "100",
+      "25",
+      "5"
+    ],
+    correctAnswer: 2,
+    explanation: "Var(X) = Var(X + 5) = E[(X + 5)²] - (E[X + 5])² = 125 - 100 = 25.",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 25,
+    text: "Suppose that X is a discrete random variable with PMF f(x) = C(n,x) p^x (1-p)^(n-x), x = 0,1,...,n, 0<p<1. Then the distribution of X is:",
+    options: [
+      "Poisson distribution",
+      "Bernoulli distribution",
+      "Binomial distribution",
+      "Geometric distribution"
+    ],
+    correctAnswer: 2,
+    explanation: "This is the probability mass function of the binomial distribution.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 26,
+    text: "If X follows binomial distribution with parameters 20 and 0.6, then the mean of X is:",
+    options: [
+      "20",
+      "0.6",
+      "0.4",
+      "12"
+    ],
+    correctAnswer: 3,
+    explanation: "For binomial distribution, μ = np = 20 × 0.6 = 12.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 27,
+    text: "Which of the following distributions have the property: μ = σ²?",
+    options: [
+      "Poisson distribution",
+      "Bernoulli distribution",
+      "Binomial distribution",
+      "Geometric distribution"
+    ],
+    correctAnswer: 0,
+    explanation: "For Poisson distribution, both mean and variance equal λ.",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 28,
+    text: "A random variable X has a binomial distribution with mean 6 and variance 3.6. Then, p =",
+    options: [
+      "0.6",
+      "0.4",
+      "0.5",
+      "0.75"
+    ],
+    correctAnswer: 1,
+    explanation: "np = 6 and np(1-p) = 3.6 ⇒ 6(1-p) = 3.6 ⇒ 1-p = 0.6 ⇒ p = 0.4.",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 29,
+    text: "A random variable X has a binomial distribution with mean 6 and variance 3.6. Then, n =",
+    options: [
+      "6",
+      "3.6",
+      "15",
+      "25"
+    ],
+    correctAnswer: 2,
+    explanation: "From previous, p = 0.4, and np = 6 ⇒ n = 6/0.4 = 15.",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 30,
+    text: "A random variable X has a binomial distribution with n = 15 and p = 0.4. Then P(X = 3) =",
+    options: [
+      "0.063",
+      "0.4",
+      "0.36",
+      "0.24"
+    ],
+    correctAnswer: 0,
+    explanation: "Using binomial formula: C(15,3) × (0.4)³ × (0.6)¹² ≈ 0.063.",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 31,
+    text: "Which of the following statements is true for a binomial distribution?",
+    options: [
+      "The probability of success must change with each trial",
+      "The trials are dependent on each other",
+      "The number of trials is fixed",
+      "There can be more than two outcomes per trial"
+    ],
+    correctAnswer: 2,
+    explanation: "In binomial distribution, the number of trials n is fixed in advance.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 32,
+    text: "If f(x) is the probability mass function (PMF) of a discrete random variable, then Σf(x) =",
+    options: [
+      "-1",
+      "0",
+      "1",
+      "Any real number"
+    ],
+    correctAnswer: 2,
+    explanation: "The sum of all probabilities in a PMF must equal 1.",
+    difficulty: "easy",
+    category: "Probability Distributions"
+  },
+  {
+    id: 33,
+    text: "The expected value of a Bernoulli random variable with success probability p is:",
+    options: [
+      "p",
+      "1-p",
+      "p(1-p)",
+      "√[p(1-p)]"
+    ],
+    correctAnswer: 0,
+    explanation: "For Bernoulli distribution, E[X] = 1×p + 0×(1-p) = p.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 34,
+    text: "The variance of a Bernoulli random variable with success probability p is:",
+    options: [
+      "p",
+      "1-p",
+      "p(1-p)",
+      "√[p(1-p)]"
+    ],
+    correctAnswer: 2,
+    explanation: "For Bernoulli distribution, Var(X) = p(1-p).",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 35,
+    text: "In a binomial experiment, the trials must be:",
+    options: [
+      "Dependent",
+      "Independent",
+      "Identically distributed but not independent",
+      "Neither independent nor identically distributed"
+    ],
+    correctAnswer: 1,
+    explanation: "A key requirement for binomial distribution is that trials are independent.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 36,
+    text: "If P(A) = 0.7, then P(A^c) equals:",
+    options: [
+      "0.3",
+      "0.7",
+      "1",
+      "0"
+    ],
+    correctAnswer: 0,
+    explanation: "P(A^c) = 1 - P(A) = 1 - 0.7 = 0.3.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 37,
+    text: "If A and B are independent events, then:",
+    options: [
+      "P(A|B) = P(A)",
+      "P(A|B) = P(B)",
+      "P(A|B) = P(A) + P(B)",
+      "P(A|B) = P(A) × P(B)"
+    ],
+    correctAnswer: 0,
+    explanation: "For independent events, the occurrence of B doesn't affect the probability of A.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 38,
+    text: "If A ⊆ B, then:",
+    options: [
+      "P(A) ≤ P(B)",
+      "P(A) ≥ P(B)",
+      "P(A) = P(B)",
+      "Cannot be compared"
+    ],
+    correctAnswer: 0,
+    explanation: "If A is a subset of B, then A cannot have higher probability than B.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 39,
+    text: "De Morgan's Law states that: (A ∪ B)^c =",
+    options: [
+      "A^c ∩ B^c",
+      "A^c ∪ B^c",
+      "A ∩ B",
+      "A ∪ B"
+    ],
+    correctAnswer: 0,
+    explanation: "De Morgan's Law: (A ∪ B)^c = A^c ∩ B^c.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 40,
+    text: "If P(A|B) = 0.4 and P(B) = 0.5, then P(A ∩ B) equals:",
+    options: [
+      "0.2",
+      "0.4",
+      "0.5",
+      "0.9"
+    ],
+    correctAnswer: 0,
+    explanation: "P(A ∩ B) = P(A|B) × P(B) = 0.4 × 0.5 = 0.2.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 41,
+    text: "If A and B are independent events with P(A) = 0.6 and P(B) = 0.3, then P(A^c ∩ B^c) equals:",
+    options: [
+      "0.18",
+      "0.28",
+      "0.42",
+      "0.72"
+    ],
+    correctAnswer: 1,
+    explanation: "P(A^c ∩ B^c) = P(A^c) × P(B^c) = 0.4 × 0.7 = 0.28.",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 42,
+    text: "If A and B are events with P(A) = 0.5, P(B) = 0.4, P(A ∩ B) = 0.2, then P(A|B) equals:",
+    options: [
+      "0.2",
+      "0.4",
+      "0.5",
+      "0.8"
+    ],
+    correctAnswer: 2,
+    explanation: "P(A|B) = P(A ∩ B)/P(B) = 0.2/0.4 = 0.5.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 43,
+    text: "If A and B are events with P(A) = 0.6, P(B) = 0.3, and P(A ∩ B) = 0.1, then P(A ∪ B) equals:",
+    options: [
+      "0.8",
+      "0.9",
+      "0.7",
+      "0.6"
+    ],
+    correctAnswer: 0,
+    explanation: "P(A ∪ B) = P(A) + P(B) - P(A ∩ B) = 0.6 + 0.3 - 0.1 = 0.8.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 44,
+    text: "If P(A) = 0.4, P(B) = 0.5, and P(A|B) = 0.3, then P(B|A) equals:",
+    options: [
+      "0.24",
+      "0.375",
+      "0.5",
+      "0.6"
+    ],
+    correctAnswer: 1,
+    explanation: "P(B|A) = [P(A|B) × P(B)]/P(A) = (0.3 × 0.5)/0.4 = 0.375.",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 45,
+    text: "If A and B are events with P(A) = 0.7, P(B) = 0.4, and P(A ∪ B) = 0.8, then P(A ∩ B) equals:",
+    options: [
+      "0.1",
+      "0.2",
+      "0.3",
+      "0.4"
+    ],
+    correctAnswer: 2,
+    explanation: "P(A ∩ B) = P(A) + P(B) - P(A ∪ B) = 0.7 + 0.4 - 0.8 = 0.3.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 46,
+    text: "If P(A) = 0.5, P(B) = 0.6, and P(A ∩ B) = 0.3, then A and B are:",
+    options: [
+      "Independent",
+      "Not independent",
+      "Mutually exclusive",
+      "Complementary"
+    ],
+    correctAnswer: 1,
+    explanation: "P(A) × P(B) = 0.5 × 0.6 = 0.3 = P(A ∩ B), so they are independent.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 47,
+    text: "If P(A) = 0.3, P(B) = 0.4, and A and B are mutually exclusive, then P(A|B) equals:",
+    options: [
+      "0",
+      "0.3",
+      "0.4",
+      "Undefined"
+    ],
+    correctAnswer: 0,
+    explanation: "For mutually exclusive events, P(A ∩ B) = 0, so P(A|B) = 0.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 48,
+    text: "If P(A) = 0.6, P(B) = 0.5, and P(A ∪ B) = 0.8, then P(A ∩ B) equals:",
+    options: [
+      "0.2",
+      "0.3",
+      "0.4",
+      "0.5"
+    ],
+    correctAnswer: 1,
+    explanation: "P(A ∩ B) = P(A) + P(B) - P(A ∪ B) = 0.6 + 0.5 - 0.8 = 0.3.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 49,
+    text: "If P(A) = 0.4, P(B) = 0.7, and A and B are independent, then P(A ∪ B) equals:",
+    options: [
+      "0.28",
+      "0.82",
+      "0.88",
+      "1.1"
+    ],
+    correctAnswer: 1,
+    explanation: "P(A ∪ B) = P(A) + P(B) - P(A)P(B) = 0.4 + 0.7 - 0.28 = 0.82.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 50,
+    text: "If P(A) = 0.5, P(B) = 0.5, and P(A ∩ B) = 0.25, then A and B are:",
+    options: [
+      "Independent",
+      "Not independent",
+      "Mutually exclusive",
+      "Complementary"
+    ],
+    correctAnswer: 0,
+    explanation: "P(A) × P(B) = 0.5 × 0.5 = 0.25 = P(A ∩ B), so they are independent.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 51,
+    text: "The probability of getting at least one head in two tosses of a fair coin is:",
+    options: [
+      "0.25",
+      "0.5",
+      "0.75",
+      "1"
+    ],
+    correctAnswer: 2,
+    explanation: "P(at least one head) = 1 - P(no heads) = 1 - 0.25 = 0.75.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 52,
+    text: "If events A and B are such that P(A) = 0.4, P(B) = 0.5, and P(A|B) = 0.6, then P(B|A) is:",
+    options: [
+      "0.3",
+      "0.48",
+      "0.75",
+      "0.8"
+    ],
+    correctAnswer: 2,
+    explanation: "P(B|A) = [P(A|B) × P(B)]/P(A) = (0.6 × 0.5)/0.4 = 0.75.",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 53,
+    text: "The addition rule for probability states that P(A ∪ B) = P(A) + P(B) - P(A ∩ B) applies:",
+    options: [
+      "Only when A and B are mutually exclusive",
+      "Only when A and B are independent",
+      "For all events A and B",
+      "Only when A and B are complementary"
+    ],
+    correctAnswer: 2,
+    explanation: "The addition rule applies to all events, regardless of their relationship.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 54,
+    text: "If P(A) = 0.3, P(B) = 0.4, and P(A ∩ B) = 0.12, then A and B are:",
+    options: [
+      "Independent",
+      "Not independent",
+      "Mutually exclusive",
+      "Complementary"
+    ],
+    correctAnswer: 0,
+    explanation: "P(A) × P(B) = 0.3 × 0.4 = 0.12 = P(A ∩ B), so they are independent.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 55,
+    text: "The probability of drawing a king or a heart from a standard deck of cards is:",
+    options: [
+      "4/52",
+      "13/52",
+      "16/52",
+      "17/52"
+    ],
+    correctAnswer: 2,
+    explanation: "P(king or heart) = P(king) + P(heart) - P(king of hearts) = 4/52 + 13/52 - 1/52 = 16/52.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 56,
+    text: "If P(A) = 0.6 and P(B) = 0.3, and P(A|B) = 0.8, then P(A ∩ B) is:",
+    options: [
+      "0.18",
+      "0.24",
+      "0.48",
+      "0.54"
+    ],
+    correctAnswer: 1,
+    explanation: "P(A ∩ B) = P(A|B) × P(B) = 0.8 × 0.3 = 0.24.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 57,
+    text: "The probability that at least one of two events A and B occurs is given by:",
+    options: [
+      "P(A) + P(B)",
+      "P(A) × P(B)",
+      "P(A ∪ B)",
+      "P(A ∩ B)"
+    ],
+    correctAnswer: 2,
+    explanation: "P(A ∪ B) represents the probability that at least one of A or B occurs.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 58,
+    text: "If A and B are mutually exclusive events with P(A) = 0.2 and P(B) = 0.3, then P(A^c ∩ B^c) is:",
+    options: [
+      "0.5",
+      "0.06",
+      "0.44",
+      "0.56"
+    ],
+    correctAnswer: 0,
+    explanation: "P(A^c ∩ B^c) = 1 - P(A ∪ B) = 1 - 0.5 = 0.5.",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 59,
+    text: "The conditional probability P(A|B) is defined as:",
+    options: [
+      "P(A ∩ B)/P(B)",
+      "P(B ∩ A)/P(A)",
+      "P(A)/P(B)",
+      "P(B)/P(A)"
+    ],
+    correctAnswer: 0,
+    explanation: "By definition, P(A|B) = P(A ∩ B)/P(B), provided P(B) > 0.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 60,
+    text: "If P(A) = 0.5, P(B) = 0.4, and P(A|B) = 0.6, then P(B|A) is:",
+    options: [
+      "0.3",
+      "0.48",
+      "0.75",
+      "0.8"
+    ],
+    correctAnswer: 1,
+    explanation: "P(B|A) = [P(A|B) × P(B)]/P(A) = (0.6 × 0.4)/0.5 = 0.48.",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 61,
+    text: "For a continuous random variable, the probability at a specific point is:",
+    options: [
+      "1",
+      "0",
+      "0.5",
+      "Undefined"
+    ],
+    correctAnswer: 1,
+    explanation: "For continuous random variables, P(X = x) = 0 for any specific value x.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 62,
+    text: "The area under the entire probability density function of a continuous random variable is:",
+    options: [
+      "0",
+      "1",
+      "∞",
+      "Depends on the distribution"
+    ],
+    correctAnswer: 1,
+    explanation: "The total area under any probability density function must equal 1.",
+    difficulty: "easy",
+    category: "Probability Distributions"
+  },
+  {
+    id: 63,
+    text: "The standard normal distribution has mean and standard deviation:",
+    options: [
+      "μ = 0, σ = 0",
+      "μ = 0, σ = 1",
+      "μ = 1, σ = 0",
+      "μ = 1, σ = 1"
+    ],
+    correctAnswer: 1,
+    explanation: "The standard normal distribution is defined with mean 0 and standard deviation 1.",
+    difficulty: "easy",
+    category: "Probability Distributions"
+  },
+  {
+    id: 64,
+    text: "In a normal distribution, approximately what percentage of data falls within one standard deviation of the mean?",
+    options: [
+      "50%",
+      "68%",
+      "95%",
+      "99.7%"
+    ],
+    correctAnswer: 1,
+    explanation: "The empirical rule states that about 68% of data falls within μ ± σ.",
+    difficulty: "easy",
+    category: "Probability Distributions"
+  },
+  {
+    id: 65,
+    text: "The Poisson distribution is typically used to model:",
+    options: [
+      "Number of successes in n trials",
+      "Time between events",
+      "Number of events in a fixed interval",
+      "Continuous measurements"
+    ],
+    correctAnswer: 2,
+    explanation: "Poisson distribution models the number of events occurring in a fixed interval of time or space.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 66,
+    text: "If X ~ N(50, 25), then the variance of X is:",
+    options: [
+      "50",
+      "25",
+      "5",
+      "0.2"
+    ],
+    correctAnswer: 1,
+    explanation: "In N(μ, σ²) notation, the second parameter is the variance, so variance = 25.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 67,
+    text: "The exponential distribution is commonly used to model:",
+    options: [
+      "Number of successes",
+      "Time between events",
+      "Measurement errors",
+      "Proportions"
+    ],
+    correctAnswer: 1,
+    explanation: "Exponential distribution models the time between events in a Poisson process.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 68,
+    text: "If Z is a standard normal random variable, then P(Z > 1.96) is approximately:",
+    options: [
+      "0.025",
+      "0.05",
+      "0.95",
+      "0.975"
+    ],
+    correctAnswer: 0,
+    explanation: "For standard normal, P(Z > 1.96) ≈ 0.025.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 69,
+    text: "The uniform distribution on [a,b] has probability density function:",
+    options: [
+      "f(x) = 1/(b-a) for a ≤ x ≤ b",
+      "f(x) = (b-a) for a ≤ x ≤ b",
+      "f(x) = 1 for a ≤ x ≤ b",
+      "f(x) = x/(b-a) for a ≤ x ≤ b"
+    ],
+    correctAnswer: 0,
+    explanation: "For uniform distribution on [a,b], f(x) = 1/(b-a) for x in [a,b], 0 otherwise.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 70,
+    text: "If X ~ Poisson(λ), then E[X] =",
+    options: [
+      "λ",
+      "λ²",
+      "√λ",
+      "1/λ"
+    ],
+    correctAnswer: 0,
+    explanation: "For Poisson distribution, both mean and variance equal λ.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 71,
+    text: "The central limit theorem states that:",
+    options: [
+      "All distributions are normal",
+      "Sample means are always normally distributed",
+      "Sample means approach normal distribution as n increases",
+      "Population means are normally distributed"
+    ],
+    correctAnswer: 2,
+    explanation: "CLT states that sample means approach normal distribution as sample size increases, regardless of population distribution.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 72,
+    text: "A 95% confidence interval means that:",
+    options: [
+      "95% of the data falls in the interval",
+      "95% of sample means fall in the interval",
+      "We're 95% confident the interval contains the parameter",
+      "The parameter has 95% probability of being in the interval"
+    ],
+    correctAnswer: 2,
+    explanation: "A 95% confidence interval means we're 95% confident that the interval contains the true population parameter.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 73,
+    text: "The standard error of the mean is:",
+    options: [
+      "The same as the population standard deviation",
+      "The standard deviation of the sample",
+      "The standard deviation of the sample means",
+      "The error in measurement"
+    ],
+    correctAnswer: 2,
+    explanation: "Standard error = σ/√n, which is the standard deviation of the sampling distribution of the mean.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 74,
+    text: "In hypothesis testing, the p-value is:",
+    options: [
+      "The probability that H₀ is true",
+      "The probability that H₁ is true",
+      "The probability of obtaining results as extreme as observed if H₀ is true",
+      "The significance level"
+    ],
+    correctAnswer: 2,
+    explanation: "p-value is the probability of obtaining test results at least as extreme as the observed results, assuming H₀ is true.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 75,
+    text: "If we reject H₀ when it is actually true, we commit:",
+    options: [
+      "Type I error",
+      "Type II error",
+      "Type III error",
+      "No error"
+    ],
+    correctAnswer: 0,
+    explanation: "Type I error occurs when we reject a true null hypothesis.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 76,
+    text: "The power of a statistical test is:",
+    options: [
+      "P(Type I error)",
+      "P(Type II error)",
+      "1 - P(Type I error)",
+      "1 - P(Type II error)"
+    ],
+    correctAnswer: 3,
+    explanation: "Power = 1 - β = 1 - P(Type II error) = P(reject H₀ when H₁ is true).",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 77,
+    text: "A t-distribution is used instead of normal distribution when:",
+    options: [
+      "Sample size is large",
+      "Population variance is known",
+      "Population variance is unknown",
+      "Data is categorical"
+    ],
+    correctAnswer: 2,
+    explanation: "t-distribution is used when population variance is unknown and sample size is small.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 78,
+    text: "The degrees of freedom for a one-sample t-test with sample size n is:",
+    options: [
+      "n",
+      "n-1",
+      "n-2",
+      "2n"
+    ],
+    correctAnswer: 1,
+    explanation: "For one-sample t-test, degrees of freedom = n - 1.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 79,
+    text: "In regression analysis, R² represents:",
+    options: [
+      "The slope of the regression line",
+      "The proportion of variance explained",
+      "The correlation coefficient",
+      "The standard error"
+    ],
+    correctAnswer: 1,
+    explanation: "R² (coefficient of determination) represents the proportion of variance in the dependent variable explained by the independent variable.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 80,
+    text: "The correlation coefficient r measures:",
+    options: [
+      "Causation between variables",
+      "The slope of the relationship",
+      "The strength and direction of linear relationship",
+      "The probability of relationship"
+    ],
+    correctAnswer: 2,
+    explanation: "Correlation coefficient measures the strength and direction of linear relationship between two variables.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 81,
+    text: "If the correlation between X and Y is 0.8, then:",
+    options: [
+      "X causes Y",
+      "Y causes X",
+      "There is a strong positive linear relationship",
+      "There is no relationship"
+    ],
+    correctAnswer: 2,
+    explanation: "Correlation of 0.8 indicates a strong positive linear relationship, but doesn't imply causation.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 82,
+    text: "In a chi-square test for independence, the null hypothesis is:",
+    options: [
+      "The variables are related",
+      "The variables are independent",
+      "The variables are normally distributed",
+      "The variables have equal means"
+    ],
+    correctAnswer: 1,
+    explanation: "Chi-square test for independence tests whether two categorical variables are independent.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 83,
+    text: "A p-value of 0.03 in a hypothesis test with α = 0.05 means:",
+    options: [
+      "Reject H₀",
+      "Fail to reject H₀",
+      "Accept H₀",
+      "The test is inconclusive"
+    ],
+    correctAnswer: 0,
+    explanation: "If p-value < α, we reject the null hypothesis.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 84,
+    text: "The standard deviation of a sampling distribution is called:",
+    options: [
+      "Standard error",
+      "Sampling error",
+      "Margin of error",
+      "Confidence interval"
+    ],
+    correctAnswer: 0,
+    explanation: "Standard error is the standard deviation of a sampling distribution.",
+    difficulty: "easy",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 85,
+    text: "As sample size increases, the standard error:",
+    options: [
+      "Increases",
+      "Decreases",
+      "Stays the same",
+      "Becomes zero"
+    ],
+    correctAnswer: 1,
+    explanation: "Standard error = σ/√n, so it decreases as sample size increases.",
+    difficulty: "easy",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 86,
+    text: "In a two-tailed test with α = 0.05, the critical values are:",
+    options: [
+      "±1.64",
+      "±1.96",
+      "±2.33",
+      "±2.58"
+    ],
+    correctAnswer: 1,
+    explanation: "For two-tailed test with α = 0.05, critical values are ±1.96 for normal distribution.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 87,
+    text: "The probability of Type II error is denoted by:",
+    options: [
+      "α",
+      "β",
+      "1-α",
+      "1-β"
+    ],
+    correctAnswer: 1,
+    explanation: "Type II error probability is denoted by β.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 88,
+    text: "If we fail to reject H₀ when H₁ is true, we commit:",
+    options: [
+      "Type I error",
+      "Type II error",
+      "Type III error",
+      "No error"
+    ],
+    correctAnswer: 1,
+    explanation: "Type II error occurs when we fail to reject a false null hypothesis.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 89,
+    text: "A 99% confidence interval is ______ than a 95% confidence interval:",
+    options: [
+      "Wider",
+      "Narrower",
+      "The same width",
+      "Sometimes wider, sometimes narrower"
+    ],
+    correctAnswer: 0,
+    explanation: "Higher confidence level requires wider intervals to be more certain.",
+    difficulty: "easy",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 90,
+    text: "The t-distribution approaches the normal distribution as:",
+    options: [
+      "Sample size decreases",
+      "Sample size increases",
+      "Variance increases",
+      "Variance decreases"
+    ],
+    correctAnswer: 1,
+    explanation: "As sample size increases, t-distribution approaches normal distribution.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 91,
+    text: "In ANOVA, the F-test is used to compare:",
+    options: [
+      "Two means",
+      "Two variances",
+      "Three or more means",
+      "Three or more variances"
+    ],
+    correctAnswer: 2,
+    explanation: "ANOVA F-test compares means across three or more groups.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 92,
+    text: "If the confidence interval for a mean contains zero, then:",
+    options: [
+      "The mean is significantly different from zero",
+      "The mean is not significantly different from zero",
+      "The test is invalid",
+      "The standard error is zero"
+    ],
+    correctAnswer: 1,
+    explanation: "If confidence interval contains zero, we cannot reject H₀: μ = 0.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 93,
+    text: "The margin of error in a confidence interval depends on:",
+    options: [
+      "Sample size and confidence level",
+      "Sample size only",
+      "Confidence level only",
+      "Population size only"
+    ],
+    correctAnswer: 0,
+    explanation: "Margin of error depends on both sample size and confidence level.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 94,
+    text: "If we increase the sample size, the width of the confidence interval:",
+    options: [
+      "Increases",
+      "Decreases",
+      "Stays the same",
+      "Becomes zero"
+    ],
+    correctAnswer: 1,
+    explanation: "Larger sample sizes produce narrower confidence intervals.",
+    difficulty: "easy",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 95,
+    text: "A statistical test is said to be robust if:",
+    options: [
+      "It always gives correct results",
+      "It's not affected by violations of assumptions",
+      "It has high power",
+      "It has low Type I error"
+    ],
+    correctAnswer: 1,
+    explanation: "A robust test performs well even when its assumptions are violated.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 96,
+    text: "The probability of rejecting H₀ when H₁ is true is:",
+    options: [
+      "α",
+      "β",
+      "1-α",
+      "1-β"
+    ],
+    correctAnswer: 3,
+    explanation: "Power = 1-β = P(reject H₀ when H₁ is true).",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 97,
+    text: "In a right-tailed test, the rejection region is:",
+    options: [
+      "On the left tail",
+      "On the right tail",
+      "On both tails",
+      "In the center"
+    ],
+    correctAnswer: 1,
+    explanation: "Right-tailed test has rejection region on the right tail of the distribution.",
+    difficulty: "easy",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 98,
+    text: "If the p-value is very small, we:",
+    options: [
+      "Reject H₀",
+      "Fail to reject H₀",
+      "Accept H₀",
+      "Accept H₁"
+    ],
+    correctAnswer: 0,
+    explanation: "Small p-value provides strong evidence against H₀, so we reject it.",
+    difficulty: "easy",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 99,
+    text: "The critical value for a test is determined by:",
+    options: [
+      "The sample size",
+      "The significance level",
+      "The test statistic",
+      "The p-value"
+    ],
+    correctAnswer: 1,
+    explanation: "Critical value depends on the significance level α and the sampling distribution.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 100,
+    text: "In hypothesis testing, we assume ______ is true when calculating the p-value:",
+    options: [
+      "H₀",
+      "H₁",
+      "Both H₀ and H₁",
+      "Neither H₀ nor H₁"
+    ],
+    correctAnswer: 0,
+    explanation: "p-value is calculated assuming the null hypothesis H₀ is true.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 101,
+    text: "A 90% confidence interval means that:",
+    options: [
+      "90% of samples will contain the parameter",
+      "The parameter has 90% probability of being in the interval",
+      "We're 90% confident the interval contains the parameter",
+      "90% of the data falls in the interval"
+    ],
+    correctAnswer: 2,
+    explanation: "Confidence level refers to our confidence that the interval contains the parameter.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 102,
+    text: "If we decrease α from 0.05 to 0.01, the probability of Type II error:",
+    options: [
+      "Increases",
+      "Decreases",
+      "Stays the same",
+      "Becomes zero"
+    ],
+    correctAnswer: 0,
+    explanation: "Decreasing α makes it harder to reject H₀, which increases β (Type II error).",
+    difficulty: "hard",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 103,
+    text: "The standard error of the mean decreases when:",
+    options: [
+      "Sample size decreases",
+      "Population variance increases",
+      "Sample size increases",
+      "Confidence level increases"
+    ],
+    correctAnswer: 2,
+    explanation: "Standard error = σ/√n, so it decreases as sample size increases.",
+    difficulty: "easy",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 104,
+    text: "In a paired t-test, we compare:",
+    options: [
+      "Two independent groups",
+      "Means from the same group at different times",
+      "Three or more groups",
+      "Proportions from two groups"
+    ],
+    correctAnswer: 1,
+    explanation: "Paired t-test compares means from the same subjects under different conditions or at different times.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 105,
+    text: "If the 95% confidence interval for the difference between two means contains zero, then:",
+    options: [
+      "The means are significantly different",
+      "The means are not significantly different",
+      "The test is invalid",
+      "The standard errors are equal"
+    ],
+    correctAnswer: 1,
+    explanation: "If confidence interval for difference contains zero, we cannot reject H₀: μ₁ = μ₂.",
+    difficulty: "medium",
+    category: "Inferential Statistics"
+  },
+  {
+    id: 106,
+    text: "According to Kolmogorov's axioms, which of the following is NOT a requirement for a probability function?",
+    options: [
+      "P(A) ≥ 0 for any event A",
+      "P(S) = 1 where S is the sample space",
+      "P(A ∪ B) = P(A) + P(B) for any events A and B",
+      "P(∅) = 0"
+    ],
+    correctAnswer: 2,
+    explanation: "Kolmogorov's third axiom requires P(A ∪ B) = P(A) + P(B) only for MUTUALLY EXCLUSIVE events A and B.",
+    difficulty: "hard",
+    category: "Probability Axioms"
+  },
+  {
+    id: 107,
+    text: "The distributive law for sets states that: A ∩ (B ∪ C) =",
+    options: [
+      "(A ∩ B) ∪ (A ∩ C)",
+      "(A ∪ B) ∩ (A ∪ C)",
+      "A ∪ (B ∩ C)",
+      "A ∩ B ∩ C"
+    ],
+    correctAnswer: 0,
+    explanation: "Distributive law: A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+    difficulty: "medium",
+    category: "Set Theory"
+  },
+  {
+    id: 108,
+    text: "A collection of events {A₁, A₂, ..., Aₙ} forms a partition of sample space S if:",
+    options: [
+      "They are mutually exclusive",
+      "They are collectively exhaustive",
+      "Both mutually exclusive and collectively exhaustive",
+      "They have equal probabilities"
+    ],
+    correctAnswer: 2,
+    explanation: "A partition requires both mutual exclusivity and collective exhaustiveness.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 109,
+    text: "For the data: 16, 17, 18, 19, 20, 20, 21, 22, 22, 22, 24, 25, 26, 27, 31, what is the first quartile Q₁?",
+    options: [
+      "18",
+      "19",
+      "20",
+      "21"
+    ],
+    correctAnswer: 1,
+    explanation: "Using (n+1)/4 = 16/4 = 4, so Q₁ = x₍₄₎ = 19",
+    difficulty: "hard",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 110,
+    text: "For the same dataset, what is the third quartile Q₃?",
+    options: [
+      "22",
+      "24",
+      "25",
+      "26"
+    ],
+    correctAnswer: 2,
+    explanation: "Using 3(n+1)/4 = 3×16/4 = 12, so Q₃ = x₍₁₂₎ = 25",
+    difficulty: "hard",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 111,
+    text: "Calculate the 35th percentile for the dataset: 16, 17, 18, 19, 20, 20, 21, 22, 22, 22, 24, 25, 26, 27, 31",
+    options: [
+      "20.0",
+      "20.6",
+      "21.0",
+      "21.5"
+    ],
+    correctAnswer: 1,
+    explanation: "L₃₅ = (15+1)×0.35 = 5.6, so P₃₅ = x₍₅₎ + 0.6(x₍₆₎ - x₍₅₎) = 20 + 0.6(21-20) = 20.6",
+    difficulty: "hard",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 112,
+    text: "Using the same dataset, calculate the sample variance step by step. What is the sum of squared deviations?",
+    options: [
+      "200",
+      "230",
+      "250",
+      "280"
+    ],
+    correctAnswer: 1,
+    explanation: "Sum of (xᵢ - x̄)² = 36+25+16+9+4+4+1+0+0+0+4+9+16+25+81 = 230",
+    difficulty: "hard",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 113,
+    text: "What is the final sample variance for the dataset?",
+    options: [
+      "14.286",
+      "16.429",
+      "18.333",
+      "20.000"
+    ],
+    correctAnswer: 1,
+    explanation: "s² = Σ(xᵢ - x̄)²/(n-1) = 230/14 ≈ 16.429",
+    difficulty: "hard",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 114,
+    text: "The complement laws in set theory state that:",
+    options: [
+      "A ∪ Aᶜ = S and A ∩ Aᶜ = ∅",
+      "A ∪ A = A and A ∩ A = A",
+      "A ∪ B = B ∪ A and A ∩ B = B ∩ A",
+      "(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ"
+    ],
+    correctAnswer: 0,
+    explanation: "Complement laws: A ∪ Aᶜ = S (sample space) and A ∩ Aᶜ = ∅ (empty set)",
+    difficulty: "medium",
+    category: "Set Theory"
+  },
+  {
+    id: 115,
+    text: "The idempotent laws state that:",
+    options: [
+      "A ∪ Aᶜ = S",
+      "A ∪ A = A and A ∩ A = A",
+      "A ∪ B = B ∪ A",
+      "A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)"
+    ],
+    correctAnswer: 1,
+    explanation: "Idempotent laws: A ∪ A = A and A ∩ A = A",
+    difficulty: "medium",
+    category: "Set Theory"
+  },
+  {
+    id: 116,
+    text: "If A and B are independent events, then which of the following pairs are also independent?",
+    options: [
+      "A and Bᶜ only",
+      "Aᶜ and B only",
+      "Aᶜ and Bᶜ only",
+      "All of the above"
+    ],
+    correctAnswer: 3,
+    explanation: "If A and B are independent, then A and Bᶜ, Aᶜ and B, and Aᶜ and Bᶜ are also independent.",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 117,
+    text: "For a random variable X with PMF f(x) = x/10 for x = 1,2,3,4, calculate E[X]",
+    options: [
+      "2.5",
+      "3.0",
+      "3.5",
+      "4.0"
+    ],
+    correctAnswer: 1,
+    explanation: "E[X] = Σx·f(x) = 1×(1/10) + 2×(2/10) + 3×(3/10) + 4×(4/10) = (1+4+9+16)/10 = 30/10 = 3",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 118,
+    text: "For the same PMF f(x) = x/10, x=1,2,3,4, calculate E[X²]",
+    options: [
+      "8",
+      "10",
+      "12",
+      "14"
+    ],
+    correctAnswer: 1,
+    explanation: "E[X²] = Σx²·f(x) = 1×(1/10) + 4×(2/10) + 9×(3/10) + 16×(4/10) = (1+8+27+64)/10 = 100/10 = 10",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 119,
+    text: "Calculate E[X(5-X)] for the same PMF",
+    options: [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    correctAnswer: 2,
+    explanation: "E[X(5-X)] = E[5X - X²] = 5E[X] - E[X²] = 5×3 - 10 = 15 - 10 = 5",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 120,
+    text: "In a production process with 10% defective items, if we test 20 items, what is P(exactly 2 defectives)?",
+    options: [
+      "0.185",
+      "0.285",
+      "0.385",
+      "0.485"
+    ],
+    correctAnswer: 1,
+    explanation: "Using binomial: C(20,2)×(0.1)²×(0.9)¹⁸ ≈ 190×0.01×0.1501 ≈ 0.285",
+    difficulty: "hard",
+    category: "Probability Distributions"
+  },
+  {
+    id: 121,
+    text: "The classical definition of probability requires:",
+    options: [
+      "Equally likely outcomes",
+      "Independent trials",
+      "Large sample size",
+      "Normal distribution"
+    ],
+    correctAnswer: 0,
+    explanation: "Classical probability assumes all outcomes in the sample space are equally likely.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 122,
+    text: "If A and B make up a partition of S, then:",
+    options: [
+      "A ∩ B = ∅ and A ∪ B = S",
+      "A ∩ B = S and A ∪ B = ∅",
+      "A = Bᶜ",
+      "Both A and C are correct"
+    ],
+    correctAnswer: 3,
+    explanation: "A and B form a partition if they are mutually exclusive (A ∩ B = ∅) and collectively exhaustive (A ∪ B = S), which means A = Bᶜ",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 123,
+    text: "For the dataset used in examples, what is the coefficient of variation?",
+    options: [
+      "15.2%",
+      "18.4%",
+      "22.0%",
+      "25.8%"
+    ],
+    correctAnswer: 1,
+    explanation: "CV = (s/x̄)×100 = (4.053/22)×100 ≈ 18.424%",
+    difficulty: "hard",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 124,
+    text: "De Morgan's second law states that: (A ∩ B)ᶜ =",
+    options: [
+      "Aᶜ ∩ Bᶜ",
+      "Aᶜ ∪ Bᶜ",
+      "A ∪ B",
+      "A ∩ B"
+    ],
+    correctAnswer: 1,
+    explanation: "De Morgan's second law: (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ",
+    difficulty: "medium",
+    category: "Set Theory"
+  },
+  {
+    id: 125,
+    text: "The addition rule for probability can be written as: P(A ∪ B) = P(A) + P(B) - P(A ∩ B). This applies:",
+    options: [
+      "Only to independent events",
+      "Only to mutually exclusive events",
+      "To all events",
+      "Only when P(A ∩ B) = 0"
+    ],
+    correctAnswer: 2,
+    explanation: "The addition rule applies to all events, regardless of their relationship.",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 126,
+    text: "If P(A) = 0.4, P(B) = 0.5, and P(A|B) = 0.3, find P(B|A) using Bayes' theorem",
+    options: [
+      "0.24",
+      "0.375",
+      "0.425",
+      "0.500"
+    ],
+    correctAnswer: 1,
+    explanation: "P(B|A) = [P(A|B)×P(B)]/P(A) = (0.3×0.5)/0.4 = 0.375",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 127,
+    text: "The law of total probability states that if {A₁,...,Aₙ} is a partition of S, then for any event B:",
+    options: [
+      "P(B) = ΣP(B ∩ Aᵢ)",
+      "P(B) = ΣP(B|Aᵢ)",
+      "P(B) = ΣP(B|Aᵢ)P(Aᵢ)",
+      "P(B) = ΣP(Aᵢ|B)"
+    ],
+    correctAnswer: 2,
+    explanation: "Law of total probability: P(B) = ΣP(B|Aᵢ)P(Aᵢ)",
+    difficulty: "hard",
+    category: "Probability"
+  },
+  {
+    id: 128,
+    text: "For a Bernoulli random variable with success probability p, the standard deviation is:",
+    options: [
+      "p",
+      "1-p",
+      "√[p(1-p)]",
+      "p(1-p)"
+    ],
+    correctAnswer: 2,
+    explanation: "σ = √[p(1-p)] for Bernoulli distribution",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 129,
+    text: "In binomial distribution, the trials must be:",
+    options: [
+      "Dependent",
+      "Independent",
+      "Identical but not independent",
+      "Neither independent nor identical"
+    ],
+    correctAnswer: 1,
+    explanation: "A key requirement for binomial distribution is independent trials.",
+    difficulty: "medium",
+    category: "Probability Distributions"
+  },
+  {
+    id: 130,
+    text: "The multiplication rule for dependent events states that: P(A ∩ B) =",
+    options: [
+      "P(A) × P(B)",
+      "P(A) × P(B|A)",
+      "P(B) × P(A|B)",
+      "Both B and C are correct"
+    ],
+    correctAnswer: 3,
+    explanation: "For dependent events, P(A ∩ B) = P(A) × P(B|A) = P(B) × P(A|B)",
+    difficulty: "medium",
+    category: "Probability"
+  },
+  {
+    id: 131,
+    text: "If events A and B are mutually exclusive, then:",
+    options: [
+      "P(A ∩ B) = 0",
+      "P(A ∪ B) = P(A) + P(B)",
+      "A and B cannot occur together",
+      "All of the above"
+    ],
+    correctAnswer: 3,
+    explanation: "All three statements are true for mutually exclusive events.",
+    difficulty: "easy",
+    category: "Probability"
+  },
+  {
+    id: 132,
+    text: "For the dataset: 16,17,18,19,20,20,21,22,22,22,24,25,26,27,31, what is the mode?",
+    options: [
+      "20",
+      "21",
+      "22",
+      "24"
+    ],
+    correctAnswer: 2,
+    explanation: "The value 22 appears three times, which is more frequent than any other value.",
+    difficulty: "easy",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 133,
+    text: "What is the median of the same dataset?",
+    options: [
+      "20",
+      "21",
+      "22",
+      "23"
+    ],
+    correctAnswer: 2,
+    explanation: "With n=15, median is the 8th value when sorted: x₍₈₎ = 22",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 134,
+    text: "Calculate the range of the dataset",
+    options: [
+      "13",
+      "14",
+      "15",
+      "16"
+    ],
+    correctAnswer: 2,
+    explanation: "Range = max - min = 31 - 16 = 15",
+    difficulty: "easy",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 135,
+    text: "The interquartile range (IQR) for this dataset is:",
+    options: [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    correctAnswer: 2,
+    explanation: "IQR = Q₃ - Q₁ = 25 - 19 = 6",
+    difficulty: "medium",
+    category: "Descriptive Statistics"
+  },
+  {
+    id: 136,
+    text: "A factory produces light bulbs with a 5% defect rate. If a quality inspector tests 20 bulbs, what is the probability that exactly 2 bulbs are defective?",
+    options: [
+      "0.185",
+      "0.225",
+      "0.265",
+      "0.305"
+    ],
+    correctAnswer: 0,
+    explanation: "Using binomial distribution: P(X=2) = C(20,2) × (0.05)² × (0.95)¹⁸ = 190 × 0.0025 × 0.397 = 0.185",
+    difficulty: "medium",
+    category: "Applied Probability"
+  },
+  {
+    id: 137,
+    text: "The average height of students in a class is 170 cm with standard deviation 8 cm. What percentage of students are between 162 cm and 178 cm tall?",
+    options: [
+      "50%",
+      "68%",
+      "95%",
+      "99.7%"
+    ],
+    correctAnswer: 1,
+    explanation: "162-178 cm is within μ ± σ (170 ± 8). According to empirical rule, 68% of data falls within one standard deviation of the mean.",
+    difficulty: "easy",
+    category: "Applied Statistics"
+  },
+  {
+    id: 138,
+    text: "A call center receives an average of 3 calls per minute. What is the probability of receiving exactly 5 calls in a 2-minute period?",
+    options: [
+      "0.160",
+      "0.180",
+      "0.200",
+      "0.220"
+    ],
+    correctAnswer: 0,
+    explanation: "Using Poisson distribution: λ = 3 × 2 = 6 calls per 2 minutes. P(X=5) = (e⁻⁶ × 6⁵)/5! = (0.00248 × 7776)/120 = 0.160",
+    difficulty: "hard",
+    category: "Applied Probability"
+  },
+  {
+    id: 139,
+    text: "A store sells an average of 50 items per day with standard deviation 8 items. What is the probability of selling more than 60 items in a day?",
+    options: [
+      "0.1056",
+      "0.1587",
+      "0.2266",
+      "0.3085"
+    ],
+    correctAnswer: 0,
+    explanation: "Z = (60-50)/8 = 1.25, P(Z>1.25) = 1 - 0.8944 = 0.1056",
+    difficulty: "medium",
+    category: "Applied Statistics"
+  },
+  {
+    id: 140,
+    text: "In a multiple-choice test with 10 questions, each with 4 options, what is the probability of getting exactly 7 correct by random guessing?",
+    options: [
+      "0.0031",
+      "0.0156",
+      "0.0584",
+      "0.1172"
+    ],
+    correctAnswer: 0,
+    explanation: "Using binomial: P(X=7) = C(10,7) × (0.25)⁷ × (0.75)³ = 120 × 0.000061 × 0.421875 = 0.0031",
+    difficulty: "medium",
+    category: "Applied Probability"
+  },
+  {
+    id: 141,
+    text: "The waiting time at a bank follows exponential distribution with mean 5 minutes. What is the probability of waiting less than 3 minutes?",
+    options: [
+      "0.329",
+      "0.451",
+      "0.528",
+      "0.632"
+    ],
+    correctAnswer: 1,
+    explanation: "For exponential distribution: P(X<3) = 1 - e^(-3/5) = 1 - e^(-0.6) = 1 - 0.5488 = 0.451",
+    difficulty: "hard",
+    category: "Applied Probability"
+  },
+  {
+    id: 142,
+    text: "A company's monthly sales average $50,000 with standard deviation $8,000. What sales amount represents the 90th percentile?",
+    options: [
+      "$58,240",
+      "$60,320",
+      "$62,560",
+      "$65,280"
+    ],
+    correctAnswer: 2,
+    explanation: "Z-score for 90th percentile is 1.28. Sales = μ + Zσ = 50,000 + 1.28×8,000 = 50,000 + 10,240 = $60,240",
+    difficulty: "medium",
+    category: "Applied Statistics"
+  },
+  {
+    id: 143,
+    text: "In a class of 30 students, the average score on a test is 75 with standard deviation 10. What is the 95% confidence interval for the true mean score?",
+    options: [
+      "71.42 - 78.58",
+      "72.15 - 77.85",
+      "73.82 - 76.18",
+      "74.25 - 75.75"
+    ],
+    correctAnswer: 0,
+    explanation: "Standard error = 10/√30 = 1.826, Margin of error = 1.96×1.826 = 3.58, CI = 75 ± 3.58 = (71.42, 78.58)",
+    difficulty: "hard",
+    category: "Applied Statistics"
+  },
+  {
+    id: 144,
+    text: "A drug is effective in 80% of cases. If given to 15 patients, what is the probability that it is effective for at least 12 patients?",
+    options: [
+      "0.398",
+      "0.518",
+      "0.602",
+      "0.735"
+    ],
+    correctAnswer: 2,
+    explanation: "Using binomial: P(X≥12) = P(X=12)+P(X=13)+P(X=14)+P(X=15) = C(15,12)(0.8)¹²(0.2)³ + C(15,13)(0.8)¹³(0.2)² + C(15,14)(0.8)¹⁴(0.2)¹ + C(15,15)(0.8)¹⁵ = 0.250 + 0.231 + 0.132 + 0.035 = 0.602",
+    difficulty: "hard",
+    category: "Applied Probability"
+  },
+  {
+    id: 145,
+    text: "The correlation between study hours and exam scores is 0.7. If a student studies 2 standard deviations above the mean, how many standard deviations above the mean would you expect their score to be?",
+    options: [
+      "0.7",
+      "1.0",
+      "1.4",
+      "2.0"
+    ],
+    correctAnswer: 2,
+    explanation: "Using regression: Expected Z-score for Y = r × Z-score for X = 0.7 × 2 = 1.4 standard deviations above mean",
+    difficulty: "medium",
+    category: "Applied Statistics"
+  }
+];
 // تقسيم الأسئلة حسب الصعوبة
 const easyQuestions = questions.filter(q => q.difficulty === "easy");
 const mediumQuestions = questions.filter(q => q.difficulty === "medium");
