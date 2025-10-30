@@ -344,6 +344,68 @@
                 font-size: 0.9rem;
             }
         }
+        .section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.section-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.section-header i {
+    margin-right: 10px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    background: #4e73df;
+    color: white;
+    padding: 12px;
+    text-align: right;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e3e6f0;
+    text-align: right;
+}
+
+tr:hover {
+    background: #f8f9fc;
+}
+
+.symbol {
+    font-weight: bold;
+    color: #4e73df;
+    text-align: center;
+}
+
+.math {
+    font-family: "Cambria Math", "Times New Roman", serif;
+    direction: ltr;
+    text-align: center;
+}
     </style>
 </head>
 <body>
@@ -556,7 +618,111 @@
                 </table>
             </div>
         </div>
-        
+        <div class="section">
+    <div class="section-header">
+        <i class="fas fa-bolt"></i>
+        <span>ملاحظات الحل السريع للامتحانات</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="40%">نوع المسألة</th>
+                    <th width="60%">الخطوات والملاحظات السريعة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>تحديد نوع الأحداث</td>
+                    <td>
+                        <strong>متنافية:</strong> A ∩ B = ∅ → استخدم P(A ∪ B) = P(A) + P(B)<br>
+                        <strong>مستقلة:</strong> P(A ∩ B) = P(A)P(B) → يمكن التعويض مباشرة<br>
+                        <strong>غير مستقلة:</strong> استخدم الاحتمال الشرطي
+                    </td>
+                </tr>
+                <tr>
+                    <td>مسائل بايز</td>
+                    <td>
+                        <strong>مفتاح الحل:</strong> عندما يُعطى P(B|A) وتريد P(A|B)<br>
+                        <strong>الخطوات:</strong><br>
+                        1. حدد الأقسام A₁, A₂, ... Aₙ<br>
+                        2. استخدم قانون الاحتمال الكلي لإيجاد P(B)<br>
+                        3. طبق بايز مباشرة
+                    </td>
+                </tr>
+                <tr>
+                    <td>التحقق من PMF</td>
+                    <td>
+                        <strong>قبل الحل تأكد من:</strong><br>
+                        1. Σ f(x) = 1 (مجموع الاحتمالات = 1)<br>
+                        2. f(x) ≥ 0 لكل x<br>
+                        3. إذا لم تتحقق، أعد تعريف الثوابت
+                    </td>
+                </tr>
+                <tr>
+                    <td>التوقع والتباين مع الثوابت</td>
+                    <td>
+                        <strong>التوقع خطي:</strong> E[aX + b] = aE[X] + b<br>
+                        <strong>التباين يقاوم الإزاحة:</strong> Var(aX + b) = a²Var(X)<br>
+                        <strong>ملاحظة:</strong> تذكر تربيع المعامل مع a في التباين
+                    </td>
+                </tr>
+                <tr>
+                    <td>التوزيع الثنائي (Binomial)</td>
+                    <td>
+                        <strong>التعريف:</strong> X ∼ B(n, p)<br>
+                        <strong>المتوسط:</strong> μ = np<br>
+                        <strong>التباين:</strong> σ² = np(1-p)<br>
+                        <strong>الشرط:</strong> تجارب مستقلة وp ثابت
+                    </td>
+                </tr>
+                <tr>
+                    <td>الإحصاء الوصفي</td>
+                    <td>
+                        <strong>الوسيط والربيعات:</strong> رتب البيانات أولاً!<br>
+                        <strong>CV:</strong> لمقارنة التشتت بين مجموعات مختلفة<br>
+                        <strong>IQR:</strong> أفضل من المدى مع القيم المتطرفة
+                    </td>
+                </tr>
+                <tr>
+                    <td>قوانين دي مورغان</td>
+                    <td>
+                        <strong>للتبسيط:</strong><br>
+                        (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ<br>
+                        (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ<br>
+                        <strong>استخدمها لتبسيط التعابير المعقدة</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>الاستقلال بين المتممات</td>
+                    <td>
+                        إذا كانت A و B مستقلتين، فإن:<br>
+                        • A و Bᶜ مستقلتان<br>
+                        • Aᶜ و B مستقلتان<br>
+                        • Aᶜ و Bᶜ مستقلتان
+                    </td>
+                </tr>
+                <tr>
+                    <td>الفرق بين التباين</td>
+                    <td>
+                        <strong>العينة:</strong> s² = Σ(x - x̄)² / (n-1) ← قاسم n-1<br>
+                        <strong>المجتمع:</strong> σ² = Σ(x - μ)² / N ← قاسم N<br>
+                        <strong>لا تخلط بينهما!</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td>التحقق النهائي</td>
+                    <td>
+                        • تأكد أن 0 ≤ P(A) ≤ 1<br>
+                        • تأكد أن مجموع الاحتمالات = 1<br>
+                        • الوسيط يجب أن يكون ضمن نطاق البيانات<br>
+                        • التباين لا يمكن أن يكون سالباً
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
         <!-- قسم الأسئلة التفاعلية -->
         <div class="quiz-section">
             <div class="section-header">
