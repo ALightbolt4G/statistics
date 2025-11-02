@@ -851,228 +851,680 @@ const QuizApp = () => {
     const [quizCompleted, setQuizCompleted] = useState(false);
     const [answeredQuestions, setAnsweredQuestions] = useState([]);
     
-    const questions = [
-        {
-            question: "What is a Database Management System (DBMS)?",
-            options: [
-                "Software used to create and manage databases",
-                "A storage device for data",
-                "A programming language for databases",
-                "A type of network"
-            ],
-            correctAnswer: 0,
-            explanation: "A Database Management System (DBMS) is software used to create and manage databases, such as Oracle or MySQL."
-        },
-        {
-            question: "What is the main problem with traditional file systems?",
-            options: [
-                "Slow data access",
-                "Data redundancy",
-                "Storage cost",
-                "Difficulty in backup"
-            ],
-            correctAnswer: 1,
-            explanation: "Data redundancy is the main problem with traditional file systems, where the same data is stored in multiple files."
-        },
-        {
-            question: "What is a Primary Key in a table?",
-            options: [
-                "The first column in the table",
-                "A column that uniquely identifies each row",
-                "The column with the largest value",
-                "A column that links to another table"
-            ],
-            correctAnswer: 1,
-            explanation: "A Primary Key is a column that uniquely identifies each row in a table, and it must be unique and not null."
-        },
-        {
-            question: "What does an M:M relationship represent?",
-            options: [
-                "One-to-One relationship",
-                "One-to-Many relationship",
-                "Many-to-Many relationship",
-                "Many-to-One relationship"
-            ],
-            correctAnswer: 2,
-            explanation: "An M:M (Many-to-Many) relationship represents a relationship where multiple entities from one set can be associated with multiple entities from another set, like students and courses where a student can enroll in multiple courses and a course can have multiple students."
-        },
-        {
-            question: "What is Referential Integrity constraint?",
-            options: [
-                "Ensuring primary keys are not duplicated",
-                "Ensuring data is stored securely",
-                "Ensuring foreign key values exist in the referenced table",
-                "Ensuring the database runs fast"
-            ],
-            correctAnswer: 2,
-            explanation: "Referential Integrity ensures that any foreign key value must match an existing primary key value in the referenced table or be null."
-        },
-        {
-            question: "What is Data Abstraction in databases?",
-            options: [
-                "Creating backup of data",
-                "Encrypting sensitive data",
-                "Compressing data to save space",
-                "Hiding complex storage details from users"
-            ],
-            correctAnswer: 3,
-            explanation: "Data Abstraction is the concept of hiding complex storage details from users, allowing them to interact with data at a higher level without needing to understand the underlying implementation."
-        },
-        {
-            question: "What is the purpose of the Three-Schema Architecture?",
-            options: [
-                "To create three copies of the database for backup",
-                "To divide the database into three equal parts",
-                "To implement three levels of security",
-                "To separate user applications from the physical database"
-            ],
-            correctAnswer: 3,
-            explanation: "The Three-Schema Architecture separates the user applications from the physical database through external, conceptual, and internal levels, providing data independence."
-        },
-        {
-            question: "What is an Entity in the ER model?",
-            options: [
-                "A database table",
-                "A relationship between tables",
-                "A real-world object or concept",
-                "A data attribute"
-            ],
-            correctAnswer: 2,
-            explanation: "An Entity is a real-world object or concept that we want to store data about, such as Student, Course, or Employee."
-        },
-        {
-            question: "What is a Weak Entity?",
-            options: [
-                "An entity with few attributes",
-                "An entity that is rarely used",
-                "An entity with no primary key",
-                "An entity that depends on another entity for its existence"
-            ],
-            correctAnswer: 3,
-            explanation: "A Weak Entity is an entity that depends on another entity (strong entity) for its existence and identification, such as Dependents entity that depends on Employee entity."
-        },
-        {
-            question: "What is the difference between Data and Information?",
-            options: [
-                "Data is digital, Information is analog",
-                "Data is stored in databases, Information is in files",
-                "Data is structured, Information is unstructured",
-                "Data is raw facts, Information is processed data with meaning"
-            ],
-            correctAnswer: 3,
-            explanation: "Data refers to raw facts and figures without context, while Information is data that has been processed, organized, and given meaning to become useful."
-        },
-        {
-            question: "What is a Foreign Key?",
-            options: [
-                "A key that is not important",
-                "A key used for encryption",
-                "A backup of the primary key",
-                "A field in one table that references the Primary Key of another table"
-            ],
-            correctAnswer: 3,
-            explanation: "A Foreign Key is a field (or collection of fields) in one table that uniquely identifies a row of another table, creating a relationship between the two tables."
-        },
-        {
-            question: "What does Cardinality represent in database relationships?",
-            options: [
-                "The order of records in a table",
-                "The size of the database",
-                "The number of attributes in an entity",
-                "The numerical relationship between entities"
-            ],
-            correctAnswer: 3,
-            explanation: "Cardinality represents the numerical relationship between entities in a relationship, such as one-to-one (1:1), one-to-many (1:M), or many-to-many (M:M)."
-        },
-        {
-            question: "What is Entity Integrity constraint?",
-            options: [
-                "Foreign Key must reference an existing Primary Key",
-                "Data must be of the correct type",
-                "All entities must have at least one relationship",
-                "Primary Key cannot be null and must be unique"
-            ],
-            correctAnswer: 3,
-            explanation: "Entity Integrity ensures that the Primary Key cannot contain null values and that each Primary Key value must be unique within the table."
-        },
-        {
-            question: "What is the Conceptual Data Model?",
-            options: [
-                "The physical storage of data",
-                "The SQL code to create tables",
-                "The user interface for accessing data",
-                "A high-level description of data and relationships"
-            ],
-            correctAnswer: 3,
-            explanation: "The Conceptual Data Model provides a high-level description of the data, their relationships, and constraints, without implementation details. It's often represented using ER diagrams."
-        },
-        {
-            question: "What is Data Independence?",
-            options: [
-                "Storing data in different countries",
-                "Having multiple copies of data",
-                "Using different data types in a table",
-                "Ability to change one level of schema without affecting others"
-            ],
-            correctAnswer: 3,
-            explanation: "Data Independence is the ability to modify the schema at one level of the database system without having to modify the schema at the next higher level."
-        },
-        {
-            question: "What is a Composite Attribute?",
-            options: [
-                "An attribute that has multiple values",
-                "An attribute that is calculated from other attributes",
-                "An attribute that is used as a primary key",
-                "An attribute that can be divided into smaller sub-parts"
-            ],
-            correctAnswer: 3,
-            explanation: "A Composite Attribute is an attribute that can be divided into smaller sub-parts, such as an Address attribute that can be divided into Street, City, and Zip Code."
-        },
-        {
-            question: "What is a Multi-valued Attribute?",
-            options: [
-                "An attribute that appears in multiple tables",
-                "An attribute with complex data type",
-                "An attribute that is required",
-                "An attribute that can have multiple values for a single entity"
-            ],
-            correctAnswer: 3,
-            explanation: "A Multi-valued Attribute is an attribute that can have multiple values for a single entity, such as a Phone Numbers attribute for a person who has multiple phone numbers."
-        },
-        {
-            question: "What is the purpose of an Index in a database?",
-            options: [
-                "To create a backup of the data",
-                "To encrypt sensitive data",
-                "To validate data input",
-                "To improve the speed of data retrieval"
-            ],
-            correctAnswer: 3,
-            explanation: "An Index is a database structure that improves the speed of data retrieval operations on a database table, similar to an index in a book that helps you find information quickly."
-        },
-        {
-            question: "What is a Derived Attribute?",
-            options: [
-                "An attribute imported from another database",
-                "An attribute that is not important",
-                "An attribute with default value",
-                "An attribute whose value is calculated from other attributes"
-            ],
-            correctAnswer: 3,
-            explanation: "A Derived Attribute is an attribute whose value is calculated or derived from other attributes, such as Age derived from Date of Birth, or Total Salary derived from Basic Salary and Bonuses."
-        },
-        {
-            question: "What is the difference between Logical and Physical Data Independence?",
-            options: [
-                "Logical: change data values; Physical: change data types",
-                "Logical: change table names; Physical: change storage device",
-                "Logical: add new tables; Physical: delete old tables",
-                "Logical: change conceptual schema without affecting external; Physical: change internal without affecting conceptual"
-            ],
-            correctAnswer: 3,
-            explanation: "Logical Data Independence is the ability to change the conceptual schema without having to change external schemas or application programs. Physical Data Independence is the ability to change the internal schema without having to change the conceptual schema."
-        }
-    ];
+const questions = [
+    // Chapter 1: Database Introduction (10 questions)
+    {
+        question: "What is the main difference between Data and Information?",
+        options: [
+            "Data is raw facts, Information is processed data with meaning",
+            "Data is digital, Information is analog",
+            "Data is stored in databases, Information is in files",
+            "Data is structured, Information is unstructured"
+        ],
+        correctAnswer: 0,
+        explanation: "Data refers to raw facts and figures without context, while Information is data that has been processed, organized, and given meaning to become useful."
+    },
+    {
+        question: "What was the primary problem with traditional file-based systems?",
+        options: [
+            "Data redundancy and inconsistency",
+            "Slow processing speed",
+            "High storage costs",
+            "Complex user interfaces"
+        ],
+        correctAnswer: 0,
+        explanation: "File-based systems suffered from data redundancy (same data stored multiple times) and inconsistency (conflicting data in different files)."
+    },
+    {
+        question: "Which of these is NOT an advantage of database systems?",
+        options: [
+            "Data redundancy",
+            "Data consistency",
+            "Improved security",
+            "Data sharing"
+        ],
+        correctAnswer: 0,
+        explanation: "Data redundancy is a disadvantage, not an advantage. Database systems aim to minimize redundancy."
+    },
+    {
+        question: "What does DBMS stand for?",
+        options: [
+            "Database Management System",
+            "Data Basic Management System",
+            "Digital Base Management System",
+            "Database Maintenance System"
+        ],
+        correctAnswer: 0,
+        explanation: "DBMS stands for Database Management System - software that manages databases."
+    },
+    {
+        question: "Which component of DBMS is responsible for data storage and retrieval?",
+        options: [
+            "Storage Manager",
+            "Query Processor",
+            "Transaction Manager",
+            "Buffer Manager"
+        ],
+        correctAnswer: 0,
+        explanation: "The Storage Manager handles data storage, retrieval, and updates on disk storage."
+    },
+    {
+        question: "What is metadata?",
+        options: [
+            "Data about data",
+            "Large data files",
+            "Encrypted data",
+            "Backup data"
+        ],
+        correctAnswer: 0,
+        explanation: "Metadata is data that describes other data, such as data types, relationships, and constraints."
+    },
+    {
+        question: "Which language is used to define database structure?",
+        options: [
+            "DDL (Data Definition Language)",
+            "DML (Data Manipulation Language)",
+            "DCL (Data Control Language)",
+            "TCL (Transaction Control Language)"
+        ],
+        correctAnswer: 0,
+        explanation: "DDL is used to define database structure (CREATE, ALTER, DROP)."
+    },
+    {
+        question: "What is the role of a DBA?",
+        options: [
+            "Managing and maintaining the database system",
+            "Designing user interfaces",
+            "Writing application code",
+            "Creating database hardware"
+        ],
+        correctAnswer: 0,
+        explanation: "Database Administrator (DBA) manages database system, security, backup, and performance."
+    },
+    {
+        question: "Which characteristic ensures that database transactions are processed reliably?",
+        options: [
+            "ACID properties",
+            "Normalization",
+            "Indexing",
+            "Data abstraction"
+        ],
+        correctAnswer: 0,
+        explanation: "ACID properties (Atomicity, Consistency, Isolation, Durability) ensure transaction reliability."
+    },
+    {
+        question: "What is data independence?",
+        options: [
+            "Ability to change schema without affecting applications",
+            "Storing data in different locations",
+            "Using multiple databases",
+            "Data encryption"
+        ],
+        correctAnswer: 0,
+        explanation: "Data independence allows changing database schema without modifying application programs."
+    },
+
+    // Chapter 2: Database Architecture & Models (10 questions)
+    {
+        question: "What are the three levels in Three-Schema Architecture?",
+        options: [
+            "Internal, Conceptual, External",
+            "Physical, Logical, View",
+            "User, System, Storage",
+            "Data, Metadata, Schema"
+        ],
+        correctAnswer: 0,
+        explanation: "Three-Schema Architecture consists of Internal (physical), Conceptual (logical), and External (view) levels."
+    },
+    {
+        question: "Which schema level describes how data is physically stored?",
+        options: [
+            "Internal Schema",
+            "Conceptual Schema",
+            "External Schema",
+            "Logical Schema"
+        ],
+        correctAnswer: 0,
+        explanation: "Internal schema describes physical storage structure and access paths."
+    },
+    {
+        question: "What is the purpose of data abstraction?",
+        options: [
+            "Hide complex implementation details from users",
+            "Encrypt sensitive data",
+            "Compress data for storage",
+            "Backup data automatically"
+        ],
+        correctAnswer: 0,
+        explanation: "Data abstraction hides complex storage details, allowing users to work with simplified data models."
+    },
+    {
+        question: "Which data model uses tables, rows, and columns?",
+        options: [
+            "Relational Model",
+            "Hierarchical Model",
+            "Network Model",
+            "Object-Oriented Model"
+        ],
+        correctAnswer: 0,
+        explanation: "Relational Model organizes data in tables (relations) with rows (tuples) and columns (attributes)."
+    },
+    {
+        question: "What is physical data independence?",
+        options: [
+            "Changing physical storage without affecting logical schema",
+            "Changing logical schema without affecting views",
+            "Storing data on different devices",
+            "Using multiple storage formats"
+        ],
+        correctAnswer: 0,
+        explanation: "Physical data independence allows changing storage structures without modifying logical schema."
+    },
+    {
+        question: "Which architecture separates database server from client applications?",
+        options: [
+            "Client-Server Architecture",
+            "Centralized Architecture",
+            "Distributed Architecture",
+            "Peer-to-Peer Architecture"
+        ],
+        correctAnswer: 0,
+        explanation: "Client-Server architecture separates database server (back-end) from client applications (front-end)."
+    },
+    {
+        question: "What is a data model?",
+        options: [
+            "Collection of concepts to describe database structure",
+            "Mathematical model for data analysis",
+            "Template for database design",
+            "Algorithm for data processing"
+        ],
+        correctAnswer: 0,
+        explanation: "A data model is a collection of concepts that describe database structure, constraints, and operations."
+    },
+    {
+        question: "Which level provides user views of the database?",
+        options: [
+            "External Level",
+            "Conceptual Level",
+            "Internal Level",
+            "Physical Level"
+        ],
+        correctAnswer: 0,
+        explanation: "External level provides customized views of the database for different user groups."
+    },
+    {
+        question: "What is logical data independence?",
+        options: [
+            "Changing conceptual schema without affecting external views",
+            "Changing physical storage without affecting applications",
+            "Modifying data without affecting structure",
+            "Updating views without changing tables"
+        ],
+        correctAnswer: 0,
+        explanation: "Logical data independence allows changing conceptual schema without modifying external views."
+    },
+    {
+        question: "Which component translates queries into efficient execution plans?",
+        options: [
+            "Query Processor",
+            "Storage Manager",
+            "Transaction Manager",
+            "Buffer Manager"
+        ],
+        correctAnswer: 0,
+        explanation: "Query Processor translates SQL queries into efficient low-level instructions."
+
+    },
+
+    // Chapter 3: Relational Model & Constraints (15 questions)
+    {
+        question: "What is a relation in relational model?",
+        options: [
+            "A table with rows and columns",
+            "A connection between tables",
+            "A mathematical function",
+            "A database constraint"
+        ],
+        correctAnswer: 0,
+        explanation: "In relational model, a relation is a table with rows (tuples) and columns (attributes)."
+    },
+    {
+        question: "What is a Primary Key?",
+        options: [
+            "A unique identifier for each record",
+            "The first column in a table",
+            "A key used for encryption",
+            "A backup key"
+        ],
+        correctAnswer: 0,
+        explanation: "Primary Key uniquely identifies each record and cannot contain null values."
+    },
+    {
+        question: "What is a Foreign Key?",
+        options: [
+            "A field that references Primary Key in another table",
+            "A key from external database",
+            "An encrypted primary key",
+            "A temporary key"
+        ],
+        correctAnswer: 0,
+        explanation: "Foreign Key establishes relationship between tables by referencing Primary Key of another table."
+    },
+    {
+        question: "What does Entity Integrity constraint ensure?",
+        options: [
+            "Primary Key cannot be null and must be unique",
+            "Foreign Key must reference existing Primary Key",
+            "Data types must be consistent",
+            "All entities must have relationships"
+        ],
+        correctAnswer: 0,
+        explanation: "Entity Integrity ensures Primary Key values are unique and not null."
+    },
+    {
+        question: "What is Referential Integrity?",
+        options: [
+            "Foreign Key must match existing Primary Key or be null",
+            "All references must be encrypted",
+            "Primary Keys must be sequential",
+            "Foreign Keys cannot be null"
+        ],
+        correctAnswer: 0,
+        explanation: "Referential Integrity ensures Foreign Key values match existing Primary Key values in referenced table."
+    },
+    {
+        question: "What is a Superkey?",
+        options: [
+            "Any set of attributes that uniquely identifies tuples",
+            "The main key of the database",
+            "A key used for superusers",
+            "An encrypted primary key"
+        ],
+        correctAnswer: 0,
+        explanation: "Superkey is any set of attributes that uniquely identifies each tuple in a relation."
+    },
+    {
+        question: "What is a Candidate Key?",
+        options: [
+            "A minimal superkey",
+            "A potential primary key choice",
+            "A key candidate for promotion",
+            "A temporary key"
+        ],
+        correctAnswer: 0,
+        explanation: "Candidate Key is a minimal superkey - no proper subset can uniquely identify tuples."
+    },
+    {
+        question: "What is domain constraint?",
+        options: [
+            "Attribute values must be from specified domain",
+            "Database must be in specific domain",
+            "Tables must be in same domain",
+            "Keys must have domain names"
+        ],
+        correctAnswer: 0,
+        explanation: "Domain constraint ensures attribute values come from specified set of valid values."
+    },
+    {
+        question: "What happens during INSERT operation if Referential Integrity is violated?",
+        options: [
+            "Operation is rejected",
+            "Operation continues with warning",
+            "Foreign Key is automatically generated",
+            "Referenced record is created automatically"
+        ],
+        correctAnswer: 0,
+        explanation: "INSERT operation is rejected if it violates Referential Integrity constraints."
+    },
+    {
+        question: "What is CASCADE option in foreign key constraints?",
+        options: [
+            "Automatically propagate changes to related records",
+            "Delete all database records",
+            "Create multiple copies of data",
+            "Encrypt related data"
+        ],
+        correctAnswer: 0,
+        explanation: "CASCADE automatically propagates UPDATE/DELETE operations to related foreign key records."
+    },
+    {
+        question: "What is a composite key?",
+        options: [
+            "Primary key composed of multiple attributes",
+            "Encrypted primary key",
+            "Key made of composite materials",
+            "Temporary key combination"
+        ],
+        correctAnswer: 0,
+        explanation: "Composite key uses multiple attributes together as primary key when single attribute isn't sufficient."
+    },
+    {
+        question: "What is NULL in database context?",
+        options: [
+            "Representation of missing or unknown value",
+            "Zero value",
+            "Empty string",
+            "False value"
+        ],
+        correctAnswer: 0,
+        explanation: "NULL represents missing, unknown, or not applicable values in database."
+    },
+    {
+        question: "What is a tuple?",
+        options: [
+            "A row in a relation",
+            "A column in a relation",
+            "A relationship between tables",
+            "A database constraint"
+        ],
+        correctAnswer: 0,
+        explanation: "Tuple is a single row in a relation, representing a complete record."
+    },
+    {
+        question: "What is an attribute?",
+        options: [
+            "A column in a relation",
+            "A row in a relation",
+            "A table property",
+            "A database characteristic"
+        ],
+        correctAnswer: 0,
+        explanation: "Attribute is a column in a relation representing a property or characteristic."
+    },
+    {
+        question: "What is degree of a relation?",
+        options: [
+            "Number of attributes",
+            "Number of tuples",
+            "Importance level",
+            "Relationship strength"
+        ],
+        correctAnswer: 0,
+        explanation: "Degree is the number of attributes (columns) in a relation."
+
+    },
+
+    // Chapter 4: ER Model (15 questions)
+    {
+        question: "What does ER model stand for?",
+        options: [
+            "Entity-Relationship Model",
+            "Electronic Recording Model",
+            "Entity-Reference Model",
+            "Extended Relational Model"
+        ],
+        correctAnswer: 0,
+        explanation: "ER Model stands for Entity-Relationship Model, used for conceptual database design."
+    },
+    {
+        question: "What is an Entity?",
+        options: [
+            "Real-world object or concept",
+            "Database table",
+            "Data attribute",
+            "Relationship line"
+        ],
+        correctAnswer: 0,
+        explanation: "Entity is a real-world object or concept that can have data stored about it."
+    },
+    {
+        question: "What is an Attribute?",
+        options: [
+            "Property or characteristic of an entity",
+            "Relationship between entities",
+            "Database table",
+            "Constraint rule"
+        ],
+        correctAnswer: 0,
+        explanation: "Attribute describes a property or characteristic of an entity."
+    },
+    {
+        question: "What is a Relationship?",
+        options: [
+            "Association between two or more entities",
+            "Connection between attributes",
+            "Link between databases",
+            "Constraint between tables"
+        ],
+        correctAnswer: 0,
+        explanation: "Relationship represents association or interaction between entities."
+    },
+    {
+        question: "What is a Weak Entity?",
+        options: [
+            "Entity that depends on another for existence",
+            "Entity with few attributes",
+            "Temporary entity",
+            "Unimportant entity"
+        ],
+        correctAnswer: 0,
+        explanation: "Weak Entity depends on strong entity for its existence and identification."
+    },
+    {
+        question: "What is Cardinality?",
+        options: [
+            "Number of entity instances in a relationship",
+            "Importance of relationship",
+            "Size of entity set",
+            "Number of attributes"
+        ],
+        correctAnswer: 0,
+        explanation: "Cardinality specifies how many instances of one entity relate to instances of another entity."
+    },
+    {
+        question: "What does 1:1 relationship mean?",
+        options: [
+            "One instance of A relates to one instance of B",
+            "One instance of A relates to many instances of B",
+            "Many instances of A relate to one instance of B",
+            "Many instances of A relate to many instances of B"
+        ],
+        correctAnswer: 0,
+        explanation: "1:1 means each instance of entity A is associated with exactly one instance of entity B, and vice versa."
+    },
+    {
+        question: "What does 1:M relationship mean?",
+        options: [
+            "One instance of A relates to many instances of B",
+            "One instance of A relates to one instance of B",
+            "Many instances of A relate to one instance of B",
+            "Many instances of A relate to many instances of B"
+        ],
+        correctAnswer: 0,
+        explanation: "1:M means one instance of entity A can be associated with many instances of entity B."
+    },
+    {
+        question: "What does M:N relationship mean?",
+        options: [
+            "Many instances of A relate to many instances of B",
+            "One instance of A relates to one instance of B",
+            "One instance of A relates to many instances of B",
+            "Many instances of A relate to one instance of B"
+        ],
+        correctAnswer: 0,
+        explanation: "M:N means many instances of entity A can be associated with many instances of entity B."
+    },
+    {
+        question: "What is Participation constraint?",
+        options: [
+            "Specifies whether entity participation is mandatory or optional",
+            "Determines relationship importance",
+            "Specifies user participation level",
+            "Controls database access participation"
+        ],
+        correctAnswer: 0,
+        explanation: "Participation constraint specifies if all entities must participate in relationship (total) or not (partial)."
+    },
+    {
+        question: "What is Total Participation?",
+        options: [
+            "Every entity must participate in the relationship",
+            "Some entities participate in relationship",
+            "All users must participate",
+            "Database must be fully participated"
+        ],
+        correctAnswer: 0,
+        explanation: "Total Participation means every entity in the set must participate in the relationship."
+    },
+    {
+        question: "What is a Composite Attribute?",
+        options: [
+            "Attribute that can be divided into smaller parts",
+            "Attribute made of multiple materials",
+            "Attribute with complex values",
+            "Attribute from multiple entities"
+        ],
+        correctAnswer: 0,
+        explanation: "Composite Attribute can be divided into smaller sub-parts (e.g., Address into Street, City, Zip)."
+    },
+    {
+        question: "What is a Multi-valued Attribute?",
+        options: [
+            "Attribute that can have multiple values for one entity",
+            "Attribute with multiple data types",
+            "Attribute used in multiple entities",
+            "Attribute with many constraints"
+        ],
+        correctAnswer: 0,
+        explanation: "Multi-valued Attribute can have multiple values for single entity instance (e.g., Phone Numbers)."
+    },
+    {
+        question: "What is a Derived Attribute?",
+        options: [
+            "Attribute whose value can be calculated from other attributes",
+            "Attribute imported from another database",
+            "Attribute derived from user input",
+            "Attribute with default value"
+        ],
+        correctAnswer: 0,
+        explanation: "Derived Attribute value can be calculated from other attributes (e.g., Age from Birthdate)."
+    },
+    {
+        question: "How is Weak Entity represented in ER diagram?",
+        options: [
+            "Double rectangle",
+            "Dashed rectangle",
+            "Circle inside rectangle",
+            "Rectangle with bold border"
+        ],
+        correctAnswer: 0,
+        explanation: "Weak Entity is represented by double rectangle in ER diagrams."
+
+    },
+
+    // Additional Advanced Concepts (10 questions)
+    {
+        question: "What is Normalization?",
+        options: [
+            "Process of organizing data to reduce redundancy",
+            "Making data normal distribution",
+            "Standardizing data formats",
+            "Converting data to normal form"
+        ],
+        correctAnswer: 0,
+        explanation: "Normalization organizes data to minimize redundancy and dependency through table decomposition."
+    },
+    {
+        question: "What is First Normal Form (1NF)?",
+        options: [
+            "Eliminate repeating groups and ensure atomic values",
+            "Remove partial dependencies",
+            "Remove transitive dependencies",
+            "Combine all tables into one"
+        ],
+        correctAnswer: 0,
+        explanation: "1NF requires atomic values (no repeating groups) and unique rows."
+    },
+    {
+        question: "What is Functional Dependency?",
+        options: [
+            "Attribute Y is functionally dependent on X if X determines Y",
+            "Two attributes depend on each other",
+            "Attributes depend on functions",
+            "Dependency between functions"
+        ],
+        correctAnswer: 0,
+        explanation: "X → Y means if two tuples have same X value, they must have same Y value."
+    },
+    {
+        question: "What is a View in database?",
+        options: [
+            "Virtual table based on result of a query",
+            "User interface for database",
+            "Physical storage view",
+            "Database perspective"
+        ],
+        correctAnswer: 0,
+        explanation: "View is virtual table that doesn't store data but displays data from underlying tables."
+    },
+    {
+        question: "What is SQL?",
+        options: [
+            "Structured Query Language",
+            "Simple Question Language",
+            "System Query Logic",
+            "Structured Question Logic"
+        ],
+        correctAnswer: 0,
+        explanation: "SQL is Structured Query Language used to manage and query relational databases."
+    },
+    {
+        question: "What does SELECT statement do?",
+        options: [
+            "Retrieves data from database",
+            "Selects database to use",
+            "Chooses columns to display",
+            "Filters database records"
+        ],
+        correctAnswer: 0,
+        explanation: "SELECT statement retrieves data from one or more database tables."
+    },
+    {
+        question: "What is a Transaction?",
+        options: [
+            "Sequence of operations performed as single logical unit",
+            "Data transfer between databases",
+            "User interaction with database",
+            "Database backup process"
+        ],
+        correctAnswer: 0,
+        explanation: "Transaction is a unit of work that must be completed entirely or not at all (ACID properties)."
+    },
+    {
+        question: "What is COMMIT in transactions?",
+        options: [
+            "Makes all changes permanent",
+            "Starts a new transaction",
+            "Cancels transaction changes",
+            "Saves transaction temporarily"
+        ],
+        correctAnswer: 0,
+        explanation: "COMMIT makes all transaction changes permanent in the database."
+    },
+    {
+        question: "What is ROLLBACK in transactions?",
+        options: [
+            "Undoes all transaction changes",
+            "Completes transaction successfully",
+            "Restarts the transaction",
+            "Saves transaction progress"
+        ],
+        correctAnswer: 0,
+        explanation: "ROLLBACK undoes all changes made during current transaction."
+    },
+    {
+        question: "What is an Index?",
+        options: [
+            "Database structure that improves data retrieval speed",
+            "Table of contents for database",
+            "List of all database tables",
+            "Pointer to database location"
+        ],
+        correctAnswer: 0,
+        explanation: "Index is a data structure that improves speed of data retrieval operations on database tables."
+    }
+];
 
     const handleOptionSelect = (index) => {
         if (!showFeedback && !answeredQuestions.includes(currentQuestion)) {
