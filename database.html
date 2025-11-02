@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تعلم قواعد البيانات - شرح شامل</title>
+    <title>Database Learning Platform - Complete Guide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
@@ -20,6 +20,7 @@
             --danger: #f72585;
             --warning: #f8961e;
             --info: #4895ef;
+            --arabic: #7209b7;
         }
         
         * {
@@ -204,16 +205,48 @@
         
         .chapter-body li {
             margin-bottom: 0.8rem;
-            padding-right: 1.5rem;
+            padding-left: 1.5rem;
             position: relative;
         }
         
         .chapter-body li:before {
             content: '✓';
             position: absolute;
-            right: 0;
+            left: 0;
             color: var(--success);
             font-weight: bold;
+        }
+        
+        /* Concept Cards */
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .concept-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .concept-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .hint {
+            background-color: rgba(114, 9, 183, 0.1);
+            border: 1px solid var(--arabic);
+            border-radius: 5px;
+            padding: 0.8rem;
+            margin-top: 0.8rem;
+            color: var(--arabic);
+            font-style: italic;
         }
         
         /* Visualizations */
@@ -314,6 +347,28 @@
             margin-top: 2rem;
         }
         
+        .quiz-progress {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            flex-grow: 1;
+            margin: 0 1rem;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -341,7 +396,7 @@
             height: 3px;
             background-color: var(--accent);
             bottom: 0;
-            right: 0;
+            left: 0;
         }
         
         .footer-section p, .footer-section a {
@@ -354,7 +409,7 @@
         
         .footer-section a:hover {
             color: white;
-            padding-right: 5px;
+            padding-left: 5px;
         }
         
         .copyright {
@@ -392,14 +447,14 @@
         <div class="container header-content">
             <div class="logo">
                 <i class="fas fa-database"></i>
-                <h1>تعلم قواعد البيانات</h1>
+                <h1>Database Learning Platform</h1>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#chapters">الفصول</a></li>
-                    <li><a href="#visualizations">التصورات</a></li>
-                    <li><a href="#interactive-questions">الأسئلة التفاعلية</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#concepts">Key Concepts</a></li>
+                    <li><a href="#interactive-questions">Quiz</a></li>
                 </ul>
             </nav>
         </div>
@@ -408,9 +463,9 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h2>شرح شامل لقواعد البيانات</h2>
-            <p>موقع تعليمي تفاعلي يشرح مفاهيم قواعد البيانات من البداية إلى الاحتراف، مع أمثلة عملية وأسئلة تفاعلية لاختبار معرفتك.</p>
-            <a href="#chapters" class="btn">ابدأ التعلم</a>
+            <h2>Master Database Concepts</h2>
+            <p>An interactive learning platform covering database fundamentals from basic concepts to advanced implementation with detailed explanations and visualizations.</p>
+            <a href="#chapters" class="btn">Start Learning</a>
         </div>
     </section>
 
@@ -418,22 +473,22 @@
     <section id="chapters">
         <div class="container">
             <div class="section-title">
-                <h2>الفصول التعليمية</h2>
+                <h2>Database Chapters</h2>
             </div>
             <div class="chapters-grid">
                 <!-- Chapter 1 -->
                 <div class="chapter-card">
                     <div class="chapter-header">
-                        <h3>الفصل الأول: مقدمة في قواعد البيانات</h3>
-                        <p>لماذا نحتاج قواعد البيانات؟</p>
+                        <h3>Chapter 1: Database Introduction</h3>
+                        <p>Why we need databases?</p>
                     </div>
                     <div class="chapter-body">
-                        <p>هذا الفصل يوضح الفرق بين البيانات والمعلومات، ومشاكل الأنظمة القديمة، ومزايا وعيوب قواعد البيانات.</p>
+                        <p>This chapter explains the difference between data and information, problems with traditional file systems, and advantages of database systems.</p>
                         <ul>
-                            <li>البيانات مقابل المعلومات</li>
-                            <li>مشاكل نظام الملفات</li>
-                            <li>مزايا قواعد البيانات</li>
-                            <li>عيوب قواعد البيانات</li>
+                            <li>Data vs Information</li>
+                            <li>File System Problems</li>
+                            <li>Database Advantages</li>
+                            <li>DBMS Components</li>
                         </ul>
                     </div>
                 </div>
@@ -441,16 +496,16 @@
                 <!-- Chapter 2 -->
                 <div class="chapter-card">
                     <div class="chapter-header">
-                        <h3>الفصل الثاني: مفاهيم وهيكل قواعد البيانات</h3>
-                        <p>الهيكل العام لقواعد البيانات</p>
+                        <h3>Chapter 2: Database Concepts & Architecture</h3>
+                        <p>The big picture of databases</p>
                     </div>
                     <div class="chapter-body">
-                        <p>هذا الفصل يشرح تجريد البيانات، نماذج البيانات، وهيكل الثلاثة مستويات، واستقلالية البيانات.</p>
+                        <p>This chapter explains data abstraction, data models, three-schema architecture, and data independence.</p>
                         <ul>
-                            <li>تجريد البيانات</li>
-                            <li>نماذج البيانات</li>
-                            <li>هيكل الثلاثة مستويات</li>
-                            <li>استقلالية البيانات</li>
+                            <li>Data Abstraction</li>
+                            <li>Data Models</li>
+                            <li>Three-Schema Architecture</li>
+                            <li>Data Independence</li>
                         </ul>
                     </div>
                 </div>
@@ -458,16 +513,16 @@
                 <!-- Chapter 3 -->
                 <div class="chapter-card">
                     <div class="chapter-header">
-                        <h3>الفصل الثالث: النموذج العلائقي والقيود</h3>
-                        <p>التطبيق العملي باستخدام الجداول</p>
+                        <h3>Chapter 3: Relational Model & Constraints</h3>
+                        <p>Practical implementation with tables</p>
                     </div>
                     <div class="chapter-body">
-                        <p>هذا الفصل يشرح كيفية تحويل التصميم النظري إلى جداول عملية، مع شرح القيود والمفاتيح.</p>
+                        <p>This chapter explains how to convert theoretical design to practical tables, with explanations of constraints and keys.</p>
                         <ul>
-                            <li>المفاهيم الأساسية</li>
-                            <li>القيود والمفاتيح</li>
-                            <li>سلامة الكيان والسلامة المرجعية</li>
-                            <li>عمليات التعديل</li>
+                            <li>Basic Concepts</li>
+                            <li>Constraints & Keys</li>
+                            <li>Entity & Referential Integrity</li>
+                            <li>Update Operations</li>
                         </ul>
                     </div>
                 </div>
@@ -475,17 +530,109 @@
                 <!-- Chapter 4 -->
                 <div class="chapter-card">
                     <div class="chapter-header">
-                        <h3>الفصل الرابع: نموذج الكيان والعلاقة</h3>
-                        <p>التصميم النظري لقاعدة البيانات</p>
+                        <h3>Chapter 4: Entity-Relationship Model</h3>
+                        <p>Theoretical database design</p>
                     </div>
                     <div class="chapter-body">
-                        <p>هذا الفصل يشرح كيفية تصميم قاعدة البيانات نظرياً باستخدام مخطط ERD والكيان والعلاقات.</p>
+                        <p>This chapter explains how to design databases theoretically using ERD, entities, and relationships.</p>
                         <ul>
-                            <li>مخطط ERD</li>
-                            <li>الكيانات والسمات</li>
-                            <li>العلاقات وقيودها</li>
-                            <li>نسبة الكاردينالية</li>
+                            <li>ER Diagram</li>
+                            <li>Entities & Attributes</li>
+                            <li>Relationships & Constraints</li>
+                            <li>Cardinality Ratio</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Concepts Section -->
+    <section id="concepts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Key Database Concepts</h2>
+            </div>
+            
+            <div class="concept-cards">
+                <div class="concept-card">
+                    <h4>Data vs Information</h4>
+                    <p><strong>Data:</strong> Raw facts and figures without context (e.g., "25", "Ahmed")</p>
+                    <p><strong>Information:</strong> Data that has been processed and given meaning (e.g., "Ahmed scored 25 in the test")</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> البيانات هي المادة الخام بدون معنى، بينما المعلومات هي بيانات تمت معالجتها وأصبحت مفيدة
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Database (DB)</h4>
+                    <p>An organized collection of related data stored efficiently in one place</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> قاعدة البيانات هي مجموعة منظمة من البيانات المتعلقة ببعضها والمخزنة في مكان واحد
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>DBMS</h4>
+                    <p>Database Management System - Software to create, manage, and manipulate databases (e.g., MySQL, Oracle)</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> نظام إدارة قواعد البيانات - برنامج يستخدم لإنشاء وإدارة قواعد البيانات
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Data Abstraction</h4>
+                    <p>Hiding complex storage details from users, allowing them to interact with data easily</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> تجريد البيانات - إخفاء تفاصيل التخزين المعقدة عن المستخدمين
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Three-Schema Architecture</h4>
+                    <p>Internal (physical storage), Logical (database structure), External (user views)</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> هيكل المخططات الثلاث - الداخلي (التخزين)، المنطقي (هيكل البيانات)، الخارجي (وجهات نظر المستخدم)
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Entity</h4>
+                    <p>A real-world object or concept we want to store data about (e.g., Student, Course)</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> الكيان - شيء في العالم الحقيقي نريد تخزين بيانات عنه
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Attribute</h4>
+                    <p>A property or characteristic of an entity (e.g., Student ID, Course Name)</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> السمة - خاصية أو صفة للكيان
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Primary Key (PK)</h4>
+                    <p>A unique identifier for each record in a table (cannot be NULL or duplicate)</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> المفتاح الأساسي - معرف فريد لكل سجل في الجدول
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Foreign Key (FK)</h4>
+                    <p>A field in one table that refers to the Primary Key in another table, creating a relationship</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> المفتاح الأجنبي - حقل في جدول يشير إلى المفتاح الأساسي في جدول آخر
+                    </div>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Cardinality</h4>
+                    <p>Describes the numerical relationship between entities (1:1, 1:M, M:M)</p>
+                    <div class="hint">
+                        <strong>Hint بالعربية:</strong> الكاردينالية - تصف العلاقة العددية بين الكيانات
                     </div>
                 </div>
             </div>
@@ -496,25 +643,25 @@
     <section id="visualizations">
         <div class="container">
             <div class="section-title">
-                <h2>تصورات البيانات والمخططات</h2>
+                <h2>Data Visualizations</h2>
             </div>
             
             <div class="visualization-container">
-                <h3>مقارنة بين أنظمة الملفات وقواعد البيانات</h3>
+                <h3>File System vs Database System Comparison</h3>
                 <div class="chart-container">
                     <canvas id="comparisonChart"></canvas>
                 </div>
             </div>
             
             <div class="visualization-container">
-                <h3>هيكل الثلاثة مستويات لقواعد البيانات</h3>
+                <h3>Three-Schema Architecture of Databases</h3>
                 <div class="chart-container">
                     <canvas id="levelsChart"></canvas>
                 </div>
             </div>
             
             <div class="visualization-container">
-                <h3>أنواع القيود في قواعد البيانات</h3>
+                <h3>Types of Constraints in Databases</h3>
                 <div class="chart-container">
                     <canvas id="constraintsChart"></canvas>
                 </div>
@@ -526,7 +673,8 @@
     <section id="interactive-questions">
         <div class="container">
             <div class="section-title">
-                <h2>الأسئلة التفاعلية</h2>
+                <h2>Interactive Quiz</h2>
+                <p>Test your knowledge with 20 questions covering all database concepts</p>
             </div>
             
             <div id="quiz-app" class="quiz-container">
@@ -540,27 +688,27 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>عن الموقع</h3>
-                    <p>موقع تعليمي تفاعلي يهدف إلى تبسيط مفاهيم قواعد البيانات للمبتدئين وطلاب الجامعات.</p>
+                    <h3>About This Platform</h3>
+                    <p>An interactive educational platform designed to simplify database concepts for beginners and university students.</p>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>روابط سريعة</h3>
-                    <a href="#home">الرئيسية</a>
-                    <a href="#chapters">الفصول التعليمية</a>
-                    <a href="#visualizations">التصورات</a>
-                    <a href="#interactive-questions">الأسئلة التفاعلية</a>
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#chapters">Chapters</a>
+                    <a href="#concepts">Key Concepts</a>
+                    <a href="#interactive-questions">Interactive Quiz</a>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>معلومات الاتصال</h3>
-                    <p>تم التطوير بواسطة: Adham Hossam</p>
-                    <p>جميع الحقوق محفوظة © 2025</p>
+                    <h3>Contact Information</h3>
+                    <p>Developed by: Adham Hossam</p>
+                    <p>All rights reserved © 2025</p>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>تم تطوير هذا الموقع لأغراض تعليمية - شرح شامل لقواعد البيانات (فصول 1-4)</p>
+                <p>This website is developed for educational purposes - Comprehensive database guide (Chapters 1-4)</p>
             </div>
         </div>
     </footer>
@@ -574,15 +722,15 @@
             const comparisonChart = new Chart(comparisonCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['التكرار', 'الاتساق', 'الأمان', 'المرونة', 'الكفاءة'],
+                    labels: ['Redundancy', 'Consistency', 'Security', 'Flexibility', 'Efficiency'],
                     datasets: [{
-                        label: 'نظام الملفات',
+                        label: 'File System',
                         data: [20, 30, 40, 25, 35],
                         backgroundColor: 'rgba(247, 37, 133, 0.7)',
                         borderColor: 'rgba(247, 37, 133, 1)',
                         borderWidth: 1
                     }, {
-                        label: 'قواعد البيانات',
+                        label: 'Database System',
                         data: [80, 90, 85, 95, 75],
                         backgroundColor: 'rgba(67, 97, 238, 0.7)',
                         borderColor: 'rgba(67, 97, 238, 1)',
@@ -609,7 +757,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'مقارنة بين نظام الملفات وقواعد البيانات'
+                            text: 'File System vs Database System Comparison'
                         }
                     }
                 }
@@ -620,7 +768,7 @@
             const levelsChart = new Chart(levelsCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['المستوى الخارجي', 'المستوى المنطقي', 'المستوى الداخلي'],
+                    labels: ['External Level', 'Logical Level', 'Internal Level'],
                     datasets: [{
                         data: [30, 40, 30],
                         backgroundColor: [
@@ -645,7 +793,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'هيكل الثلاثة مستويات لقواعد البيانات'
+                            text: 'Three-Schema Architecture of Databases'
                         }
                     }
                 }
@@ -656,7 +804,7 @@
             const constraintsChart = new Chart(constraintsCtx, {
                 type: 'pie',
                 data: {
-                    labels: ['سلامة الكيان', 'السلامة المرجعية', 'قيود المجال', 'قيود المفتاح'],
+                    labels: ['Entity Integrity', 'Referential Integrity', 'Domain Constraints', 'Key Constraints'],
                     datasets: [{
                         data: [25, 35, 20, 20],
                         backgroundColor: [
@@ -683,7 +831,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'أنواع القيود في قواعد البيانات'
+                            text: 'Types of Constraints in Databases'
                         }
                     }
                 }
@@ -695,169 +843,378 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        const QuizApp = () => {
-            const [currentQuestion, setCurrentQuestion] = useState(0);
-            const [selectedOption, setSelectedOption] = useState(null);
-            const [showFeedback, setShowFeedback] = useState(false);
-            const [score, setScore] = useState(0);
-            const [quizCompleted, setQuizCompleted] = useState(false);
-            
-            const questions = [
-                {
-                    question: "ما هو نظام إدارة قواعد البيانات (DBMS)?",
-                    options: [
-                        "برنامج يستخدم لإنشاء وإدارة قواعد البيانات",
-                        "جهاز تخزين للبيانات",
-                        "لغة برمجة لقواعد البيانات",
-                        "نوع من أنواع الشبكات"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "نظام إدارة قواعد البيانات (DBMS) هو برنامج يستخدم لإنشاء وإدارة قواعد البيانات، مثل Oracle أو MySQL."
-                },
-                {
-                    question: "ما هي المشكلة الرئيسية في أنظمة الملفات التقليدية?",
-                    options: [
-                        "تكرار البيانات",
-                        "سرعة الوصول للبيانات",
-                        "تكلفة التخزين",
-                        "صعوبة النسخ الاحتياطي"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "تكرار البيانات هي المشكلة الرئيسية في أنظمة الملفات التقليدية، حيث يتم تخزين نفس البيانات في أكثر من ملف."
-                },
-                {
-                    question: "ما هو المفتاح الأساسي (Primary Key) في الجدول?",
-                    options: [
-                        "العمود الذي يميز كل صف عن الآخر",
-                        "العمود الأول في الجدول",
-                        "العمود الذي يحتوي على أكبر قيمة",
-                        "العمود الذي يرتبط بجدول آخر"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "المفتاح الأساسي (Primary Key) هو العمود الذي يميز كل صف عن الآخر، ويجب أن يكون فريداً وغير فارغ."
-                },
-                {
-                    question: "ما هي العلاقة من نوع M:M?",
-                    options: [
-                        "علاقة كثير إلى كثير",
-                        "علاقة واحد إلى واحد",
-                        "علاقة واحد إلى كثير",
-                        "علاقة كثير إلى واحد"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "العلاقة من نوع M:M (Many-to-Many) هي علاقة كثير إلى كثير، مثل علاقة الطالب بالمادة حيث يمكن للطالب تسجيل عدة مواد ويمكن للمادة أن يكون بها عدة طلاب."
-                },
-                {
-                    question: "ما هو قيد السلامة المرجعية (Referential Integrity)?",
-                    options: [
-                        "ضمان أن قيمة المفتاح الأجنبي موجودة في الجدول المرجع",
-                        "ضمان أن المفتاح الأساسي غير مكرر",
-                        "ضمان أن البيانات مخزنة بشكل آمن",
-                        "ضمان أن قاعدة البيانات تعمل بسرعة"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "قيد السلامة المرجعية يضمن أن قيمة المفتاح الأجنبي (Foreign Key) موجودة في الجدول المرجع، أو تكون NULL."
-                }
-            ];
-            
-            const handleOptionSelect = (index) => {
-                if (!showFeedback) {
-                    setSelectedOption(index);
-                }
-            };
-            
-            const checkAnswer = () => {
-                setShowFeedback(true);
-                if (selectedOption === questions[currentQuestion].correctAnswer) {
-                    setScore(score + 1);
-                }
-            };
-            
-            const nextQuestion = () => {
-                if (currentQuestion < questions.length - 1) {
-                    setCurrentQuestion(currentQuestion + 1);
-                    setSelectedOption(null);
-                    setShowFeedback(false);
-                } else {
-                    setQuizCompleted(true);
-                }
-            };
-            
-            const resetQuiz = () => {
-                setCurrentQuestion(0);
-                setSelectedOption(null);
-                setShowFeedback(false);
-                setScore(0);
-                setQuizCompleted(false);
-            };
-            
-            if (quizCompleted) {
-                return (
-                    <div className="quiz-completed">
-                        <h3>تهانينا! لقد أكملت الاختبار</h3>
-                        <p>درجتك: {score} من {questions.length}</p>
-                        <p>نسبة النجاح: {Math.round((score / questions.length) * 100)}%</p>
-                        <button className="btn" onClick={resetQuiz}>إعادة الاختبار</button>
-                    </div>
-                );
-            }
-            
-            return (
-                <div className="quiz">
-                    <div className="question">
-                        <h3>سؤال {currentQuestion + 1} من {questions.length}</h3>
-                        <p>{questions[currentQuestion].question}</p>
-                    </div>
-                    
-                    <div className="options">
-                        {questions[currentQuestion].options.map((option, index) => (
-                            <div 
-                                key={index}
-                                className={`option ${selectedOption === index ? 'selected' : ''} ${
-                                    showFeedback ? (
-                                        index === questions[currentQuestion].correctAnswer ? 'correct' : 
-                                        (selectedOption === index ? 'incorrect' : '')
-                                    ) : ''
-                                }`}
-                                onClick={() => handleOptionSelect(index)}
-                            >
-                                {option}
-                            </div>
-                        ))}
-                    </div>
-                    
-                    {showFeedback && (
-                        <div className={`feedback ${selectedOption === questions[currentQuestion].correctAnswer ? 'correct' : 'incorrect'}`}>
-                            <p>
-                                {selectedOption === questions[currentQuestion].correctAnswer 
-                                    ? 'إجابة صحيحة! ✓' 
-                                    : 'إجابة خاطئة! ✗'}
-                            </p>
-                            <p>{questions[currentQuestion].explanation}</p>
-                        </div>
-                    )}
-                    
-                    <div className="quiz-nav">
-                        <button 
-                            className="btn" 
-                            onClick={checkAnswer}
-                            disabled={selectedOption === null || showFeedback}
-                        >
-                            تحقق من الإجابة
-                        </button>
-                        
-                        {showFeedback && (
-                            <button className="btn" onClick={nextQuestion}>
-                                {currentQuestion < questions.length - 1 ? 'السؤال التالي' : 'انهاء الاختبار'}
-                            </button>
-                        )}
-                    </div>
-                </div>
-            );
-        };
+const QuizApp = () => {
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [showFeedback, setShowFeedback] = useState(false);
+    const [score, setScore] = useState(0);
+    const [quizCompleted, setQuizCompleted] = useState(false);
+    const [answeredQuestions, setAnsweredQuestions] = useState([]);
+    
+    const questions = [
+        {
+            question: "What is a Database Management System (DBMS)?",
+            options: [
+                "Software used to create and manage databases",
+                "A storage device for data",
+                "A programming language for databases",
+                "A type of network"
+            ],
+            correctAnswer: 0,
+            explanation: "A Database Management System (DBMS) is software used to create and manage databases, such as Oracle or MySQL."
+        },
+        {
+            question: "What is the main problem with traditional file systems?",
+            options: [
+                "Slow data access",
+                "Data redundancy",
+                "Storage cost",
+                "Difficulty in backup"
+            ],
+            correctAnswer: 1,
+            explanation: "Data redundancy is the main problem with traditional file systems, where the same data is stored in multiple files."
+        },
+        {
+            question: "What is a Primary Key in a table?",
+            options: [
+                "The first column in the table",
+                "A column that uniquely identifies each row",
+                "The column with the largest value",
+                "A column that links to another table"
+            ],
+            correctAnswer: 1,
+            explanation: "A Primary Key is a column that uniquely identifies each row in a table, and it must be unique and not null."
+        },
+        {
+            question: "What does an M:M relationship represent?",
+            options: [
+                "One-to-One relationship",
+                "One-to-Many relationship",
+                "Many-to-Many relationship",
+                "Many-to-One relationship"
+            ],
+            correctAnswer: 2,
+            explanation: "An M:M (Many-to-Many) relationship represents a relationship where multiple entities from one set can be associated with multiple entities from another set, like students and courses where a student can enroll in multiple courses and a course can have multiple students."
+        },
+        {
+            question: "What is Referential Integrity constraint?",
+            options: [
+                "Ensuring primary keys are not duplicated",
+                "Ensuring data is stored securely",
+                "Ensuring foreign key values exist in the referenced table",
+                "Ensuring the database runs fast"
+            ],
+            correctAnswer: 2,
+            explanation: "Referential Integrity ensures that any foreign key value must match an existing primary key value in the referenced table or be null."
+        },
+        {
+            question: "What is Data Abstraction in databases?",
+            options: [
+                "Creating backup of data",
+                "Encrypting sensitive data",
+                "Compressing data to save space",
+                "Hiding complex storage details from users"
+            ],
+            correctAnswer: 3,
+            explanation: "Data Abstraction is the concept of hiding complex storage details from users, allowing them to interact with data at a higher level without needing to understand the underlying implementation."
+        },
+        {
+            question: "What is the purpose of the Three-Schema Architecture?",
+            options: [
+                "To create three copies of the database for backup",
+                "To divide the database into three equal parts",
+                "To implement three levels of security",
+                "To separate user applications from the physical database"
+            ],
+            correctAnswer: 3,
+            explanation: "The Three-Schema Architecture separates the user applications from the physical database through external, conceptual, and internal levels, providing data independence."
+        },
+        {
+            question: "What is an Entity in the ER model?",
+            options: [
+                "A database table",
+                "A relationship between tables",
+                "A real-world object or concept",
+                "A data attribute"
+            ],
+            correctAnswer: 2,
+            explanation: "An Entity is a real-world object or concept that we want to store data about, such as Student, Course, or Employee."
+        },
+        {
+            question: "What is a Weak Entity?",
+            options: [
+                "An entity with few attributes",
+                "An entity that is rarely used",
+                "An entity with no primary key",
+                "An entity that depends on another entity for its existence"
+            ],
+            correctAnswer: 3,
+            explanation: "A Weak Entity is an entity that depends on another entity (strong entity) for its existence and identification, such as Dependents entity that depends on Employee entity."
+        },
+        {
+            question: "What is the difference between Data and Information?",
+            options: [
+                "Data is digital, Information is analog",
+                "Data is stored in databases, Information is in files",
+                "Data is structured, Information is unstructured",
+                "Data is raw facts, Information is processed data with meaning"
+            ],
+            correctAnswer: 3,
+            explanation: "Data refers to raw facts and figures without context, while Information is data that has been processed, organized, and given meaning to become useful."
+        },
+        {
+            question: "What is a Foreign Key?",
+            options: [
+                "A key that is not important",
+                "A key used for encryption",
+                "A backup of the primary key",
+                "A field in one table that references the Primary Key of another table"
+            ],
+            correctAnswer: 3,
+            explanation: "A Foreign Key is a field (or collection of fields) in one table that uniquely identifies a row of another table, creating a relationship between the two tables."
+        },
+        {
+            question: "What does Cardinality represent in database relationships?",
+            options: [
+                "The order of records in a table",
+                "The size of the database",
+                "The number of attributes in an entity",
+                "The numerical relationship between entities"
+            ],
+            correctAnswer: 3,
+            explanation: "Cardinality represents the numerical relationship between entities in a relationship, such as one-to-one (1:1), one-to-many (1:M), or many-to-many (M:M)."
+        },
+        {
+            question: "What is Entity Integrity constraint?",
+            options: [
+                "Foreign Key must reference an existing Primary Key",
+                "Data must be of the correct type",
+                "All entities must have at least one relationship",
+                "Primary Key cannot be null and must be unique"
+            ],
+            correctAnswer: 3,
+            explanation: "Entity Integrity ensures that the Primary Key cannot contain null values and that each Primary Key value must be unique within the table."
+        },
+        {
+            question: "What is the Conceptual Data Model?",
+            options: [
+                "The physical storage of data",
+                "The SQL code to create tables",
+                "The user interface for accessing data",
+                "A high-level description of data and relationships"
+            ],
+            correctAnswer: 3,
+            explanation: "The Conceptual Data Model provides a high-level description of the data, their relationships, and constraints, without implementation details. It's often represented using ER diagrams."
+        },
+        {
+            question: "What is Data Independence?",
+            options: [
+                "Storing data in different countries",
+                "Having multiple copies of data",
+                "Using different data types in a table",
+                "Ability to change one level of schema without affecting others"
+            ],
+            correctAnswer: 3,
+            explanation: "Data Independence is the ability to modify the schema at one level of the database system without having to modify the schema at the next higher level."
+        },
+        {
+            question: "What is a Composite Attribute?",
+            options: [
+                "An attribute that has multiple values",
+                "An attribute that is calculated from other attributes",
+                "An attribute that is used as a primary key",
+                "An attribute that can be divided into smaller sub-parts"
+            ],
+            correctAnswer: 3,
+            explanation: "A Composite Attribute is an attribute that can be divided into smaller sub-parts, such as an Address attribute that can be divided into Street, City, and Zip Code."
+        },
+        {
+            question: "What is a Multi-valued Attribute?",
+            options: [
+                "An attribute that appears in multiple tables",
+                "An attribute with complex data type",
+                "An attribute that is required",
+                "An attribute that can have multiple values for a single entity"
+            ],
+            correctAnswer: 3,
+            explanation: "A Multi-valued Attribute is an attribute that can have multiple values for a single entity, such as a Phone Numbers attribute for a person who has multiple phone numbers."
+        },
+        {
+            question: "What is the purpose of an Index in a database?",
+            options: [
+                "To create a backup of the data",
+                "To encrypt sensitive data",
+                "To validate data input",
+                "To improve the speed of data retrieval"
+            ],
+            correctAnswer: 3,
+            explanation: "An Index is a database structure that improves the speed of data retrieval operations on a database table, similar to an index in a book that helps you find information quickly."
+        },
+        {
+            question: "What is a Derived Attribute?",
+            options: [
+                "An attribute imported from another database",
+                "An attribute that is not important",
+                "An attribute with default value",
+                "An attribute whose value is calculated from other attributes"
+            ],
+            correctAnswer: 3,
+            explanation: "A Derived Attribute is an attribute whose value is calculated or derived from other attributes, such as Age derived from Date of Birth, or Total Salary derived from Basic Salary and Bonuses."
+        },
+        {
+            question: "What is the difference between Logical and Physical Data Independence?",
+            options: [
+                "Logical: change data values; Physical: change data types",
+                "Logical: change table names; Physical: change storage device",
+                "Logical: add new tables; Physical: delete old tables",
+                "Logical: change conceptual schema without affecting external; Physical: change internal without affecting conceptual"
+            ],
+            correctAnswer: 3,
+            explanation: "Logical Data Independence is the ability to change the conceptual schema without having to change external schemas or application programs. Physical Data Independence is the ability to change the internal schema without having to change the conceptual schema."
+        }
+    ];
 
-        // Render the React component
-        ReactDOM.render(<QuizApp />, document.getElementById('quiz-app'));
+    const handleOptionSelect = (index) => {
+        if (!showFeedback && !answeredQuestions.includes(currentQuestion)) {
+            setSelectedOption(index);
+        }
+    };
+    
+    const checkAnswer = () => {
+        if (selectedOption === null) return;
+        
+        setShowFeedback(true);
+        if (selectedOption === questions[currentQuestion].correctAnswer) {
+            setScore(score + 1);
+        }
+        
+        const newAnsweredQuestions = [...answeredQuestions, currentQuestion];
+        setAnsweredQuestions(newAnsweredQuestions);
+    };
+    
+    const nextQuestion = () => {
+        if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+            setSelectedOption(null);
+            setShowFeedback(false);
+        } else {
+            setQuizCompleted(true);
+        }
+    };
+    
+    const prevQuestion = () => {
+        if (currentQuestion > 0) {
+            setCurrentQuestion(currentQuestion - 1);
+            setSelectedOption(null);
+            setShowFeedback(false);
+        }
+    };
+    
+    const resetQuiz = () => {
+        setCurrentQuestion(0);
+        setSelectedOption(null);
+        setShowFeedback(false);
+        setScore(0);
+        setQuizCompleted(false);
+        setAnsweredQuestions([]);
+    };
+
+    const progressPercentage = ((currentQuestion + 1) / questions.length) * 100;
+    
+    if (quizCompleted) {
+        return (
+            <div className="quiz-completed">
+                <h3>Congratulations! You've completed the quiz</h3>
+                <p>Your score: {score} out of {questions.length}</p>
+                <p>Success rate: {Math.round((score / questions.length) * 100)}%</p>
+                <button className="btn" onClick={resetQuiz}>Restart Quiz</button>
+            </div>
+        );
+    }
+    
+    const currentQuestionData = questions[currentQuestion];
+    const isAnswered = answeredQuestions.includes(currentQuestion);
+    
+    return (
+        <div className="quiz">
+            <div className="quiz-progress">
+                <span>Question {currentQuestion + 1} of {questions.length}</span>
+                <div className="progress-bar">
+                    <div className="progress" style={{width: `${progressPercentage}%`}}></div>
+                </div>
+                <span>Score: {score}</span>
+            </div>
+            
+            <div className="question">
+                <h3>{currentQuestionData.question}</h3>
+            </div>
+            
+            <div className="options">
+                {currentQuestionData.options.map((option, index) => {
+                    let optionClass = "option";
+                    
+                    if (showFeedback && isAnswered) {
+                        if (index === currentQuestionData.correctAnswer) {
+                            optionClass += " correct";
+                        } else if (index === selectedOption && index !== currentQuestionData.correctAnswer) {
+                            optionClass += " incorrect";
+                        }
+                    } else if (selectedOption === index) {
+                        optionClass += " selected";
+                    }
+                    
+                    return (
+                        <div 
+                            key={index}
+                            className={optionClass}
+                            onClick={() => handleOptionSelect(index)}
+                        >
+                            {option}
+                        </div>
+                    );
+                })}
+            </div>
+            
+            {showFeedback && (
+                <div className={`feedback ${selectedOption === currentQuestionData.correctAnswer ? 'correct' : 'incorrect'}`}>
+                    <p>
+                        {selectedOption === currentQuestionData.correctAnswer 
+                            ? 'Correct Answer! ✓' 
+                            : 'Incorrect Answer! ✗'}
+                    </p>
+                    <p>{currentQuestionData.explanation}</p>
+                </div>
+            )}
+            
+            <div className="quiz-nav">
+                <button 
+                    className="btn" 
+                    onClick={prevQuestion}
+                    disabled={currentQuestion === 0}
+                >
+                    Previous Question
+                </button>
+                
+                {!showFeedback ? (
+                    <button 
+                        className="btn" 
+                        onClick={checkAnswer}
+                        disabled={selectedOption === null}
+                    >
+                        Check Answer
+                    </button>
+                ) : (
+                    <button className="btn" onClick={nextQuestion}>
+                        {currentQuestion < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
+                    </button>
+                )}
+            </div>
+        </div>
+    );
+};
+
+// Render the React component
+ReactDOM.render(<QuizApp />, document.getElementById('quiz-app'));
     </script>
 </body>
 </html>
