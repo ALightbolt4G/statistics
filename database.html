@@ -10,436 +10,1308 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --danger: #f72585;
-            --warning: #f8961e;
-            --info: #4895ef;
-            --arabic: #7209b7;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fb;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .logo i {
-            font-size: 1.8rem;
-        }
-        
-        .logo h1 {
-            font-size: 1.5rem;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(63, 55, 201, 0.9)), url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .hero h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Sections */
-        section {
-            padding: 4rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-        
-        /* Chapters Grid */
-        .chapters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .chapter-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .chapter-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .chapter-header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1.5rem;
-        }
-        
-        .chapter-header h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .chapter-body {
-            padding: 1.5rem;
-        }
-        
-        .chapter-body ul {
-            list-style: none;
-            margin-top: 1rem;
-        }
-        
-        .chapter-body li {
-            margin-bottom: 0.8rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .chapter-body li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: bold;
-        }
-        
-        /* Concept Cards */
-        .concept-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .concept-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--primary);
-        }
-        
-        .concept-card h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .hint {
-            background-color: rgba(114, 9, 183, 0.1);
-            border: 1px solid var(--arabic);
-            border-radius: 5px;
-            padding: 0.8rem;
-            margin-top: 0.8rem;
-            color: var(--arabic);
-            font-style: italic;
-        }
-        
-        /* Visualizations */
-        .visualization-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 2rem;
-        }
-        
-        .chart-container {
-            position: relative;
-            height: 300px;
-            margin: 2rem 0;
-        }
-        
-        /* Interactive Questions */
-        #interactive-questions {
-            background-color: var(--light);
-        }
-        
-        .quiz-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .question {
-            margin-bottom: 2rem;
-        }
-        
-        .question h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .options {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .option {
-            padding: 1rem;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .option:hover {
-            border-color: var(--accent);
-            background-color: rgba(72, 149, 239, 0.05);
-        }
-        
-        .option.selected {
-            border-color: var(--primary);
-            background-color: rgba(67, 97, 238, 0.1);
-        }
-        
-        .option.correct {
-            border-color: var(--success);
-            background-color: rgba(76, 201, 240, 0.1);
-        }
-        
-        .option.incorrect {
-            border-color: var(--danger);
-            background-color: rgba(247, 37, 133, 0.1);
-        }
-        
-        .feedback {
-            margin-top: 1rem;
-            padding: 1rem;
-            border-radius: 8px;
-            display: none;
-        }
-        
-        .feedback.correct {
-            background-color: rgba(76, 201, 240, 0.1);
-            border: 1px solid var(--success);
-            color: #0a9396;
-            display: block;
-        }
-        
-        .feedback.incorrect {
-            background-color: rgba(247, 37, 133, 0.1);
-            border: 1px solid var(--danger);
-            color: #ae2012;
-            display: block;
-        }
-        
-        .quiz-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-        }
-        
-        .quiz-progress {
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background-color: #e9ecef;
-            border-radius: 4px;
-            flex-grow: 1;
-            margin: 0 1rem;
-        }
-        
-        .progress {
-            height: 100%;
-            background-color: var(--primary);
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 3rem 0 1.5rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-section h3:after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent);
-            bottom: 0;
-            left: 0;
-        }
-        
-        .footer-section p, .footer-section a {
-            color: #adb5bd;
-            margin-bottom: 0.8rem;
-            display: block;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-section a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid #495057;
-            color: #adb5bd;
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav ul {
-                gap: 1rem;
-            }
-            
-            .hero h2 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+ :root {
+    --primary: #4361ee;
+    --secondary: #3f37c9;
+    --accent: #4895ef;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --warning: #f8961e;
+    --info: #4895ef;
+    --arabic: #7209b7;
+    --surface: #ffffff;
+    --surface-dark: #2d3748;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --border: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f5f7fb 0%, #f0f4f8 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-lg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+}
+
+.logo i {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav a:hover::before {
+    width: 80%;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    background: 
+        linear-gradient(135deg, rgba(67, 97, 238, 0.95), rgba(63, 55, 201, 0.95)),
+        url('https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    opacity: 0.95;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    font-size: 1rem;
+    isolation: isolate;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Sections */
+section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.section-title h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--primary);
+    display: inline-block;
+    padding-bottom: 1rem;
+    position: relative;
+    font-weight: 700;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.section-title h2::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 2px;
+    background: rgba(67, 97, 238, 0.2);
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1px;
+}
+
+/* Modern Grid System */
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.concept-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Modern Card Components */
+.chapter-card,
+.concept-card,
+.visualization-container,
+.quiz-container,
+.component-card,
+.constraint-card,
+.rel-card {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.chapter-card::before,
+.concept-card::before,
+.visualization-container::before,
+.quiz-container::before,
+.component-card::before,
+.constraint-card::before,
+.rel-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.chapter-card:hover::before,
+.concept-card:hover::before,
+.visualization-container:hover::before,
+.quiz-container:hover::before,
+.component-card:hover::before,
+.constraint-card:hover::before,
+.rel-card:hover::before {
+    transform: scaleX(1);
+}
+
+.chapter-card:hover,
+.concept-card:hover,
+.visualization-container:hover,
+.quiz-container:hover,
+.component-card:hover,
+.constraint-card:hover,
+.rel-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Enhanced Chapter Cards */
+.chapter-card {
+    border-left: 6px solid var(--primary);
+}
+
+.chapter-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 2rem;
+    margin: -2rem -2rem 2rem -2rem;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    position: relative;
+}
+
+.chapter-header::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--secondary);
+}
+
+.chapter-header h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.chapter-body ul {
+    list-style: none;
+    margin-top: 1.5rem;
+}
+
+.chapter-body li {
+    margin-bottom: 0.8rem;
+    padding-left: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.chapter-body li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success);
+    font-weight: bold;
+    background: rgba(76, 201, 240, 0.1);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+/* Modern Concept Cards */
+.concept-card {
+    border-left: 4px solid var(--info);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.concept-card h4 {
+    color: var(--info);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.concept-card h4 i {
+    color: var(--primary);
+    font-size: 1.3rem;
+}
+
+/* Enhanced Hint Boxes */
+.hint {
+    background: linear-gradient(135deg, rgba(114, 9, 183, 0.1), rgba(114, 9, 183, 0.05));
+    border: 1px solid rgba(114, 9, 183, 0.2);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-top: 1rem;
+    position: relative;
+    backdrop-filter: blur(10px);
+    border-left: 4px solid var(--arabic);
+}
+
+.hint::before {
+    content: '💡';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--arabic);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* Visualizations */
+.visualization-container {
+    background: var(--surface);
+}
+
+.chart-container {
+    position: relative;
+    height: 350px;
+    margin: 2rem 0;
+}
+
+/* Interactive Questions */
+#interactive-questions {
+    background: linear-gradient(135deg, var(--light) 0%, #f0f4f8 100%);
+}
+
+.quiz-container {
+    background: var(--surface);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.question {
+    margin-bottom: 2.5rem;
+}
+
+.question h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.options {
+    display: grid;
+    gap: 1rem;
+}
+
+.option {
+    padding: 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+}
+
+.option::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.option:hover::before {
+    transform: scaleY(1);
+}
+
+.option:hover {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    transform: translateX(8px);
+}
+
+.option.selected {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(67, 97, 238, 0.05));
+    transform: translateX(8px);
+}
+
+.option.selected::before {
+    transform: scaleY(1);
+}
+
+.option.correct {
+    border-color: var(--success);
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(76, 201, 240, 0.05));
+}
+
+.option.incorrect {
+    border-color: var(--danger);
+    background: linear-gradient(135deg, rgba(247, 37, 133, 0.1), rgba(247, 37, 133, 0.05));
+}
+
+.feedback {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+    display: none;
+    animation: slideIn 0.3s ease-out;
+}
+
+.feedback.correct {
+    background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(76, 201, 240, 0.05));
+    border: 1px solid var(--success);
+    color: #0a9396;
+    display: block;
+}
+
+.feedback.incorrect {
+    background: linear-gradient(135deg, rgba(247, 37, 133, 0.1), rgba(247, 37, 133, 0.05));
+    border: 1px solid var(--danger);
+    color: #ae2012;
+    display: block;
+}
+
+.quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    gap: 1rem;
+}
+
+.quiz-progress {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-bar {
+    height: 8px;
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    border-radius: 10px;
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Advanced Concepts Section */
+#advanced-concepts {
+    background: linear-gradient(135deg, var(--light) 0%, #f0f4f8 100%);
+}
+
+.subsection-title {
+    color: var(--primary);
+    margin: 4rem 0 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    position: relative;
+}
+
+.subsection-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+}
+
+.concept-detail-section {
+    margin-bottom: 5rem;
+}
+
+.concept-card.detailed {
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-left: 6px solid var(--primary);
+}
+
+.concept-card.detailed h4 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 700;
+}
+
+.characteristics, .example {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(67, 97, 238, 0.02));
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary);
+}
+
+.characteristics h5, .example h5 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.characteristics ul, .example ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.characteristics li, .example li {
+    margin-bottom: 0.8rem;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.characteristics li::before, .example li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Modern Code Examples */
+.code-example {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+    overflow-x: auto;
+    white-space: pre;
+    border: 1px solid #333;
+    position: relative;
+    box-shadow: var(--shadow-md);
+}
+
+.code-example::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* ER Model Components */
+.er-explanation {
+    background: var(--surface);
+    padding: 2.5rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+}
+
+.er-concept {
+    margin-bottom: 2.5rem;
+}
+
+.er-components {
+    margin: 2.5rem 0;
+}
+
+.component-card {
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(67, 97, 238, 0.02));
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--info);
+}
+
+.component-card h5 {
+    color: var(--info);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+.types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.type {
+    padding: 1.5rem;
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.type:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.type strong {
+    color: var(--primary);
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.example-ar {
+    font-style: italic;
+    color: var(--arabic);
+    margin-top: 0.8rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(114, 9, 183, 0.1), rgba(114, 9, 183, 0.05));
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--arabic);
+}
+
+/* Relationship Types */
+.relationship-types {
+    margin-top: 2rem;
+}
+
+.relationship-types h6 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.relationship-type {
+    margin-bottom: 2rem;
+}
+
+.rel-card {
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.rel-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.rel-card h6 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.visual-rep {
+    background: linear-gradient(135deg, var(--light), #f0f4f8);
+    padding: 1.5rem;
+    text-align: center;
+    font-family: 'Fira Code', monospace;
+    margin-top: 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    color: var(--dark);
+    border: 1px solid var(--border);
+}
+
+/* ER Diagram Example */
+.er-example {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(72, 149, 239, 0.1), rgba(72, 149, 239, 0.05));
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(72, 149, 239, 0.2);
+}
+
+.er-example h4 {
+    color: var(--info);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.er-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.entity {
+    background: var(--surface);
+    padding: 2rem 1.5rem;
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    min-width: 180px;
+    box-shadow: var(--shadow-md);
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.entity:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.relationship {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+}
+
+/* Constraints Grid */
+.constraints-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+.constraint-card {
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--warning);
+    transition: all 0.3s ease;
+}
+
+.constraint-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.constraint-card h4 {
+    color: var(--warning);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, var(--dark), #1a1a1a);
+    color: white;
+    padding: 4rem 0 2rem;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+    font-weight: 600;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background: var(--accent);
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+}
+
+.footer-section p, .footer-section a {
+    color: #adb5bd;
+    margin-bottom: 0.8rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    line-height: 1.6;
+}
+
+.footer-section a:hover {
+    color: white;
+    padding-left: 8px;
+    transform: translateX(5px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #495057;
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 960px;
+        padding: 0 1.25rem;
+    }
+    
+    .chapters-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .concept-cards {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .hero {
+        padding: 4rem 0;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    .chapters-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .concept-cards {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .visualization-container {
+        padding: 1.5rem;
+    }
+    
+    .chart-container {
+        height: 300px;
+    }
+    
+    .quiz-container {
+        padding: 1.5rem;
+    }
+    
+    .quiz-nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .quiz-nav .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Advanced Concepts Mobile */
+    .concept-card.detailed {
+        padding: 1.5rem;
+    }
+    
+    .component-card {
+        padding: 1.5rem;
+    }
+    
+    .rel-card {
+        padding: 1.5rem;
+    }
+    
+    .types {
+        grid-template-columns: 1fr;
+    }
+    
+    .constraints-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .er-diagram {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    nav ul {
+        gap: 0.75rem;
+    }
+    
+    nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .btn {
+        padding: 0.875rem 2rem;
+        font-size: 0.9rem;
+    }
+    
+    .chapter-card,
+    .concept-card,
+    .visualization-container,
+    .quiz-container {
+        padding: 1.25rem;
+    }
+    
+    .chapter-header {
+        padding: 1.5rem;
+        margin: -1.25rem -1.25rem 1.25rem -1.25rem;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --surface: #1a1a1a;
+        --text-primary: #e2e8f0;
+        --text-secondary: #a0aec0;
+        --border: #2d3748;
+        --light: #2d3748;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        color: var(--text-primary);
+    }
+    
+    .concept-card,
+    .chapter-card,
+    .visualization-container,
+    .quiz-container,
+    .component-card,
+    .constraint-card,
+    .rel-card {
+        background: var(--surface);
+        border-color: var(--border);
+    }
+    
+    .concept-card {
+        background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    }
+    
+    .option {
+        background: var(--surface);
+        border-color: var(--border);
+    }
+    
+    .code-example {
+        background: #0d1117;
+        border-color: #30363d;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .header,
+    .hero,
+    footer,
+    .btn,
+    .quiz-nav,
+    .hint::before {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    section {
+        padding: 1rem 0;
+        page-break-inside: avoid;
+    }
+    
+    .concept-card,
+    .chapter-card {
+        border: 1px solid #ccc;
+        box-shadow: none;
+        margin-bottom: 1rem;
+        break-inside: avoid;
+    }
+    
+    .chapter-header {
+        background: #f0f0f0 !important;
+        color: black !important;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus Styles */
+.btn:focus,
+.option:focus,
+nav a:focus,
+.code-example:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Loading Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chapter-card,
+.concept-card,
+.visualization-container,
+.component-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Staggered Animation */
+.chapters-grid .chapter-card:nth-child(odd) {
+    animation-delay: 0.1s;
+}
+
+.chapters-grid .chapter-card:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+.concept-cards .concept-card:nth-child(odd) {
+    animation-delay: 0.15s;
+}
+
+.concept-cards .concept-card:nth-child(even) {
+    animation-delay: 0.25s;
+}
+</style>
 </head>
 <body>
     <!-- Header -->
@@ -453,6 +1325,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#advanced-concepts">advanced-concepts</a></li>
                     <li><a href="#concepts">Key Concepts</a></li>
                     <li><a href="#interactive-questions">Quiz</a></li>
                 </ul>
@@ -638,6 +1511,272 @@
             </div>
         </div>
     </section>
+    <!-- Advanced Database Concepts Section -->
+<section id="advanced-concepts">
+    <div class="container">
+        <div class="section-title">
+            <h2>مفاهيم قواعد البيانات المتقدمة</h2>
+            <p>شرح مفصل للمفاهيم الأساسية والعملية في تصميم قواعد البيانات</p>
+        </div>
+
+        <!-- Keys Section -->
+        <div class="concept-detail-section">
+            <h3 class="subsection-title">أنواع المفاتيح في قواعد البيانات</h3>
+            
+            <div class="concept-cards">
+                <div class="concept-card detailed">
+                    <h4><i class="fas fa-key"></i> المفتاح الأساسي (Primary Key)</h4>
+                    <p>المفتاح الأساسي هو حقل أو مجموعة حقول التي تحدد بشكل فريد كل سجل في الجدول.</p>
+                    <div class="characteristics">
+                        <h5>خصائص المفتاح الأساسي:</h5>
+                        <ul>
+                            <li>يجب أن يكون فريداً (لا توجد قيم مكررة)</li>
+                            <li>لا يمكن أن يكون NULL (قيمة فارغة)</li>
+                            <li>يجب أن يكون ثابتاً (لا يتغير مع الوقت)</li>
+                            <li>يجب أن يكون بسيطاً قدر الإمكان</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <h5>مثال عملي:</h5>
+                        <p>في جدول الطلاب، حقل <strong>رقم الطالب</strong> يمكن أن يكون مفتاحاً أساسياً</p>
+                        <div class="code-example">
+                            CREATE TABLE Students (
+                                student_id INT PRIMARY KEY,
+                                name VARCHAR(100),
+                                email VARCHAR(100)
+                            );
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-card detailed">
+                    <h4><i class="fas fa-key"></i> المفتاح الخارجي (Foreign Key)</h4>
+                    <p>المفتاح الخارجي هو حقل في جدول يشير إلى المفتاح الأساسي في جدول آخر، مما ينشئ علاقة بين الجدولين.</p>
+                    <div class="characteristics">
+                        <h5>خصائص المفتاح الخارجي:</h5>
+                        <ul>
+                            <li>يجب أن يتطابق مع المفتاح الأساسي في الجدول المرجعي</li>
+                            <li>يمكن أن يكون NULL إذا كانت العلاقة اختيارية</li>
+                            <li>يساعد في الحفاظ على تكامل البيانات المرجعية</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <h5>مثال عملي:</h5>
+                        <p>في جدول التسجيلات، حقل <strong>student_id</strong> يشير إلى المفتاح الأساسي في جدول الطلاب</p>
+                        <div class="code-example">
+                            CREATE TABLE Enrollments (
+                                enrollment_id INT PRIMARY KEY,
+                                student_id INT,
+                                course_id INT,
+                                FOREIGN KEY (student_id) REFERENCES Students(student_id),
+                                FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+                            );
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-card detailed">
+                    <h4><i class="fas fa-key"></i> المفتاح المرشح (Candidate Key)</h4>
+                    <p>المفتاح المرشح هو أي حقل أو مجموعة حقول يمكن أن تعمل كمفتاح أساسي للجدول.</p>
+                    <div class="characteristics">
+                        <h5>خصائص المفاتيح المرشحة:</h5>
+                        <ul>
+                            <li>يجب أن يكون فريداً</li>
+                            <li>يجب أن يكون غير قابل للتجزئة (لا يمكن إزالة أي حقل منه)</li>
+                            <li>يمكن أن يكون هناك أكثر من مفتاح مرشح في الجدول</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <h5>مثال عملي:</h5>
+                        <p>في جدول الطلاب، كلاً من <strong>رقم الطالب</strong> و <strong>البريد الإلكتروني</strong> يمكن أن يكونا مفاتيح مرشحة</p>
+                    </div>
+                </div>
+
+                <div class="concept-card detailed">
+                    <h4><i class="fas fa-key"></i> المفتاح المركب (Composite Key)</h4>
+                    <p>المفتاح المركب يتكون من حقلين أو أكثر يستخدمان معاً كمفتاح أساسي.</p>
+                    <div class="characteristics">
+                        <h5>متى نستخدم المفتاح المركب:</h5>
+                        <ul>
+                            <li>عندما لا يوجد حقل واحد يمكنه تحديد السجل بشكل فريد</li>
+                            <li>في جداول العلاقات بين الكيانات</li>
+                            <li>في الجداول التي تمثل علاقات many-to-many</li>
+                        </ul>
+                    </div>
+                    <div class="example">
+                        <h5>مثال عملي:</h5>
+                        <p>في جدول تسجيلات الطلاب في المواد، يمكن استخدام <strong>student_id</strong> و <strong>course_id</strong> معاً كمفتاح مركب</p>
+                        <div class="code-example">
+                            CREATE TABLE StudentCourses (
+                                student_id INT,
+                                course_id INT,
+                                enrollment_date DATE,
+                                PRIMARY KEY (student_id, course_id),
+                                FOREIGN KEY (student_id) REFERENCES Students(student_id),
+                                FOREIGN KEY (course_id) REFERENCES Courses(course_id)
+                            );
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ER Model Section -->
+        <div class="concept-detail-section">
+            <h3 class="subsection-title">نموذج العلاقات بين الكيانات (ER Model)</h3>
+            
+            <div class="er-explanation">
+                <div class="er-concept">
+                    <h4>ما هو نموذج العلاقات بين الكيانات (ER Model)؟</h4>
+                    <p>نموذج العلاقات بين الكيانات هو نموذج مفاهيمي عالي المستوى يستخدم لتصميم قواعد البيانات. فهو يصف البيانات كمجموعة من الكيانات والعلاقات بينها.</p>
+                </div>
+
+                <div class="er-components">
+                    <h4>مكونات نموذج ER:</h4>
+                    
+                    <div class="component-card">
+                        <h5><i class="fas fa-cube"></i> الكيانات (Entities)</h5>
+                        <p>الكيانات هي الأشياء أو المفاهيم في العالم الحقيقي التي نريد تخزين بيانات عنها.</p>
+                        <div class="types">
+                            <div class="type">
+                                <strong>الكيانات القوية (Strong Entities):</strong>
+                                <p>كيانات يمكنها الوجود بشكل مستقل ولها مفتاح أساسي خاص بها.</p>
+                                <p class="example-ar">مثال: الطالب، المادة الدراسية</p>
+                            </div>
+                            <div class="type">
+                                <strong>الكيانات الضعيفة (Weak Entities):</strong>
+                                <p>كيانات تعتمد على كيانات أخرى لوجودها ولا تملك مفتاح أساسي خاص بها.</p>
+                                <p class="example-ar">مثال: العناوين (تعتمد على الطالب)، الدرجات (تعتمد على التسجيل)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="component-card">
+                        <h5><i class="fas fa-tag"></i> السمات (Attributes)</h5>
+                        <p>السمات هي الخصائص أو الصفات التي تصف الكيان.</p>
+                        <div class="types">
+                            <div class="type">
+                                <strong>السمات البسيطة (Simple Attributes):</strong>
+                                <p>سمات لا يمكن تقسيمها إلى أجزاء أصغر.</p>
+                                <p class="example-ar">مثال: العمر، الرقم الجامعي</p>
+                            </div>
+                            <div class="type">
+                                <strong>السمات المركبة (Composite Attributes):</strong>
+                                <p>سمات يمكن تقسيمها إلى أجزاء أصغر.</p>
+                                <p class="example-ar">مثال: العنوان (يمكن تقسيمه إلى شارع، مدينة، رمز بريدي)</p>
+                            </div>
+                            <div class="type">
+                                <strong>السمات المشتقة (Derived Attributes):</strong>
+                                <p>سمات يمكن حسابها من سمات أخرى.</p>
+                                <p class="example-ar">مثال: العمر (يمكن حسابه من تاريخ الميلاد)</p>
+                            </div>
+                            <div class="type">
+                                <strong>السمات متعددة القيم (Multivalued Attributes):</strong>
+                                <p>سمات يمكن أن تحتوي على أكثر من قيمة.</p>
+                                <p class="example-ar">مثال: أرقام الهواتف، المهارات</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="component-card">
+                        <h5><i class="fas fa-link"></i> العلاقات (Relationships)</h5>
+                        <p>العلاقات هي الروابط بين كائنين أو أكثر.</p>
+                        
+                        <div class="relationship-types">
+                            <h6>أنواع العلاقات من حيث العددية (Cardinality):</h6>
+                            
+                            <div class="relationship-type">
+                                <div class="rel-card">
+                                    <h6>علاقة واحد لواحد (1:1)</h6>
+                                    <p>كل كيان من النوع A يرتبط بكيان واحد فقط من النوع B، والعكس صحيح.</p>
+                                    <p class="example-ar">مثال: موظف ↔ مكتب (كل موظف له مكتب واحد، وكل مكتب لموظف واحد)</p>
+                                    <div class="visual-rep">
+                                        [الموظف] —— (1:1) —— [المكتب]
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relationship-type">
+                                <div class="rel-card">
+                                    <h6>علاقة واحد لكثير (1:M)</h6>
+                                    <p>كيان من النوع A يمكن أن يرتبط بعدة كيانات من النوع B، ولكن كل كيان من النوع B يرتبط بكيان واحد فقط من النوع A.</p>
+                                    <p class="example-ar">مثال: قسم ↔ موظفين (القسم الواحد به عدة موظفين، ولكن كل موظف ينتمي لقسم واحد)</p>
+                                    <div class="visual-rep">
+                                        [القسم] —— (1:M) —— [الموظفين]
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relationship-type">
+                                <div class="rel-card">
+                                    <h6>علاقة كثير لكثير (M:N)</h6>
+                                    <p>كيان من النوع A يمكن أن يرتبط بعدة كيانات من النوع B، والعكس صحيح.</p>
+                                    <p class="example-ar">مثال: طلاب ↔ مواد (الطالب يسجل في عدة مواد، والمادة بها عدة طلاب)</p>
+                                    <div class="visual-rep">
+                                        [الطلاب] —— (M:N) —— [المواد]
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="er-example">
+                    <h4>مثال تطبيقي: نظام الجامعة</h4>
+                    <div class="er-diagram">
+                        <div class="entity">[الطالب]<br/>student_id (PK)<br/>name<br/>email</div>
+                        <div class="relationship">يسجل في<br/>(M:N)</div>
+                        <div class="entity">[المادة]<br/>course_id (PK)<br/>title<br/>credits</div>
+                    </div>
+                    <div class="er-diagram">
+                        <div class="entity">[القسم]<br/>dept_id (PK)<br/>dept_name</div>
+                        <div class="relationship">يشرف على<br/>(1:M)</div>
+                        <div class="entity">[الموظف]<br/>emp_id (PK)<br/>name<br/>position</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Constraints Section -->
+        <div class="concept-detail-section">
+            <h3 class="subsection-title">قيود تكامل البيانات (Data Integrity Constraints)</h3>
+            
+            <div class="constraints-grid">
+                <div class="constraint-card">
+                    <h4><i class="fas fa-shield-alt"></i> قيد تكامل الكيان (Entity Integrity)</h4>
+                    <p>يضمن أن المفتاح الأساسي لا يمكن أن يكون NULL ويجب أن يكون فريداً.</p>
+                    <div class="example-ar">
+                        <strong>مثال:</strong> في جدول الطلاب، لا يمكن أن يكون رقم الطالب فارغاً أو مكرراً
+                    </div>
+                </div>
+
+                <div class="constraint-card">
+                    <h4><i class="fas fa-link"></i> قيد التكامل المرجعي (Referential Integrity)</h4>
+                    <p>يضمن أن المفتاح الخارجي يجب أن يشير إلى مفتاح أساسي موجود في الجدول المرجعي أو يكون NULL.</p>
+                    <div class="example-ar">
+                        <strong>مثال:</strong> في جدول التسجيلات، لا يمكن أن يكون student_id يشير إلى طالب غير موجود
+                    </div>
+                </div>
+
+                <div class="constraint-card">
+                    <h4><i class="fas fa-check-circle"></i> قيد النطاق (Domain Constraint)</h4>
+                    <p>يضمن أن قيم الحقول تكون ضمن النطاق المسموح به.</p>
+                    <div class="example-ar">
+                        <strong>مثال:</strong> العمر يجب أن يكون بين 18 و 65، الجنس يجب أن يكون 'ذكر' أو 'أنثى'
+                    </div>
+                </div>
+
+                <div class="constraint-card">
+                    <h4><i class="fas fa-user-check"></i> قيد المستخدم (User-Defined Constraint)</h4>
+                    <p>قيود إضافية يحددها المستخدم حسب متطلبات التطبيق.</p>
+                    <div class="example-ar">
+                        <strong>مثال:</strong> راتب المدير يجب أن يكون أكبر من راتب الموظفين، تاريخ النهاية يجب أن يكون بعد تاريخ البداية
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Visualizations Section -->
     <section id="visualizations">
@@ -696,6 +1835,7 @@
                     <h3>Quick Links</h3>
                     <a href="#home">Home</a>
                     <a href="#chapters">Chapters</a>
+                    <a href="#advanced-concepts">advanced-concepts</a>
                     <a href="#concepts">Key Concepts</a>
                     <a href="#interactive-questions">Interactive Quiz</a>
                 </div>
