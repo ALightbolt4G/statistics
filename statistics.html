@@ -4212,7 +4212,7 @@ function QuizApp() {
         setQuizStarted(true);
         setCurrentQuestionIndex(0);
         setScore(0);
-        setTimeLeft(30);
+        setTimeLeft(120);
         setQuizFinished(false);
         setQuizStats({
             correct: 0,
@@ -4228,7 +4228,7 @@ function QuizApp() {
             clearInterval(timerRef.current);
         }
         
-        setTimeLeft(30);
+        setTimeLeft(120);
         
         timerRef.current = setInterval(() => {
             setTimeLeft(prev => {
@@ -4408,7 +4408,7 @@ function QuizApp() {
                 <p>اختبر معرفتك بالقوانين الرياضية في الإحصاء والاحتمالات</p>
                 <div style={{margin: '20px 0'}}>
                     <p><strong>عدد الأسئلة:</strong> {questions.length}</p>
-                    <p><strong>الوقت لكل سؤال:</strong> 30 ثانية</p>
+                    <p><strong>الوقت لكل سؤال:</strong> 120 ثانية</p>
                     <p><strong>التغطية:</strong> جميع الفصول والمحاضرات</p>
                 </div>
                 <button onClick={startQuiz} className="quiz-btn" style={{background: '#667eea', color: 'white', padding: '15px 30px', fontSize: '1.1rem'}}>
