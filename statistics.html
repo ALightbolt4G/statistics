@@ -8,6 +8,27 @@
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.10.1/mathquill.min.js"></script>
+<!-- JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false},
+      {left: '\\(', right: '\\)', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ],
+    throwOnError: false
+  });
+});
+</script>
     <style>
         * {
             box-sizing: border-box;
@@ -405,6 +426,53 @@ tr:hover {
     font-family: "Cambria Math", "Times New Roman", serif;
     direction: ltr;
     text-align: center;
+}
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+  color: #666;
+}
+
+.progress-container {
+  margin: 15px 0;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 15px;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.explanation {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #e8f5e8;
+  border-radius: 8px;
+  border-right: 4px solid #4CAF50;
+}
+
+.law-suggestion {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #e3f2fd;
+  border-radius: 8px;
+  border-right: 4px solid #2196F3;
+}
+
+.law-suggestion h4 {
+  margin-top: 0;
+  color: #1976D2;
 }
     </style>
 </head>
@@ -1046,6 +1114,255 @@ tr:hover {
             </table>
         </div>
     </div>
+    <!-- قسم التوزيعات المتقطعة الأساسية (ناقص) -->
+<div class="section">
+    <div class="section-header">
+        <i class="fas fa-dice-one"></i>
+        <span>التوزيعات المتقطعة الأساسية (إضافة للمحاضرة 5-7)</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">التوزيع</th>
+                    <th width="20%">الرمز</th>
+                    <th width="30%">دالة الكتلة الاحتمالية</th>
+                    <th width="25%">المتوسط والتباين</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>توزيع برنولي (Bernoulli)</td>
+                    <td class="symbol">X ~ Bern(p)</td>
+                    <td class="math">P(X=1)=p, P(X=0)=1-p</td>
+                    <td class="math">E[X]=p, Var(X)=p(1-p)</td>
+                </tr>
+                <tr>
+                    <td>توزيع ذو الحدين (Binomial)</td>
+                    <td class="symbol">X ~ Bin(n,p)</td>
+                    <td class="math">P(X=k)=C(n,k)pᵏ(1-p)ⁿ⁻ᵏ</td>
+                    <td class="math">E[X]=np, Var(X)=np(1-p)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- قسم قواعد الجمع والضرب (ناقص) -->
+<div class="section">
+    <div class="section-header">
+        <i class="fas fa-calculator"></i>
+        <span>قواعد الجمع والضرب في الاحتمالات (إضافة للمحاضرة 4)</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">القاعدة</th>
+                    <th width="40%">الصيغة</th>
+                    <th width="30%">الشرط</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>قاعدة الضرب العامة</td>
+                    <td class="math">P(A ∩ B) = P(A|B)P(B) = P(B|A)P(A)</td>
+                    <td>لا يوجد شرط</td>
+                </tr>
+                <tr>
+                    <td>قاعدة الضرب للأحداث المستقلة</td>
+                    <td class="math">P(A ∩ B) = P(A)P(B)</td>
+                    <td>إذا كانت A و B مستقلين</td>
+                </tr>
+                <tr>
+                    <td>قاعدة الجمع للأحداث المنفية</td>
+                    <td class="math">P(A ∪ B) = P(A) + P(B)</td>
+                    <td>إذا كانت A و B متنافيين</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- قسم مبادئ كولموغوروف (ناقص) -->
+<div class="section">
+    <div class="section-header">
+        <i class="fas fa-list-ol"></i>
+        <span>بديهيات كولموغوروف (إضافة للمحاضرة 3)</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="20%">البديهية</th>
+                    <th width="80%">الصيغة والشرح</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>البديهية الأولى</td>
+                    <td>احتمال أي حدث A هو عدد غير سالب: P(A) ≥ 0</td>
+                </tr>
+                <tr>
+                    <td>البديهية الثانية</td>
+                    <td>احتمال الفضاء العيني S يساوي 1: P(S) = 1</td>
+                </tr>
+                <tr>
+                    <td>البديهية الثالثة</td>
+                    <td>إذا كانت A₁, A₂, ... أحداثاً متنافية، فإن: P(∪Aᵢ) = ΣP(Aᵢ)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- قسم معامل الاختلاف (ناقص) -->
+<div class="section">
+    <div class="section-header">
+        <i class="fas fa-percentage"></i>
+        <span>معامل الاختلاف (إضافة للمحاضرة 6)</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="40%">المفهوم</th>
+                    <th width="60%">التعريف والتطبيق</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>معامل الاختلاف (CV)</td>
+                    <td class="math">CV = \frac{\sigma}{|\mu|} \times 100\% \quad (\text{لتجنب القيم السالبة})</td>
+                </tr>
+                <tr>
+                    <td>التفسير</td>
+                    <td>مقياس نسبي للتشتت، يستخدم لمقارنة التباين بين مجموعات بمتوسطات مختلفة</td>
+                </tr>
+                <tr>
+                    <td>قاعدة عامة</td>
+                    <td>CV ≤ 33% → تشتت منخفض، CV > 33% → تشتت مرتفع</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- قسم التجارب البرنولية (ناقص) -->
+<div class="section">
+    <div class="section-header">
+        <i class="fas fa-vials"></i>
+        <span>التجارب البرنولية (إضافة للمحاضرة 5)</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="40%">الشرط</th>
+                    <th width="60%">التوضيح</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>عدد محدد من المحاولات</td>
+                    <td>عدد التجارب n محدد مسبقاً</td>
+                </tr>
+                <tr>
+                    <td>ناتجان فقط</td>
+                    <td>نجاح (احتماله p) أو فشل (احتماله q=1-p)</td>
+                </tr>
+                <tr>
+                    <td>استقلالية التجارب</td>
+                    <td>نتيجة تجربة لا تؤثر على الأخرى</td>
+                </tr>
+                <tr>
+                    <td>ثبات الاحتمال</td>
+                    <td>احتمال النجاح p ثابت في كل التجارب</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- قسم دالة التوزيع التراكمي للمتغيرات المتصلة (ناقص) -->
+<div class="section">
+    <div class="section-header">
+        <i class="fas fa-chart-line"></i>
+        <span>خصائص دالة التوزيع التراكمي (CDF) (إضافة للمحاضرة 8)</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="40%">الخاصية</th>
+                    <th width="60%">الوصف والصيغة</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>دالة غير متناقصة</td>
+                    <td>إذا كانت a ≤ b، فإن F(a) ≤ F(b)</td>
+                </tr>
+                <tr>
+                    <td>حدود الدالة</td>
+                    <td class="math">
+                        \[
+\lim_{x \to -\infty} F(x) = 0, \quad \lim_{x \to \infty} F(x) = 1
+\]
+                    </td>
+                </tr>
+                <tr>
+                    <td>متصل من اليمين</td>
+                    <td>F(x) متصلة من اليمين لكل x</td>
+                </tr>
+                <tr>
+                    <td>الاحتمال في فترة</td>
+                    <td class="math">P(a < X ≤ b) = F(b) - F(a)</td>
+                </tr>
+                <tr>
+                    <td>العلاقة مع PDF</td>
+                    <td class="math">f(x) = \frac{d}{dx} F(x)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- قسم العزوم (ناقص) -->
+<div class="section">
+    <div class="section-header">
+        <i class="fas fa-weight-hanging"></i>
+        <span>العزوم للمتغيرات العشوائية (إضافة للمحاضرة 8)</span>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">نوع العزم</th>
+                    <th width="35%">الصيغة</th>
+                    <th width="35%">التطبيق</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>العزم العادي من الرتبة r</td>
+                    <td class="math">E[X^r]</td>
+                    <td>يصف شكل التوزيع</td>
+                </tr>
+                <tr>
+                    <td>العزم المركزي من الرتبة r</td>
+                    <td class="math">E[(X-\mu)^r]</td>
+                    <td>الرتبة 2: التباين، الرتبة 3: الميل</td>
+                </tr>
+                <tr>
+                    <td>العزم المعياري من الرتبة r</td>
+                    <td class="math">E\left[\left(\frac{X-\mu}{\sigma}\right)^r\right]</td>
+                    <td>مقاييس شكلية معيارية</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
     <!-- قسم الأسئلة التفاعلية -->
     <div class="quiz-section">
@@ -1065,57 +1382,7 @@ tr:hover {
 
     <!-- جميع ملفات JavaScript في مكان واحد -->
     <script type="text/babel">
-        // keywords.js - محدث ومصحح
-        const lawKeywords = {
-          "المتوسط الحسابي": ["mean", "average", "arithmetic mean"],
-          "الوسيط": ["median", "middle value"],
-          "التباين": ["variance"],
-          "الانحراف المعياري": ["standard deviation", "std", "deviation"],
-          "معامل الاختلاف": ["coefficient of variation", "cv"],
-          "المدى الربيعي": ["interquartile range", "iqr"],
-          "الاحتمال الشرطي": ["conditional probability", "p(a|b)", "given that"],
-          "قاعدة الجمع": ["addition rule", "p(a ∪ b)", "union"],
-          "الأحداث المنفية": ["mutually exclusive", "cannot happen", "cannot both happen"],
-          "الأحداث المستقلة": ["independent", "does not affect"],
-          "قانون الاحتمال الكلي": ["law of total probability", "total probability"],
-          "نظرية بايز": ["bayes", "bayes' theorem"],
-          "التوقع الرياضي": ["expected value", "e[x]"],
-          "التوزيع ذو الحدين": ["binomial", "bin(n,p)"],
-          "التوزيع الطبيعي": ["normal distribution", "normal", "gaussian"],
-          "التوزيع الأسي": ["exponential distribution", "exponential"],
-          "التوزيع بواسون": ["poisson distribution", "poisson"],
-          "الاحتمال الكلاسيكي": ["classical probability", "equally likely"],
-          "الاحتمال الشخصي": ["subjective probability", "personal probability"],
-          "الاحتمال التجريبي": ["empirical probability", "experimental probability"],
-          "التباين المشترك": ["covariance", "cov"],
-          "معامل الارتباط": ["correlation coefficient", "correlation"],
-          "الانحدار الخطي": ["linear regression", "regression"],
-          "فترة الثقة": ["confidence interval", "confidence"],
-          "اختبار الفرضيات": ["hypothesis testing", "hypothesis test"],
-          "القيمة الاحتمالية": ["p-value", "p value"]
-        };
-
-        // دالة محسنة للبحث عن القوانين المناسبة
-        function findRelevantLaws(questionText) {
-          const relevantLaws = [];
-          const text = questionText.toLowerCase();
-          
-          for (const [law, keywords] of Object.entries(lawKeywords)) {
-            for (const keyword of keywords) {
-              // البحث عن الكلمة المفتاحية كاملة
-              if (text.includes(keyword.toLowerCase())) {
-                if (!relevantLaws.includes(law)) {
-                  relevantLaws.push(law);
-                }
-                break;
-              }
-            }
-          }
-          
-          return relevantLaws;
-        }
-
-        // questions.js - أكثر من 100 سؤال يغطي جميع القوانين
+// React Quiz Component
 const questions = [
   {
     id: 1,
@@ -3146,293 +3413,1288 @@ const questions = [
     explanation: "Using regression: Expected Z-score for Y = r × Z-score for X = 0.7 × 2 = 1.4 standard deviations above mean",
     difficulty: "medium",
     category: "Applied Statistics"
+  },
+  {
+    id: 146,
+    text: "If the average number of calls received by a service center is 2 per minute, what is the probability of receiving exactly 3 calls in a specific minute using Poisson distribution?",
+    options: [
+      "0.1205",
+      "0.1804",
+      "0.2707",
+      "0.0902"
+    ],
+    correctAnswer: 1,
+    explanation: "Using Poisson formula P(X=3) = (e^-2 * 2^3) / 3!. Calculation: (0.1353 * 8) / 6 = 0.1804.",
+    difficulty: "medium",
+    category: "Poisson Distribution"
+  },
+  {
+    id: 147,
+    text: "In a Poisson distribution, if the variance is 4, what is the standard deviation?",
+    options: [
+      "4",
+      "16",
+      "2",
+      "1"
+    ],
+    correctAnswer: 2,
+    explanation: "In Poisson distribution, Mean = Variance = λ. The standard deviation is the square root of variance: √4 = 2.",
+    difficulty: "easy",
+    category: "Poisson Distribution"
+  },
+  {
+    id: 148,
+    text: "A random variable X is uniformly distributed between 2 and 5 [U(2, 5)]. What is the height of the probability density function f(x)?",
+    options: [
+      "1/3",
+      "1/5",
+      "1/2",
+      "3"
+    ],
+    correctAnswer: 0,
+    explanation: "For a uniform distribution U(a, b), f(x) = 1/(b-a). Here, 1/(5-2) = 1/3.",
+    difficulty: "easy",
+    category: "Uniform Distribution"
+  },
+  {
+    id: 149,
+    text: "If X follows a Uniform distribution U(1, 9), what is the expected value E[X]?",
+    options: [
+      "4",
+      "5",
+      "4.5",
+      "8"
+    ],
+    correctAnswer: 1,
+    explanation: "E[X] = (a + b) / 2. For U(1, 9), (1 + 9) / 2 = 5.",
+    difficulty: "easy",
+    category: "Uniform Distribution"
+  },
+  {
+    id: 150,
+    text: "The time between arrivals at a bank follows an exponential distribution with a mean of 10 minutes. What is the value of the rate parameter (λ)?",
+    options: [
+      "10",
+      "1",
+      "0.1",
+      "0.5"
+    ],
+    correctAnswer: 2,
+    explanation: "In an exponential distribution, the mean is 1/λ. Therefore, λ = 1/mean = 1/10 = 0.1.",
+    difficulty: "medium",
+    category: "Exponential Distribution"
+  },
+  {
+    id: 151,
+    text: "Which property of the Exponential distribution describes the probability that the remaining life of a component does not depend on how long it has already been running?",
+    options: [
+      "Linearity",
+      "Memoryless property",
+      "Symmetry",
+      "Continuity"
+    ],
+    correctAnswer: 1,
+    explanation: "The memoryless property states that P(X > s + t | X > s) = P(X > t).",
+    difficulty: "medium",
+    category: "Exponential Distribution"
+  },
+  {
+    id: 152,
+    text: "To convert a Normal distribution variable X ~ N(μ, σ²) to a Standard Normal variable Z, which formula is used?",
+    options: [
+      "Z = (X + μ) / σ",
+      "Z = (X - μ) / σ²",
+      "Z = (X - μ) / σ",
+      "Z = (μ - X) / σ"
+    ],
+    correctAnswer: 2,
+    explanation: "Standardization is achieved by subtracting the mean and dividing by the standard deviation.",
+    difficulty: "easy",
+    category: "Normal Distribution"
+  },
+  {
+    id: 153,
+    text: "According to the Empirical Rule, what percentage of data falls within two standard deviations (μ ± 2σ) of the mean in a normal distribution?",
+    options: [
+      "68%",
+      "99.7%",
+      "95%",
+      "50%"
+    ],
+    correctAnswer: 2,
+    explanation: "The 68-95-99.7 rule states that approximately 95% of observations fall within 2 standard deviations.",
+    difficulty: "easy",
+    category: "Normal Distribution"
+  },
+  {
+    "id": 154,
+    "text": "Given X ~ N(μ=500, σ=100), find the percentage of students with scores between 400 and 600. (Use: P(Z < -1) = 0.1587, P(Z < 1) = 0.8413)",
+    "options": [
+      "34.13%",
+      "68.26%", 
+      "95.44%",
+      "99.74%"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Z₁ = (400-500)/100 = -1 → Area = 0.1587, Z₂ = (600-500)/100 = 1 → Area = 0.8413, Difference = 0.8413 - 0.1587 = 0.6826 = 68.26%",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 155,
+    "text": "For server response time X ~ N(200, 30²), find P(X > 250). (Use: P(Z < 1.67) = 0.9525)",
+    "options": [
+      "0.0475",
+      "0.1587", 
+      "0.4525",
+      "0.9525"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Z = (250-200)/30 = 1.67, P(Z > 1.67) = 1 - 0.9525 = 0.0475",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 156,
+    "text": "Find P(-1.28 < Z < 1.28) for standard normal. (Use: P(Z < 1.28) = 0.8997)",
+    "options": [
+      "0.7994",
+      "0.8997",
+      "0.9500",
+      "0.9900"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(-1.28 < Z < 1.28) = 2 × 0.8997 - 1 = 1.7994 - 1 = 0.7994",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 157,
+    "text": "For X ~ N(50, 25), find P(X < 45). (Use: P(Z < -1) = 0.1587)",
+    "options": [
+      "0.0228",
+      "0.1587",
+      "0.3085",
+      "0.5000"
+    ],
+    "correctAnswer": 1,
+    "explanation": "σ = √25 = 5, Z = (45-50)/5 = -1, P(Z < -1) = 0.1587",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 158,
+    "text": "Find z such that P(Z < z) = 0.95. (Use: z = 1.645 for 0.95)",
+    "options": [
+      "1.28",
+      "1.645",
+      "1.96",
+      "2.33"
+    ],
+    "correctAnswer": 1,
+    "explanation": "From z-table, the z-value corresponding to 0.95 area to the left is 1.645",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 159,
+    "text": "For X ~ N(100, 15²), find P(85 < X < 115). (Use: P(Z < -1) = 0.1587, P(Z < 1) = 0.8413)",
+    "options": [
+      "0.3174",
+      "0.6826",
+      "0.9544",
+      "0.9974"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Z₁ = (85-100)/15 = -1, Z₂ = (115-100)/15 = 1, P = 0.8413 - 0.1587 = 0.6826",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 160,
+    "text": "Find P(Z > 2.33). (Use: P(Z < 2.33) = 0.9901)",
+    "options": [
+      "0.0099",
+      "0.0228",
+      "0.0455",
+      "0.0901"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(Z > 2.33) = 1 - 0.9901 = 0.0099",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 161,
+    "text": "For X ~ N(μ=70, σ=8), find P(X > 80). (Use: P(Z < 1.25) = 0.8944)",
+    "options": [
+      "0.1056",
+      "0.1587",
+      "0.2266",
+      "0.3085"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Z = (80-70)/8 = 1.25, P(X > 80) = 1 - 0.8944 = 0.1056",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 162,
+    "text": "Find z such that P(-z < Z < z) = 0.90. (Use: z = 1.645 for 0.90 in middle)",
+    "options": [
+      "1.28",
+      "1.645",
+      "1.96",
+      "2.33"
+    ],
+    "correctAnswer": 1,
+    "explanation": "For 90% in middle, each tail = 0.05, z-value for 0.95 area = 1.645",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 163,
+    "text": "For X ~ N(30, 16), find P(26 < X < 34). (Use: P(Z < -1) = 0.1587, P(Z < 1) = 0.8413)",
+    "options": [
+      "0.4772",
+      "0.6826",
+      "0.8185",
+      "0.9544"
+    ],
+    "correctAnswer": 1,
+    "explanation": "σ = √16 = 4, Z₁ = (26-30)/4 = -1, Z₂ = (34-30)/4 = 1, P = 0.8413 - 0.1587 = 0.6826",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 164,
+    "text": "Find P(0.5 < Z < 1.5). (Use: P(Z < 0.5) = 0.6915, P(Z < 1.5) = 0.9332)",
+    "options": [
+      "0.1498",
+      "0.2417",
+      "0.3238",
+      "0.4082"
+    ],
+    "correctAnswer": 1,
+    "explanation": "P(0.5 < Z < 1.5) = 0.9332 - 0.6915 = 0.2417",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 165,
+    "text": "For X ~ N(μ=100, σ=20), find the 90th percentile. (Use: z = 1.28 for 0.90)",
+    "options": [
+      "112.8",
+      "125.6",
+      "132.0",
+      "145.2"
+    ],
+    "correctAnswer": 1,
+    "explanation": "x = μ + zσ = 100 + 1.28×20 = 100 + 25.6 = 125.6",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 166,
+    "text": "Find P(Z < -2.58). (Use: P(Z < 2.58) = 0.9951)",
+    "options": [
+      "0.0049",
+      "0.0098",
+      "0.0490",
+      "0.0990"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(Z < -2.58) = 1 - 0.9951 = 0.0049",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 167,
+    "text": "For X ~ N(25, 9), find P(X > 30). (Use: P(Z < 1.67) = 0.9525)",
+    "options": [
+      "0.0475",
+      "0.0950",
+      "0.1587",
+      "0.2266"
+    ],
+    "correctAnswer": 0,
+    "explanation": "σ = √9 = 3, Z = (30-25)/3 = 1.67, P = 1 - 0.9525 = 0.0475",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 168,
+    "text": "Find z such that P(Z > z) = 0.10. (Use: z = 1.28 for right tail 0.10)",
+    "options": [
+      "0.84",
+      "1.04",
+      "1.28",
+      "1.645"
+    ],
+    "correctAnswer": 2,
+    "explanation": "P(Z > z) = 0.10 → P(Z < z) = 0.90 → z = 1.28",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 169,
+    "text": "For X ~ N(μ=150, σ=25), find P(125 < X < 175). (Use: P(Z < -1) = 0.1587, P(Z < 1) = 0.8413)",
+    "options": [
+      "0.3413",
+      "0.6826",
+      "0.8185",
+      "0.9544"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Z₁ = (125-150)/25 = -1, Z₂ = (175-150)/25 = 1, P = 0.8413 - 0.1587 = 0.6826",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 170,
+    "text": "Find P(-1.96 < Z < 1.96). (Use: P(Z < 1.96) = 0.9750)",
+    "options": [
+      "0.9000",
+      "0.9500",
+      "0.9750",
+      "0.9900"
+    ],
+    "correctAnswer": 1,
+    "explanation": "P(-1.96 < Z < 1.96) = 2×0.9750 - 1 = 1.95 - 1 = 0.95",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 171,
+    "text": "For X ~ N(μ=80, σ=12), find the 95th percentile. (Use: z = 1.645 for 0.95)",
+    "options": [
+      "94.74",
+      "99.74",
+      "101.64",
+      "107.48"
+    ],
+    "correctAnswer": 1,
+    "explanation": "x = μ + zσ = 80 + 1.645×12 = 80 + 19.74 = 99.74",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 172,
+    "text": "Find P(1 < Z < 2). (Use: P(Z < 1) = 0.8413, P(Z < 2) = 0.9772)",
+    "options": [
+      "0.1359",
+      "0.1577",
+      "0.1824",
+      "0.2031"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(1 < Z < 2) = 0.9772 - 0.8413 = 0.1359",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 173,
+    "text": "For X ~ N(200, 40²), find P(X < 120). (Use: P(Z < -2) = 0.0228)",
+    "options": [
+      "0.0013",
+      "0.0228",
+      "0.1587",
+      "0.3085"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Z = (120-200)/40 = -2, P(Z < -2) = 0.0228",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 174,
+    "text": "Find z such that P(Z < z) = 0.99. (Use: z = 2.33 for 0.99)",
+    "options": [
+      "1.96",
+      "2.05",
+      "2.33",
+      "2.58"
+    ],
+    "correctAnswer": 2,
+    "explanation": "From z-table, the z-value corresponding to 0.99 area to the left is 2.33",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 175,
+    "text": "For X ~ N(μ=60, σ=8), find P(52 < X < 68). (Use: P(Z < -1) = 0.1587, P(Z < 1) = 0.8413)",
+    "options": [
+      "0.4772",
+      "0.6826",
+      "0.8185",
+      "0.9544"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Z₁ = (52-60)/8 = -1, Z₂ = (68-60)/8 = 1, P = 0.8413 - 0.1587 = 0.6826",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 176,
+    "text": "Find P(Z < -1.5). (Use: P(Z < 1.5) = 0.9332)",
+    "options": [
+      "0.0668",
+      "0.1336",
+      "0.2266",
+      "0.3085"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(Z < -1.5) = 1 - 0.9332 = 0.0668",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 177,
+    "text": "For X ~ N(1000, 200²), find P(600 < X < 1400). (Use: P(Z < -2) = 0.0228, P(Z < 2) = 0.9772)",
+    "options": [
+      "0.6826",
+      "0.8185",
+      "0.9544",
+      "0.9974"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Z₁ = (600-1000)/200 = -2, Z₂ = (1400-1000)/200 = 2, P = 0.9772 - 0.0228 = 0.9544",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 178,
+    "text": "Find z such that P(-z < Z < z) = 0.98. (Use: z = 2.33 for 0.98 in middle)",
+    "options": [
+      "1.96",
+      "2.05",
+      "2.33",
+      "2.58"
+    ],
+    "correctAnswer": 2,
+    "explanation": "For 98% in middle, each tail = 0.01, z-value for 0.99 area = 2.33",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+  {
+    "id": 179,
+    "text": "For X ~ N(μ=75, σ=10), find the score that separates top 5%. (Use: z = 1.645 for 0.95)",
+    "options": [
+      "81.45",
+      "86.45",
+      "91.45",
+      "96.45"
+    ],
+    "correctAnswer": 2,
+    "explanation": "x = μ + zσ = 75 + 1.645×10 = 75 + 16.45 = 91.45",
+    "difficulty": "medium",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 180,
+    "text": "Find P(0.75 < Z < 1.25). (Use: P(Z < 0.75) = 0.7734, P(Z < 1.25) = 0.8944)",
+    "options": [
+      "0.1210",
+      "0.1577",
+      "0.1824",
+      "0.2031"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(0.75 < Z < 1.25) = 0.8944 - 0.7734 = 0.1210",
+    "difficulty": "medium",
+    "category": "Z-Table"
+  },
+
+  {
+    "id": 181,
+    "text": "In a factory, product weights ~ N(500g, 25²). Find P(weight differs from mean by > 50g). (Use: P(Z < -2) = 0.0228, P(Z < 2) = 0.9772)",
+    "options": [
+      "0.0228",
+      "0.0456",
+      "0.1587",
+      "0.3174"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Z = 50/25 = 2, P(|Z| > 2) = 2 × 0.0228 = 0.0456",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 182,
+    "text": "Find P(Z > 2.5) + P(Z < -1.5). (Use: P(Z < 2.5) = 0.9938, P(Z < 1.5) = 0.9332)",
+    "options": [
+      "0.0668",
+      "0.0730",
+      "0.0912",
+      "0.1056"
+    ],
+    "correctAnswer": 1,
+    "explanation": "P(Z > 2.5) = 1 - 0.9938 = 0.0062, P(Z < -1.5) = 1 - 0.9332 = 0.0668, Sum = 0.0730",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 183,
+    "text": "SAT scores ~ N(1050, 210²). Top 2% get scholarships. Find minimum score. (Use: z = 2.05 for 0.98)",
+    "options": [
+      "1350",
+      "1380",
+      "1430",
+      "1480"
+    ],
+    "correctAnswer": 3,
+    "explanation": "x = 1050 + 2.05×210 = 1050 + 430.5 = 1480.5 ≈ 1480",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 184,
+    "text": "Find k such that P(-k < Z < k) = 0.8664. (Use: P(Z < 1.5) = 0.9332)",
+    "options": [
+      "1.15",
+      "1.50",
+      "1.75",
+      "2.00"
+    ],
+    "correctAnswer": 1,
+    "explanation": "P(-k < Z < k) = 0.8664 → P(Z < k) = 0.9332 → k = 1.5",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 185,
+    "text": "IQ scores ~ N(100, 15²). Find probability that 4 random people all have IQ > 130. (Use: P(Z > 2) = 0.0228)",
+    "options": [
+      "0.00000027",
+      "0.0000027",
+      "0.000027",
+      "0.00027"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(one > 130) = 0.0228, P(all 4 > 130) = (0.0228)⁴ = 0.00000027",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 186,
+    "text": "Find a and b such that P(a < Z < b) = 0.95 and interval is symmetric. (Use: z = ±1.96 for 0.95)",
+    "options": [
+      "a=-1.64, b=1.64",
+      "a=-1.96, b=1.96",
+      "a=-2.33, b=2.33",
+      "a=-2.58, b=2.58"
+    ],
+    "correctAnswer": 1,
+    "explanation": "For symmetric 95% interval, use z = ±1.96",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 187,
+    "text": "Battery life ~ N(120h, 20²). Warranty covers bottom 10%. Find warranty period. (Use: z = -1.28 for 0.10)",
+    "options": [
+      "94.4h",
+      "100.2h",
+      "106.8h",
+      "112.4h"
+    ],
+    "correctAnswer": 0,
+    "explanation": "x = 120 + (-1.28)×20 = 120 - 25.6 = 94.4 hours",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 188,
+    "text": "Find P(|Z| > 2.33). (Use: P(Z < 2.33) = 0.9901)",
+    "options": [
+      "0.0098",
+      "0.0198",
+      "0.0392",
+      "0.0588"
+    ],
+    "correctAnswer": 1,
+    "explanation": "P(|Z| > 2.33) = 2 × (1 - 0.9901) = 2 × 0.0099 = 0.0198",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 189,
+    "text": "X ~ N(50, 100), Y = 2X + 10. Find P(Y > 130). (Use: P(Z > 1) = 0.1587)",
+    "options": [
+      "0.0228",
+      "0.0668",
+      "0.1587",
+      "0.3085"
+    ],
+    "correctAnswer": 2,
+    "explanation": "μ_Y = 2×50+10=110, σ_Y=2×10=20, Z=(130-110)/20=1, P=0.1587",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 190,
+    "text": "Find z such that P(Z < z) = 0.0082. (Use: z = -2.40 for 0.0082)",
+    "options": [
+      "-2.05",
+      "-2.33",
+      "-2.40",
+      "-2.58"
+    ],
+    "correctAnswer": 2,
+    "explanation": "From z-table, z-value for 0.0082 area to left is approximately -2.40",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 191,
+    "text": "Two independent X,Y ~ N(0,1). Find P(X > 1.96 and Y > 1.96). (Use: P(Z > 1.96) = 0.025)",
+    "options": [
+      "0.000625",
+      "0.0025",
+      "0.025",
+      "0.05"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(X > 1.96) = 0.025, P(Y > 1.96) = 0.025, P(both) = 0.025×0.025 = 0.000625",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 192,
+    "text": "For X ~ N(μ,σ²), P(X < 60) = 0.1587, P(X < 80) = 0.9772. Find μ and σ. (Use: z = -1 for 0.1587, z = 2 for 0.9772)",
+    "options": [
+      "μ=70, σ=10",
+      "μ=75, σ=5",
+      "μ=70, σ=5",
+      "μ=75, σ=10"
+    ],
+    "correctAnswer": 0,
+    "explanation": "(60-μ)/σ = -1, (80-μ)/σ = 2 → Solving: μ=70, σ=10",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 193,
+    "text": "Find P(0.5 < |Z| < 1.5). (Use: P(Z < 0.5) = 0.6915, P(Z < 1.5) = 0.9332)",
+    "options": [
+      "0.2417",
+      "0.3753",
+      "0.4332",
+      "0.4834"
+    ],
+    "correctAnswer": 1,
+    "explanation": "P(0.5 < |Z| < 1.5) = 2 × (0.9332 - 0.6915) = 2 × 0.2417 = 0.4834",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 194,
+    "text": "X ~ N(100,15²). Find smallest n such that P(sample mean > 105) < 0.05. (Use: z = 1.645 for 0.95)",
+    "options": [
+      "25",
+      "49",
+      "64",
+      "81"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1.645 = (105-100)/(15/√n) → √n = (1.645×15)/5 = 4.935 → n = 24.35 → n ≥ 25",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 195,
+    "text": "Find P(Z₁ > 1.5 and Z₂ > 1.5) for independent standard normals. (Use: P(Z > 1.5) = 0.0668)",
+    "options": [
+      "0.00446",
+      "0.00892",
+      "0.0446",
+      "0.0892"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P(both > 1.5) = (0.0668)² = 0.00446",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 196,
+    "text": "For X ~ N(50, 100), find P(40 < X < 65). (Use: P(Z < -1) = 0.1587, P(Z < 1.5) = 0.9332)",
+    "options": [
+      "0.6826",
+      "0.7745",
+      "0.8185",
+      "0.8664"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Z₁ = (40-50)/10 = -1, Z₂ = (65-50)/10 = 1.5, P = 0.9332 - 0.1587 = 0.7745",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 197,
+    "text": "Find z such that P(|Z| < z) = 0.99. (Use: z = 2.58 for 0.99)",
+    "options": [
+      "1.96",
+      "2.33",
+      "2.58",
+      "2.81"
+    ],
+    "correctAnswer": 2,
+    "explanation": "For 99% in middle, each tail = 0.005, z-value for 0.995 area = 2.58",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 198,
+    "text": "X ~ N(μ,σ²). P(X < 10) = 0.0228, P(X > 30) = 0.1587. Find μ. (Use: z = -2 for 0.0228, z = 1 for 0.8413)",
+    "options": [
+      "15",
+      "20",
+      "25",
+      "30"
+    ],
+    "correctAnswer": 1,
+    "explanation": "(10-μ)/σ = -2, (30-μ)/σ = 1 → 10-μ = -2σ, 30-μ = σ → Solving: μ=20",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
+  },
+  {
+    "id": 199,
+    "text": "Find P(Z < -2.33 or Z > 1.96). (Use: P(Z < -2.33) = 0.0099, P(Z > 1.96) = 0.025)",
+    "options": [
+      "0.0349",
+      "0.0456",
+      "0.0588",
+      "0.0674"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P = 0.0099 + 0.025 = 0.0349",
+    "difficulty": "hard",
+    "category": "Z-Table"
+  },
+  {
+    "id": 200,
+    "text": "Two machines produce parts ~ N(100,5²) and N(102,4²). Random part > 108 from which machine more likely? (Use: P(Z > 1.6) = 0.0548, P(Z > 1.5) = 0.0668)",
+    "options": [
+      "Machine 1",
+      "Machine 2",
+      "Equally likely",
+      "Cannot determine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Machine 1: Z=(108-100)/5=1.6, P=0.0548; Machine 2: Z=(108-102)/4=1.5, P=0.0668; Machine 2 has higher probability",
+    "difficulty": "hard",
+    "category": "Normal Distribution"
   }
 ];
-// تقسيم الأسئلة حسب الصعوبة
-const easyQuestions = questions.filter(q => q.difficulty === "easy");
-const mediumQuestions = questions.filter(q => q.difficulty === "medium");
-const hardQuestions = questions.filter(q => q.difficulty === "hard");
-
-// دالة توليد سؤال عشوائي حسب مستوى الصعوبة
-function getRandomQuestion() {
-  // إنشاء رقم عشوائي بين 1 و 5
-  const x = Math.floor(Math.random() * 5) + 1;
-  
-  let selectedQuestions;
-  
-  // تحديد مستوى الصعوبة بناءً على الرقم العشوائي
-  if (x <= 2) {
-    // 1 أو 2 → أسئلة سهلة
-    selectedQuestions = easyQuestions;
-  } else if (x <= 4) {
-    // 3 أو 4 → أسئلة متوسطة
-    selectedQuestions = mediumQuestions;
-  } else {
-    // 5 → أسئلة صعبة
-    selectedQuestions = hardQuestions;
-  }
-  
-  // اختيار سؤال عشوائي من المجموعة المحددة
-  if (selectedQuestions.length > 0) {
-    const randomIndex = Math.floor(Math.random() * selectedQuestions.length);
-    return selectedQuestions[randomIndex];
-  } else {
-    // إذا لم توجد أسئلة في المستوى المحدد، نعود لأي سؤال
-    const allQuestions = [...easyQuestions, ...mediumQuestions, ...hardQuestions];
-    const randomIndex = Math.floor(Math.random() * allQuestions.length);
-    return allQuestions[randomIndex];
-  }
-}
-
-// دالة للحصول على فهرس السؤال في المصفوفة الأصلية
-function getQuestionIndex(question) {
-  return questions.findIndex(q => q.id === question.id);
-}
-
-// app.js
-const { useState, useEffect } = React;
-
 function QuizApp() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [showExplanation, setShowExplanation] = useState(false);
-  const [score, setScore] = useState(0);
-  const [quizCompleted, setQuizCompleted] = useState(false);
-  const [relevantLaws, setRelevantLaws] = useState([]);
-  const [answeredQuestions, setAnsweredQuestions] = useState(new Set());
-  const [questionHistory, setQuestionHistory] = useState([]);
-  const [totalQuestions, setTotalQuestions] = useState(0);
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [currentQuestionAnswered, setCurrentQuestionAnswered] = useState(false);
-
-  // توليد سؤال عشوائي عند بدء التطبيق
-  useEffect(() => {
-    const randomQuestion = getRandomQuestion();
-    const questionIndex = getQuestionIndex(randomQuestion);
-    setCurrentQuestionIndex(questionIndex);
-    setQuestionHistory([questionIndex]);
-    setTotalQuestions(0); // نبدأ من الصفر
-    setCorrectAnswers(0);
-  }, []);
-
-  useEffect(() => {
-    if (questions[currentQuestionIndex]) {
-      const laws = findRelevantLaws(questions[currentQuestionIndex].text);
-      setRelevantLaws(laws);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
+    const [score, setScore] = React.useState(0);
+    const [timeLeft, setTimeLeft] = React.useState(30);
+    const [selectedAnswer, setSelectedAnswer] = React.useState(null);
+    const [answered, setAnswered] = React.useState(false);
+    const [quizStarted, setQuizStarted] = React.useState(false);
+    const [quizFinished, setQuizFinished] = React.useState(false);
+    const [showExplanation, setShowExplanation] = React.useState(false);
+    const [suggestedLaw, setSuggestedLaw] = React.useState('');
+    const [quizStats, setQuizStats] = React.useState({
+        correct: 0,
+        wrong: 0,
+        skipped: 0,
+        totalTime: 0
+    });
+    
+    const timerRef = React.useRef(null);
+    
+    
+    
+    // بدء المسابقة
+    const startQuiz = () => {
+        setQuizStarted(true);
+        setCurrentQuestionIndex(0);
+        setScore(0);
+        setTimeLeft(30);
+        setQuizFinished(false);
+        setQuizStats({
+            correct: 0,
+            wrong: 0,
+            skipped: 0,
+            totalTime: 0
+        });
+    };
+    
+    // بدء المؤقت
+    const startTimer = () => {
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
+        }
+        
+        setTimeLeft(30);
+        
+        timerRef.current = setInterval(() => {
+            setTimeLeft(prev => {
+                if (prev <= 1) {
+                    clearInterval(timerRef.current);
+                    handleTimeOut();
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+    };
+    
+    // انتهاء الوقت
+    const handleTimeOut = () => {
+        if (!answered) {
+            setAnswered(true);
+            setShowExplanation(true);
+            setQuizStats(prev => ({
+                ...prev,
+                skipped: prev.skipped + 1
+            }));
+            // اقتراح قانون بناءً على السؤال
+            suggestRelevantLaw();
+        }
+    };
+    
+    // اختيار الإجابة
+    const selectAnswer = (selectedIndex) => {
+        if (answered || quizFinished) return;
+        
+        setAnswered(true);
+        setSelectedAnswer(selectedIndex);
+        setShowExplanation(true);
+        
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
+        }
+        
+        const currentQuestion = questions[currentQuestionIndex];
+        const isCorrect = selectedIndex === currentQuestion.correctAnswer;
+        
+        if (isCorrect) {
+            setScore(prev => prev + 1);
+            setQuizStats(prev => ({
+                ...prev,
+                correct: prev.correct + 1
+            }));
+        } else {
+            setQuizStats(prev => ({
+                ...prev,
+                wrong: prev.wrong + 1
+            }));
+        }
+        
+        // اقتراح قانون بناءً على السؤال
+        suggestRelevantLaw();
+    };
+    
+    // اقتراح قانون ذي صلة
+    const suggestRelevantLaw = () => {
+        const currentQuestion = questions[currentQuestionIndex];
+        let law = '';
+        
+        // تحليل السؤال لاقتراح قانون مناسب
+        if (currentQuestion.category.includes('احتمالات') || 
+            currentQuestion.question.includes('احتمال') || 
+            currentQuestion.question.includes('P(')) {
+            law = 'قوانين الاحتمالات: P(A∪B) = P(A) + P(B) - P(A∩B)';
+        } else if (currentQuestion.category.includes('إحصاء') || 
+                  currentQuestion.question.includes('متوسط') || 
+                  currentQuestion.question.includes('وسيط')) {
+            law = 'قوانين الإحصاء الوصفي: المتوسط = Σx/n ، الوسيط = القيمة الوسطى';
+        } else if (currentQuestion.question.includes('تباين') || 
+                  currentQuestion.question.includes('انحراف')) {
+            law = 'التباين: σ² = Σ(x-μ)²/N للعينة: s² = Σ(x-x̄)²/(n-1)';
+        } else if (currentQuestion.question.includes('توزيع') || 
+                  currentQuestion.question.includes('طبيعي')) {
+            law = 'التوزيع الطبيعي: Z = (X-μ)/σ ~ N(0,1)';
+        } else if (currentQuestion.question.includes('شرطي') || 
+                  currentQuestion.question.includes('|')) {
+            law = 'الاحتمال الشرطي: P(A|B) = P(A∩B)/P(B)';
+        } else {
+            law = 'مراجعة قوانين الفصل الحالي من الجدول أعلاه';
+        }
+        
+        setSuggestedLaw(law);
+    };
+    
+    // السؤال التالي
+    const nextQuestion = () => {
+        if (!answered) return;
+        
+        if (currentQuestionIndex < questions.length - 1) {
+            setCurrentQuestionIndex(prev => prev + 1);
+            setAnswered(false);
+            setSelectedAnswer(null);
+            setShowExplanation(false);
+            setSuggestedLaw('');
+            setTimeLeft(30);
+        } else {
+            endQuiz();
+        }
+    };
+    
+    // السؤال السابق
+    const prevQuestion = () => {
+        if (currentQuestionIndex > 0) {
+            setCurrentQuestionIndex(prev => prev - 1);
+            setAnswered(false);
+            setSelectedAnswer(null);
+            setShowExplanation(false);
+            setSuggestedLaw('');
+            setTimeLeft(30);
+        }
+    };
+    
+    // سؤال عشوائي
+    const randomQuestion = () => {
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        setCurrentQuestionIndex(randomIndex);
+        setAnswered(false);
+        setSelectedAnswer(null);
+        setShowExplanation(false);
+        setSuggestedLaw('');
+        setTimeLeft(30);
+    };
+    
+    // إنهاء المسابقة
+    const endQuiz = () => {
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
+        }
+        setQuizFinished(true);
+    };
+    
+    // إعادة المحاولة
+    const restartQuiz = () => {
+        setQuizStarted(false);
+        setQuizFinished(false);
+        setCurrentQuestionIndex(0);
+        setScore(0);
+        setAnswered(false);
+        setSelectedAnswer(null);
+        setShowExplanation(false);
+        setSuggestedLaw('');
+        setTimeLeft(30);
+        setQuizStats({
+            correct: 0,
+            wrong: 0,
+            skipped: 0,
+            totalTime: 0
+        });
+    };
+    
+    // تنظيف المؤقت
+    React.useEffect(() => {
+        return () => {
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+            }
+        };
+    }, []);
+    
+    // بدء المؤقت عند تغيير السؤال
+    React.useEffect(() => {
+        if (quizStarted && !quizFinished && currentQuestionIndex < questions.length) {
+            startTimer();
+        }
+    }, [currentQuestionIndex, quizStarted, quizFinished]);
+    
+    // عرض شاشة البدء
+    if (!quizStarted && !quizFinished) {
+        return (
+            <div className="start-screen">
+                <h2>اختبار قوانين الإحصاء والاحتمالات</h2>
+                <p>اختبر معرفتك بالقوانين الرياضية في الإحصاء والاحتمالات</p>
+                <div style={{margin: '20px 0'}}>
+                    <p><strong>عدد الأسئلة:</strong> {questions.length}</p>
+                    <p><strong>الوقت لكل سؤال:</strong> 30 ثانية</p>
+                    <p><strong>التغطية:</strong> جميع الفصول والمحاضرات</p>
+                </div>
+                <button onClick={startQuiz} className="quiz-btn" style={{background: '#667eea', color: 'white', padding: '15px 30px', fontSize: '1.1rem'}}>
+                    <i className="fas fa-play-circle"></i> ابدأ الاختبار
+                </button>
+            </div>
+        );
     }
-  }, [currentQuestionIndex]);
-
-  const handleOptionSelect = (optionIndex) => {
-    if (!showExplanation && !currentQuestionAnswered) {
-      setSelectedOption(optionIndex);
+    
+    // عرض شاشة النتائج
+    if (quizFinished) {
+        const percentage = (score / questions.length) * 100;
+        let message = '';
+        let emoji = '';
+        
+        if (percentage >= 90) {
+            message = 'ممتاز! أنت خبير في الإحصاء والاحتمالات';
+            emoji = '🎯';
+        } else if (percentage >= 70) {
+            message = 'جيد جداً! لديك معرفة قوية بالقوانين';
+            emoji = '👍';
+        } else if (percentage >= 50) {
+            message = 'مستوى مقبول، يمكنك التحسين بالمراجعة';
+            emoji = '📚';
+        } else {
+            message = 'تحتاج للمراجعة أكثر، حاول مرة أخرى';
+            emoji = '💪';
+        }
+        
+        return (
+            <div className="result-screen">
+                <h2>انتهى الاختبار {emoji}</h2>
+                <div className="score-card" style={{
+                    background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+                    padding: '30px',
+                    borderRadius: '15px',
+                    margin: '20px 0'
+                }}>
+                    <h3>نتيجتك النهائية</h3>
+                    <div style={{fontSize: '3rem', fontWeight: 'bold', color: '#667eea', margin: '20px 0'}}>
+                        {score} / {questions.length}
+                    </div>
+                    <div style={{fontSize: '1.5rem', color: '#4a5568', marginBottom: '20px'}}>
+                        ({percentage.toFixed(1)}%)
+                    </div>
+                    <p style={{fontSize: '1.2rem', color: '#2d3748'}}>{message}</p>
+                </div>
+                
+                <div className="stats" style={{margin: '20px 0'}}>
+                    <div className="stat-item">
+                        <div className="stat-value" style={{color: '#38a169'}}>{quizStats.correct}</div>
+                        <div className="stat-label">صحيحة</div>
+                    </div>
+                    <div className="stat-item">
+                        <div className="stat-value" style={{color: '#e53e3e'}}>{quizStats.wrong}</div>
+                        <div className="stat-label">خاطئة</div>
+                    </div>
+                    <div className="stat-item">
+                        <div className="stat-value" style={{color: '#d69e2e'}}>{quizStats.skipped}</div>
+                        <div className="stat-label">منتهية الوقت</div>
+                    </div>
+                </div>
+                
+                <div style={{marginTop: '30px'}}>
+                    <button onClick={restartQuiz} className="quiz-btn restart-btn" style={{marginRight: '10px'}}>
+                        <i className="fas fa-redo"></i> حاول مرة أخرى
+                    </button>
+                    <button onClick={() => window.location.reload()} className="quiz-btn" style={{background: '#4a5568', color: 'white'}}>
+                        <i className="fas fa-home"></i> العودة للقوانين
+                    </button>
+                </div>
+            </div>
+        );
     }
-  };
-
-  const handleSubmit = () => {
-    if (currentQuestionAnswered) return;
     
-    setShowExplanation(true);
-    setCurrentQuestionAnswered(true);
-    setAnsweredQuestions(new Set([...answeredQuestions, currentQuestionIndex]));
-    setTotalQuestions(totalQuestions + 1);
-    
-    if (selectedOption === questions[currentQuestionIndex].correctAnswer) {
-      setScore(score + 1);
-      setCorrectAnswers(correctAnswers + 1);
-    }
-  };
-
-  const handleNextQuestion = () => {
-    // توليد سؤال عشوائي جديد
-    let newQuestion;
-    let attempts = 0;
-    
-    // نحاول إيجاد سؤال لم يتم الإجابة عليه من قبل
-    do {
-      newQuestion = getRandomQuestion();
-      attempts++;
-    } while (answeredQuestions.has(getQuestionIndex(newQuestion)) && attempts < 50);
-    
-    const newQuestionIndex = getQuestionIndex(newQuestion);
-    setCurrentQuestionIndex(newQuestionIndex);
-    setQuestionHistory([...questionHistory, newQuestionIndex]);
-    setSelectedOption(null);
-    setShowExplanation(false);
-    setCurrentQuestionAnswered(false);
-  };
-
-  const handleRandomQuestion = () => {
-    // إذا كان السؤال الحالي لم يتم الإجابة عليه بعد، لا نفعّل الزر
-    if (!currentQuestionAnswered) return;
-    
-    // توليد سؤال عشوائي جديد تمامًا
-    const newQuestion = getRandomQuestion();
-    const newQuestionIndex = getQuestionIndex(newQuestion);
-    setCurrentQuestionIndex(newQuestionIndex);
-    setQuestionHistory([...questionHistory, newQuestionIndex]);
-    setSelectedOption(null);
-    setShowExplanation(false);
-    setCurrentQuestionAnswered(false);
-  };
-
-  const handleRestartQuiz = () => {
-    const randomQuestion = getRandomQuestion();
-    const questionIndex = getQuestionIndex(randomQuestion);
-    setCurrentQuestionIndex(questionIndex);
-    setSelectedOption(null);
-    setShowExplanation(false);
-    setScore(0);
-    setQuizCompleted(false);
-    setAnsweredQuestions(new Set());
-    setQuestionHistory([questionIndex]);
-    setTotalQuestions(0);
-    setCorrectAnswers(0);
-    setCurrentQuestionAnswered(false);
-  };
-
-  if (quizCompleted) {
+    // التحقق من وجود أسئلة
+    // التحقق من وجود أسئلة
+if (questions.length === 0) {
     return (
-      <div className="quiz-container">
-        <div className="question">
-          <h3>انتهى الاختبار!</h3>
-          <p>درجتك: {score} من {totalQuestions}</p>
-          <p>النسبة المئوية: {totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0}%</p>
-          <div className="stats">
-            <div className="stat-item">
-              <div className="stat-value">{easyQuestions.length}</div>
-              <div className="stat-label">أسئلة سهلة</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-value">{mediumQuestions.length}</div>
-              <div className="stat-label">أسئلة متوسطة</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-value">{hardQuestions.length}</div>
-              <div className="stat-label">أسئلة صعبة</div>
-            </div>
-          </div>
-          <button 
-            onClick={handleRestartQuiz}
-            className="quiz-btn restart-btn"
-          >
-            إعادة الاختبار
-          </button>
+        <div className="quiz-screen" style={{textAlign: 'center', padding: '50px'}}>
+            <h3>لم تتم إضافة الأسئلة بعد</h3>
+            <p>يرجى إضافة الأسئلة إلى مصفوفة questions</p>
+            <button onClick={() => window.location.reload()} className="quiz-btn" style={{background: '#667eea', color: 'white', marginTop: '20px'}}>
+                تحديث الصفحة
+            </button>
         </div>
-      </div>
     );
-  }
-
-  if (!questions[currentQuestionIndex]) {
-    return <div>جارٍ تحميل الأسئلة...</div>;
-  }
-
-  const question = questions[currentQuestionIndex];
-  const difficultyBadge = 
-    question.difficulty === "easy" ? "easy-badge" :
-    question.difficulty === "medium" ? "medium-badge" : "hard-badge";
-  
-  const difficultyText = 
-    question.difficulty === "easy" ? "سهل" :
-    question.difficulty === "medium" ? "متوسط" : "صعب";
-
-  return (
-    <div className="quiz-container">
-      <div className="stats">
-        <div className="stat-item">
-          <div className="stat-value">{correctAnswers}</div>
-          <div className="stat-label">إجابات صحيحة</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-value">{totalQuestions - correctAnswers}</div>
-          <div className="stat-label">إجابات خاطئة</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-value">
-            {totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0}%
-          </div>
-          <div className="stat-label">نسبة الصحة</div>
-        </div>
-      </div>
-      
-      <div className="question">
-        <h3>
-          <span className={`difficulty-badge ${difficultyBadge}`}>{difficultyText}</span>
-          السؤال {questionHistory.length} 
-        </h3>
-        <p>{question.text}</p>
-        
-        <div className="options">
-          {question.options.map((option, index) => (
-            <div
-              key={index}
-              className={`option ${
-                selectedOption === index ? "selected" : ""
-              } ${
-                showExplanation
-                  ? index === question.correctAnswer
-                    ? "correct"
-                    : selectedOption === index
-                    ? "incorrect"
-                    : ""
-                  : ""
-              }`}
-              onClick={() => handleOptionSelect(index)}
-            >
-              {option}
+}
+    
+    const currentQuestion = questions[currentQuestionIndex];
+    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+    
+    return (
+        <div className="quiz-screen">
+            <div className="quiz-header" style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '20px',
+                padding: '15px',
+                background: '#f8f9fa',
+                borderRadius: '10px'
+            }}>
+                <div className="score-display" style={{fontWeight: 'bold', color: '#2d3748'}}>
+                    <i className="fas fa-star" style={{color: '#f6ad55', marginLeft: '5px'}}></i>
+                    النتيجة: {score}
+                </div>
+                <div className="timer" style={{
+                    fontWeight: 'bold',
+                    color: timeLeft <= 10 ? '#e53e3e' : '#2d3748',
+                    background: timeLeft <= 10 ? '#fed7d7' : '#e2e8f0',
+                    padding: '5px 15px',
+                    borderRadius: '20px'
+                }}>
+                    <i className="fas fa-clock" style={{marginLeft: '5px'}}></i>
+                    الوقت: {timeLeft} ثانية
+                </div>
             </div>
-          ))}
+            
+            <div className="progress-container" style={{marginBottom: '20px'}}>
+                <div className="progress-bar" style={{
+                    height: '10px',
+                    background: 'linear-gradient(90deg, #4CAF50, #8BC34A)',
+                    width: `${progress}%`,
+                    borderRadius: '5px',
+                    transition: 'width 0.3s ease'
+                }}></div>
+                <div className="progress-text" style={{
+                    textAlign: 'center',
+                    padding: '5px',
+                    fontWeight: 'bold',
+                    color: '#4a5568'
+                }}>
+                    السؤال {currentQuestionIndex + 1} من {questions.length}
+                </div>
+            </div>
+            
+            <div className="question-container" style={{
+                background: 'white',
+                padding: '25px',
+                borderRadius: '15px',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+            }}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: '15px'
+                }}>
+                    <h3 className="question" style={{color: '#2d3748', margin: 0, fontSize: '1.2rem', lineHeight: '1.5'}}>
+                        {currentQuestion.text || currentQuestion.question}
+                    </h3>
+                    <span className={`difficulty-badge ${currentQuestion.difficulty === 'easy' ? 'easy-badge' : 
+                                    currentQuestion.difficulty === 'medium' ? 'medium-badge' : 'hard-badge'}`}>
+                        {currentQuestion.difficulty === 'easy' ? 'سهل' : 
+                        currentQuestion.difficulty === 'medium' ? 'متوسط' : 'صعب'}
+                    </span>
+                </div>
+                
+                <div style={{marginBottom: '15px', color: '#718096'}}>
+                    <i className="fas fa-folder" style={{marginLeft: '5px'}}></i>
+                    {currentQuestion.category}
+                </div>
+                
+                <div className="options-container" style={{marginTop: '20px'}}>
+                    {currentQuestion.options.map((option, index) => {
+                        const isCorrect = index === currentQuestion.correctAnswer;
+                        const isSelected = index === selectedAnswer;
+                        let optionStyle = {
+                            width: '100%',
+                            padding: '15px',
+                            marginBottom: '10px',
+                            border: '2px solid #e2e8f0',
+                            borderRadius: '10px',
+                            background: '#f8f9fa',
+                            textAlign: 'right',
+                            cursor: answered ? 'default' : 'pointer',
+                            transition: 'all 0.3s'
+                        };
+                        
+                        if (answered) {
+                            if (isCorrect) {
+                                optionStyle.background = '#c6f6d5';
+                                optionStyle.borderColor = '#38a169';
+                                optionStyle.color = '#22543d';
+                            } else if (isSelected && !isCorrect) {
+                                optionStyle.background = '#fed7d7';
+                                optionStyle.borderColor = '#e53e3e';
+                                optionStyle.color = '#742a2a';
+                            }
+                        } else if (isSelected) {
+                            optionStyle.background = '#bee3f8';
+                            optionStyle.borderColor = '#3182ce';
+                        }
+                        
+                        return (
+                            <button
+                                key={index}
+                                style={optionStyle}
+                                onClick={() => selectAnswer(index)}
+                                disabled={answered}
+                                onMouseEnter={(e) => {
+                                    if (!answered) {
+                                        e.target.style.background = '#e2e8f0';
+                                    }
+                                }}
+                                onMouseLeave={(e) => {
+                                    if (!answered) {
+                                        e.target.style.background = isSelected ? '#bee3f8' : '#f8f9fa';
+                                    }
+                                }}
+                            >
+                                <span style={{
+                                    display: 'inline-block',
+                                    width: '30px',
+                                    height: '30px',
+                                    lineHeight: '30px',
+                                    textAlign: 'center',
+                                    background: answered ? 
+                                        (isCorrect ? '#38a169' : isSelected ? '#e53e3e' : '#a0aec0') : 
+                                        '#cbd5e0',
+                                    color: 'white',
+                                    borderRadius: '50%',
+                                    marginLeft: '10px'
+                                }}>
+                                    {String.fromCharCode(1632 + index + 1)}
+                                </span>
+                                {option}
+                            </button>
+                        );
+                    })}
+                </div>
+                
+                {showExplanation && currentQuestion.explanation && (
+                    <div className="explanation">
+                        <h4><i className="fas fa-lightbulb" style={{marginLeft: '5px'}}></i> الشرح:</h4>
+                        <p>{currentQuestion.explanation}</p>
+                    </div>
+                )}
+                
+                {suggestedLaw && (
+                    <div className="law-suggestion">
+                        <h4><i className="fas fa-book" style={{marginLeft: '5px'}}></i> القانون المقترح للمراجعة:</h4>
+                        <p>{suggestedLaw}</p>
+                    </div>
+                )}
+                
+                <div className="quiz-controls">
+                    <div style={{display: 'flex', gap: '10px'}}>
+                        {currentQuestionIndex > 0 && (
+                            <button onClick={prevQuestion} className="quiz-btn" style={{background: '#a0aec0', color: 'white'}} disabled={!answered}>
+                                <i className="fas fa-arrow-right"></i> السابق
+                            </button>
+                        )}
+                        <button onClick={randomQuestion} className="quiz-btn random-btn" disabled={answered}>
+                            <i className="fas fa-random"></i> سؤال عشوائي
+                        </button>
+                    </div>
+                    
+                    <button 
+                        onClick={nextQuestion} 
+                        className="quiz-btn next-btn"
+                        disabled={!answered && timeLeft > 0}
+                    >
+                        {currentQuestionIndex < questions.length - 1 ? (
+                            <>
+                                التالي <i className="fas fa-arrow-left" style={{marginRight: '5px'}}></i>
+                            </>
+                        ) : (
+                            <>
+                                إنهاء الاختبار <i className="fas fa-flag-checkered" style={{marginRight: '5px'}}></i>
+                            </>
+                        )}
+                    </button>
+                </div>
+            </div>
         </div>
-        
-        {showExplanation && (
-          <div style={{ marginTop: "15px", padding: "10px", backgroundColor: "#e9ecef", borderRadius: "5px" }}>
-            <p><strong>التفسير:</strong> {question.explanation}</p>
-          </div>
-        )}
-        
-        {relevantLaws.length > 0 && (
-          <div className="law-suggestion">
-            <h4>القوانين المقترحة لهذا السؤال:</h4>
-            <ul>
-              {relevantLaws.map((law, index) => (
-                <li key={index}>{law}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        
-        <div className="quiz-controls">
-          {!showExplanation ? (
-            <button 
-              onClick={handleSubmit}
-              disabled={selectedOption === null}
-              className={`quiz-btn submit-btn ${selectedOption === null ? 'disabled' : ''}`}
-            >
-              تحقق من الإجابة
-            </button>
-          ) : (
-            <button 
-              onClick={handleNextQuestion}
-              className="quiz-btn next-btn"
-            >
-              السؤال التالي
-            </button>
-          )}
-          
-          <button 
-            onClick={handleRandomQuestion}
-            disabled={!currentQuestionAnswered}
-            className={`quiz-btn random-btn ${!currentQuestionAnswered ? 'disabled' : ''}`}
-          >
-            سؤال عشوائي
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
-// عرض التطبيق
-ReactDOM.render(<QuizApp />, document.getElementById('quiz-container'));
+// Render the React component
+const quizContainer = document.getElementById('quiz-container');
+if (quizContainer) {
+    ReactDOM.render(<QuizApp />, quizContainer);
+}
 </script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>
