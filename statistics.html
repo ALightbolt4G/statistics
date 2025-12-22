@@ -474,6 +474,23 @@ tr:hover {
   margin-top: 0;
   color: #1976D2;
 }
+/* إضافة في قسم CSS */
+button:active {
+    transform: translateY(0) !important; /* لمنع الحركة عند الضغط */
+}
+
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.quiz-btn:active {
+    transform: scale(0.98) !important; /* تأثير بسيط بدلاً من الحذف */
+}
+
+.option-btn {
+    transition: background-color 0.2s, border-color 0.2s !important;
+}
     </style>
 </head>
 <body>
@@ -2930,20 +2947,20 @@ const questions = [
     difficulty: "hard",
     category: "Descriptive Statistics"
   },
-  {
-    id: 111,
-    text: "Calculate the 35th percentile for the dataset: 16, 17, 18, 19, 20, 20, 21, 22, 22, 22, 24, 25, 26, 27, 31",
-    options: [
-      "20.0",
-      "20.6",
-      "21.0",
-      "21.5"
-    ],
-    correctAnswer: 1,
-    explanation: "L₃₅ = (15+1)×0.35 = 5.6, so P₃₅ = x₍₅₎ + 0.6(x₍₆₎ - x₍₅₎) = 20 + 0.6(21-20) = 20.6",
-    difficulty: "hard",
-    category: "Descriptive Statistics"
-  },
+{
+  "id": 111,
+  "text": "Calculate the 35th percentile for the dataset: 16, 17, 18, 19, 20, 20, 21, 22, 22, 22, 24, 25, 26, 27, 31 using the common method (nearest-rank method).",
+  "options": [
+    "20.0",
+    "20.6",
+    "21.0",
+    "21.5"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Using the nearest-rank method: 1) Position = n × P/100 = 15 × 0.35 = 5.25. 2) Round 5.25 to the nearest whole number → 5. 3) The 35th percentile is the 5th value in the ordered dataset: 20.",
+  "difficulty": "medium",
+  "category": "Descriptive Statistics"
+},
   {
     id: 112,
     text: "Using the same dataset, calculate the sample variance step by step. What is the sum of squared deviations?",
@@ -4352,16 +4369,7 @@ function QuizApp() {
         }
     };
     
-    // سؤال عشوائي
-    const randomQuestion = () => {
-        const randomIndex = Math.floor(Math.random() * questions.length);
-        setCurrentQuestionIndex(randomIndex);
-        setAnswered(false);
-        setSelectedAnswer(null);
-        setShowExplanation(false);
-        setSuggestedLaw('');
-        setTimeLeft(30);
-    };
+
     
     // إنهاء المسابقة
     const endQuiz = () => {
@@ -4578,75 +4586,80 @@ if (questions.length === 0) {
                     <i className="fas fa-folder" style={{marginLeft: '5px'}}></i>
                     {currentQuestion.category}
                 </div>
-                
-                <div className="options-container" style={{marginTop: '20px'}}>
-                    {currentQuestion.options.map((option, index) => {
-                        const isCorrect = index === currentQuestion.correctAnswer;
-                        const isSelected = index === selectedAnswer;
-                        let optionStyle = {
-                            width: '100%',
-                            padding: '15px',
-                            marginBottom: '10px',
-                            border: '2px solid #e2e8f0',
-                            borderRadius: '10px',
-                            background: '#f8f9fa',
-                            textAlign: 'right',
-                            cursor: answered ? 'default' : 'pointer',
-                            transition: 'all 0.3s'
-                        };
-                        
-                        if (answered) {
-                            if (isCorrect) {
-                                optionStyle.background = '#c6f6d5';
-                                optionStyle.borderColor = '#38a169';
-                                optionStyle.color = '#22543d';
-                            } else if (isSelected && !isCorrect) {
-                                optionStyle.background = '#fed7d7';
-                                optionStyle.borderColor = '#e53e3e';
-                                optionStyle.color = '#742a2a';
-                            }
-                        } else if (isSelected) {
-                            optionStyle.background = '#bee3f8';
-                            optionStyle.borderColor = '#3182ce';
-                        }
-                        
-                        return (
-                            <button
-                                key={index}
-                                style={optionStyle}
-                                onClick={() => selectAnswer(index)}
-                                disabled={answered}
-                                onMouseEnter={(e) => {
-                                    if (!answered) {
-                                        e.target.style.background = '#e2e8f0';
-                                    }
-                                }}
-                                onMouseLeave={(e) => {
-                                    if (!answered) {
-                                        e.target.style.background = isSelected ? '#bee3f8' : '#f8f9fa';
-                                    }
-                                }}
-                            >
-                                <span style={{
-                                    display: 'inline-block',
-                                    width: '30px',
-                                    height: '30px',
-                                    lineHeight: '30px',
-                                    textAlign: 'center',
-                                    background: answered ? 
-                                        (isCorrect ? '#38a169' : isSelected ? '#e53e3e' : '#a0aec0') : 
-                                        '#cbd5e0',
-                                    color: 'white',
-                                    borderRadius: '50%',
-                                    marginLeft: '10px'
-                                }}>
-                                    {String.fromCharCode(1632 + index + 1)}
-                                </span>
-                                {option}
-                            </button>
-                        );
-                    })}
-                </div>
+<div className="options-container" style={{marginTop: '20px'}}>
+    {currentQuestion.options.map((option, index) => {
+        const isCorrect = index === currentQuestion.correctAnswer;
+        const isSelected = index === selectedAnswer;
+        let optionStyle = {
+            width: '100%',
+            padding: '15px',
+            marginBottom: '10px',
+            borderWidth: '2px',
+            borderStyle: 'solid',
+            borderColor: '#e2e8f0',
+            borderRadius: '10px',
+            background: '#f8f9fa',
+            textAlign: 'right',
+            cursor: answered ? 'default' : 'pointer',
+            transition: 'all 0.3s',
+            WebkitTapHighlightColor: 'transparent',
+            outline: 'none'
+        };
+        
+        if (answered) {
+            if (isCorrect) {
+                optionStyle.background = '#c6f6d5';
+                optionStyle.borderColor = '#38a169';
+                optionStyle.color = '#22543d';
+            } else if (isSelected && !isCorrect) {
+                optionStyle.background = '#fed7d7';
+                optionStyle.borderColor = '#e53e3e';
+                optionStyle.color = '#742a2a';
+            }
+        } else if (isSelected) {
+            optionStyle.background = '#bee3f8';
+            optionStyle.borderColor = '#3182ce';
+        }
+        
+        return (
+            <button
+                key={index}
+                style={optionStyle}
+                onClick={() => selectAnswer(index)}
+                disabled={answered}
+                onMouseEnter={(e) => {
+                    if (!answered) {
+                        e.target.style.background = '#e2e8f0';
+                        e.target.style.borderColor = '#cbd5e0';
+                    }
+                }}
+                onMouseLeave={(e) => {
+                    if (!answered) {
+                        e.target.style.background = isSelected ? '#bee3f8' : '#f8f9fa';
+                        e.target.style.borderColor = isSelected ? '#3182ce' : '#e2e8f0';
+                    }
+                }}
+            >
+                <span style={{
+                    display: 'inline-block',
+                    width: '30px',
+                    height: '30px',
+                    lineHeight: '30px',
+                    textAlign: 'center',
+                    background: answered ? 
+                        (isCorrect ? '#38a169' : isSelected ? '#e53e3e' : '#a0aec0') : 
+                        '#cbd5e0',
+                    color: 'white',
+                    borderRadius: '50%',
+                    marginLeft: '10px'
+                }}>
+                    {String.fromCharCode(1632 + index + 1)}
+                </span>
+                {option}
+            </button>
+        );
+    })}
+</div>
                 
                 {showExplanation && currentQuestion.explanation && (
                     <div className="explanation">
@@ -4669,9 +4682,7 @@ if (questions.length === 0) {
                                 <i className="fas fa-arrow-right"></i> السابق
                             </button>
                         )}
-                        <button onClick={randomQuestion} className="quiz-btn random-btn" disabled={answered}>
-                            <i className="fas fa-random"></i> سؤال عشوائي
-                        </button>
+                        
                     </div>
                     
                     <button 
